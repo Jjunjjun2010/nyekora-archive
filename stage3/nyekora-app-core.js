@@ -1,4 +1,5 @@
 let E=SEED.slice();
+
 const ST=["Canon","Proposal","Unknown","Conflict","Rejected"];
 const SL={Canon:"확정",Proposal:"제안",Unknown:"미확인",Conflict:"충돌",Rejected:"거부"};
 const SD={Canon:"",Proposal:"아직 확정되지 않은 제안입니다.",Unknown:"아직 확인되지 않은 내용입니다.",Conflict:"자료끼리 충돌하는 내용입니다.",Rejected:"검토 결과 공식 설정으로 채택되지 않은 기록입니다. 기록은 보존됩니다."};
@@ -27,6 +28,7 @@ const q=Q.toLowerCase();
 const r=q?E.filter(e=>[e.t,e.claim,e.ex||"",e.id,e.tags.join(" "),CATS[e.c],e.s,SL[e.s]].join(" ").toLowerCase().includes(q)):[];
 return `<main><div class="crumb"><a href="#">처음</a> / 검색</div><h2>검색 결과</h2>${sbox(Q)}<p class="note">“${esc(Q)}” ${q?`검색 결과 ${r.length}개`:"검색어를 입력해 주세요."}. 현재 기록된 ${E.length}개 항목 안에서만 찾습니다.</p>${r.map(item).join("")}</main>`}
 const KEY="nyekora-archive:v1:db",KB="nyekora-archive:v1:autobackups",SEEDVER="2026-11-09-r1";
+const SB_URL="https://yzytuvsjsbmyxsybixru.supabase.co",SB_KEY="sb_publishable_WO2hIwK5QIkW7ALtsBfA_g_7bkTicGF",SB_TABLE="nyekora_archive",SB_ROW_ID=1;
 SRC["creator-decision-app"]="작성자 결정 (기록관 편집 기능)";
 let DB={v:1,ent:{},del:{},log:[]},storeOk=true,FL="",MODE=null,FM=null,MG={},abDone=false;
 const now=()=>new Date().toISOString(),clone=o=>JSON.parse(JSON.stringify(o));
@@ -94,14 +96,78 @@ commit(!o?"create":sc?"status":"edit",n.id,b,n,why,"저장했습니다.");FM=nul
 const bk=()=>JSON.stringify({app:"nyekora-archive",ver:1,seedVer:SEEDVER,exportedAt:now(),db:DB},null,1);
 function copyTA(){const t=$("#bk");if(!t)return;t.select();try{navigator.clipboard.writeText(t.value).then(()=>{FL="복사했습니다.";}).catch(()=>{})}catch(x){}try{document.execCommand("copy")}catch(x){}}
 function showBk(v){MG.view=v;route()}
-function parseDB(txt){try{const o=JSON.parse(txt),d=o.db||o;if(d&&d.v===1&&d.ent&&d.del&&Array.isArray(d.log))return d}catch(x){}return null}
+function parseDBObj(o){const d=o&&o.db?o.db:o;return d&&d.v===1&&d.ent&&d.del&&Array.isArray(d.log)?d:null}
+function parseDB(txt){try{return parseDBObj(JSON.parse(txt))}catch(x){return null}}
 function stageImp(txt){const d=parseDB(txt);if(!d){MG.err="백업 형식이 올바르지 않습니다. 복구 파일을 그대로 붙여 넣어 주세요.";MG.imp=null}else{MG.err="";MG.imp=d}route()}
 function doImp(){if(!MG.imp)return;abk("복구 전");DB=MG.imp;save();rebuild();MG={};FL="복구했습니다. 이전 상태는 자동 백업에 남았습니다.";route()}
 function doReset(){abk("초기화 전");DB={v:1,ent:{},del:{},log:[]};save();rebuild();MG={};FL="HTML 원본 데이터로 되돌렸습니다. 이전 상태는 자동 백업에 남았습니다.";route()}
-function manage(){let sz=0;try{sz=(localStorage.getItem(KEY)||"").length}catch(x){}const ab=abl(),L=DB.log.slice(-30).reverse(),T=Object.keys(DB.del),er=MG.err?`<p class="note err">${esc(MG.err)}</p>`:"";
+const dbStamp=d=>(d.log&&d.log.length?d.log[d.log.length-1].t:"");
+const dbEmpty=d=>!Object.keys(d.ent||{}).length&&!Object.keys(d.del||{}).length&&!(d.log||[]).length;
+const dbStat=d=>`수정·추가 ${Object.keys(d.ent||{}).length}개, 삭제 ${Object.keys(d.del||{}).length}개, 이력 ${(d.log||[]).length}건`;
+let SB={c:null,ready:false,busy:false,status:"연결 대기",err:"",user:null,ver:null,updatedAt:"",loginChecked:false};
+function sbPayload(){return {app:"nyekora-archive",ver:1,seedVer:SEEDVER,savedAt:now(),entryCount:E.length,entries:clone(E),db:clone(DB)}}
+function sbExtractDB(row){if(!row||!row.data)return null;return parseDBObj(row.data)}
+async function sbInit(silent){if(SB.ready||SB.busy)return SB.ready;SB.busy=true;SB.err="";try{if(!window.supabase||!window.supabase.createClient)throw new Error("Supabase 스크립트를 불러오지 못했습니다.");SB.c=window.supabase.createClient(SB_URL,SB_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}});SB.ready=true;const {data:{session}}=await SB.c.auth.getSession();SB.user=session&&session.user?session.user:null;SB.status=SB.user?"Supabase 연결됨 (로그인됨)":"Supabase 연결됨 (로그인 필요)";SB.c.auth.onAuthStateChange(async(_e,s)=>{SB.user=s&&s.user?s.user:null;SB.status=SB.user?"Supabase 연결됨 (로그인됨)":"Supabase 연결됨 (로그인 필요)";SB.loginChecked=false;route();});}catch(x){SB.ready=false;SB.status="Supabase 연결 실패";SB.err=x&&x.message?x.message:String(x);if(!silent)FL="Supabase 연결 실패: "+SB.err}finally{SB.busy=false}return SB.ready}
+async function sbSignIn(ev){if(ev)ev.preventDefault();try{if(!await sbInit(false))return false;const em=(document.getElementById("sb-email")||{}).value||"",pw=(document.getElementById("sb-pass")||{}).value||"";if(!em.trim()||!pw){SB.err="이메일과 비밀번호를 입력해 주세요.";route();return false}const {error}=await SB.c.auth.signInWithPassword({email:em.trim(),password:pw});if(error)throw error;SB.err="";SB.loginChecked=false;FL="로그인했습니다.";await cloudAfterLogin();}catch(x){SB.err=x&&x.message?x.message:String(x);FL="로그인 실패: "+SB.err;route()}return false}
+async function sbSignOut(){try{if(!await sbInit(false))return;const {error}=await SB.c.auth.signOut();if(error)throw error;SB.user=null;SB.ver=null;SB.updatedAt="";SB.loginChecked=false;MG.cloudConflict=null;MG.mig=null;FL="로그아웃했습니다."}catch(x){SB.err=x&&x.message?x.message:String(x);FL="로그아웃 실패: "+SB.err}route()}
+async function sbGet(){if(!await sbInit(true)||!SB.user)return null;const {data,error}=await SB.c.from(SB_TABLE).select("id,owner_id,data,updated_at,version").eq("id",SB_ROW_ID).maybeSingle();if(error)throw error;return data}
+async function cloudAfterLogin(){try{const row=await sbGet();if(row){const d=sbExtractDB(row);if(!d){FL="클라우드 데이터 형식을 읽을 수 없습니다.";route();return}abk("클라우드 기준 로드 전");DB=d;save();rebuild();SB.ver=row.version??0;SB.updatedAt=row.updated_at||"";SB.loginChecked=true;MG.mig=null;MG.cloudConflict=null;FL="클라우드 데이터를 불러왔습니다.";route();return}SB.ver=0;SB.updatedAt="";SB.loginChecked=true;if(!dbEmpty(DB)){MG.mig={local:dbStat(DB)};FL="클라우드에 아직 데이터가 없습니다. 로컬 데이터를 최초 이전할 수 있습니다."}else FL="클라우드와 로컬 모두 비어 있습니다.";}catch(x){SB.err=x&&x.message?x.message:String(x);FL="클라우드 확인 실패: "+SB.err}route()}
+function localCloudCheck(){const ids=new Set(Object.keys(SRC));return {count:E.length,sources:E.every(e=>Array.isArray(e.src)&&e.src.length&&e.src.every(s=>Array.isArray(s)&&s.length===2&&ids.has(s[0])))}
+}
+async function cloudCreateFromLocal(){try{if(!await sbInit(false)||!SB.user){FL="로그인이 필요합니다.";route();return}const check=localCloudCheck();if(check.count!==133||!check.sources){FL=`최초 이전 중단: 로컬 검증 실패 (항목 ${check.count}/133, 출처 연결 ${check.sources?"정상":"오류"})`;route();return}const row=await sbGet();if(row){FL="이미 클라우드 데이터가 있어 로컬 데이터로 덮어쓰지 않았습니다.";route();return}abk("최초 클라우드 이전 전");const payload=sbPayload(),rec={id:SB_ROW_ID,owner_id:SB.user.id,data:payload,updated_at:now(),version:1};const {error}=await SB.c.from(SB_TABLE).insert(rec);if(error)throw error;const saved=await sbGet(),savedDb=sbExtractDB(saved),savedEntries=saved&&saved.data&&Array.isArray(saved.data.entries)?saved.data.entries:[];if(!saved||saved.id!==SB_ROW_ID||saved.owner_id!==SB.user.id||saved.version!==1||!savedDb||saved.data.entryCount!==133||savedEntries.length!==133||!savedEntries.every(e=>Array.isArray(e.src)&&e.src.length&&e.src.every(s=>Array.isArray(s)&&s.length===2&&SRC[s[0]]))){throw new Error("이전 후 클라우드 레코드 검증에 실패했습니다.")}SB.ver=saved.version;SB.updatedAt=saved.updated_at||rec.updated_at;MG.mig=null;FL="최초 이전 완료: 133개 항목과 출처 연결을 클라우드에서 확인했습니다."}catch(x){SB.err=x&&x.message?x.message:String(x);FL="최초 이전 실패: "+SB.err}route()}
+async function cloudPull(){
+try{
+if(!await sbInit(false)||!SB.user){FL="로그인이 필요합니다.";route();return}
+const row=await sbGet();
+if(!row){FL="클라우드에 저장된 데이터가 없습니다.";route();return}
+const d=sbExtractDB(row);
+if(!d){FL="클라우드 데이터 형식을 읽을 수 없습니다.";route();return}
+abk("클라우드 복원 전");DB=d;save();rebuild();SB.ver=row.version??0;SB.updatedAt=row.updated_at||"";MG.cloudConflict=null;FL="클라우드 데이터를 불러왔습니다. 이전 상태는 자동 백업에 남았습니다.";
+}catch(x){SB.err=x&&x.message?x.message:String(x);FL="클라우드 불러오기 실패: "+SB.err}
+route()
+}
+async function cloudSave(reason){
+try{
+if(!await sbInit(false)||!SB.user){FL="로그인이 필요합니다.";route();return}
+const row=await sbGet();
+if(!row){await cloudCreateFromLocal();return}
+const remoteDb=sbExtractDB(row);if(!remoteDb){FL="클라우드 데이터 형식을 읽을 수 없습니다.";route();return}
+if(JSON.stringify(remoteDb)!==JSON.stringify(DB)&&SB.ver!=null&&row.version!==SB.ver){MG.cloudConflict={local:dbStat(DB),remote:dbStat(remoteDb),localStamp:dbStamp(DB)||"없음",remoteStamp:dbStamp(remoteDb)||"없음",reason:"version"};FL="다른 기기에서 먼저 수정되어 버전 충돌이 발생했습니다. 방향을 선택해 주세요.";route();return}
+const next=(row.version||0)+1,payload=sbPayload();
+const {data,error}=await SB.c.from(SB_TABLE).update({owner_id:SB.user.id,data:payload,updated_at:now(),version:next}).eq("id",SB_ROW_ID).eq("owner_id",SB.user.id).eq("version",row.version||0).select("id,version,updated_at").maybeSingle();
+if(error)throw error;
+if(!data){const latest=await sbGet();const ld=sbExtractDB(latest)||remoteDb;MG.cloudConflict={local:dbStat(DB),remote:dbStat(ld),localStamp:dbStamp(DB)||"없음",remoteStamp:dbStamp(ld)||"없음",reason:"update-missed"};FL="저장 중 충돌이 발생해 자동 덮어쓰기를 중단했습니다.";route();return}
+SB.ver=data.version;SB.updatedAt=data.updated_at||"";MG.cloudConflict=null;FL=reason||"클라우드에 저장했습니다.";
+}catch(x){SB.err=x&&x.message?x.message:String(x);FL="클라우드 저장 실패: "+SB.err}
+route()
+}
+async function cloudSync(){
+try{
+if(!await sbInit(false)||!SB.user){FL="로그인이 필요합니다.";route();return}
+const row=await sbGet();
+if(!row){if(dbEmpty(DB)){FL="동기화할 데이터가 없습니다.";route();return}MG.mig={local:dbStat(DB)};FL="클라우드가 비어 있어 최초 이전 확인이 필요합니다.";route();return}
+const rd=sbExtractDB(row);if(!rd){FL="클라우드 데이터 형식을 읽을 수 없습니다.";route();return}
+if(JSON.stringify(DB)===JSON.stringify(rd)){SB.ver=row.version??SB.ver;SB.updatedAt=row.updated_at||SB.updatedAt;FL="동기화 완료: 이미 동일합니다.";route();return}
+if(SB.ver!=null&&row.version!==SB.ver){MG.cloudConflict={local:dbStat(DB),remote:dbStat(rd),localStamp:dbStamp(DB)||"없음",remoteStamp:dbStamp(rd)||"없음",reason:"version"};FL="버전 충돌이 감지되어 자동 동기화를 멈췄습니다.";route();return}
+MG.cloudConflict={local:dbStat(DB),remote:dbStat(rd),localStamp:dbStamp(DB)||"없음",remoteStamp:dbStamp(rd)||"없음",reason:"diff"};FL="로컬과 클라우드가 다릅니다. 아래에서 방향을 선택해 주세요.";
+}catch(x){SB.err=x&&x.message?x.message:String(x);FL="동기화 실패: "+SB.err}
+route()
+}
+async function cloudInitAction(){await sbInit(false);if(SB.user&&!SB.loginChecked)await cloudAfterLogin();else route()}
+async function cloudMigrate(){await cloudInitAction()}
+function manage(){
+let sz=0;
+try{sz=(localStorage.getItem(KEY)||"").length}catch(x){}
+const ab=abl(),L=DB.log.slice(-30).reverse(),T=Object.keys(DB.del),er=MG.err?`<p class="note err">${esc(MG.err)}</p>`:"",sbErr=SB.err?`<p class="note err">${esc(SB.err)}</p>`:"";
 const ttl=id=>{const x=cur(id)||((DB.log.find(l=>l.id===id&&l.b)||{}).b)||{};return x.t||id};
+const who=SB.user?`${esc(SB.user.email||"(이메일 없음)")} / ${esc(SB.user.id.slice(0,8))}…`:"로그인 안 됨";
+const auth=SB.user?`<div class="bar"><button class="btn2" onclick="cloudInitAction()">클라우드 확인/불러오기</button><button class="btn2" onclick="cloudSync()">동기화 점검</button><button class="btn2" onclick="cloudSave('로컬 내용을 클라우드에 저장했습니다.')">로컬 → 클라우드 저장</button><button class="btn2" onclick="cloudPull()">클라우드 → 로컬 불러오기</button><button class="btn2" onclick="sbSignOut()">로그아웃</button></div>`:`<form class="fm" onsubmit="return sbSignIn(event)"><div class="row2"><label>이메일<input id="sb-email" type="email" autocomplete="username"></label><label>비밀번호<input id="sb-pass" type="password" autocomplete="current-password"></label></div><div class="bar"><button class="btn" type="submit">로그인</button><button class="btn2" type="button" onclick="cloudInitAction()">연결 확인</button></div></form>`;
+const mig=MG.mig?`<div class="box"><p>클라우드에 데이터가 없습니다. 로컬 데이터를 최초 이전하시겠습니까?</p><p class="lc">로컬 상태: ${esc(MG.mig.local)}</p><div class="bar"><button class="btn" onclick="cloudCreateFromLocal()">최초 이전 실행</button><button class="btn2" onclick="MG.mig=null;route()">취소</button></div></div>`:"";
+const cf=MG.cloudConflict?`<div class="box"><p><b>충돌 감지:</b> 자동 덮어쓰기를 멈췄습니다.</p><p class="lc">로컬: ${esc(MG.cloudConflict.local)} · 마지막 수정 ${esc(MG.cloudConflict.localStamp)}<br>클라우드: ${esc(MG.cloudConflict.remote)} · 마지막 수정 ${esc(MG.cloudConflict.remoteStamp)}</p><div class="bar"><button class="btn2" onclick="cloudSave('클라우드에 강제 저장했습니다.')">로컬을 클라우드로 덮어쓰기</button><button class="btn2" onclick="cloudPull()">클라우드로 로컬 덮어쓰기</button><button class="btn2" onclick="MG.cloudConflict=null;route()">닫기</button></div></div>`:"";
 return `<main><div class="crumb"><a href="#">처음</a> / 관리</div><h2>관리: 백업·복구·이력</h2>
-<p class="note">저장 상태: ${storeOk?"이 브라우저에 자동 저장 중":"저장할 수 없음(새로고침하면 사라집니다)"} · 수정·추가 ${Object.keys(DB.ent).length}개 · 삭제 ${T.length}개 · 이력 ${DB.log.length}건 · 저장 용량 약 ${Math.round(sz/1024)}KB<br>편집 내용은 이 브라우저에만 저장되고 HTML 속 원본 데이터는 바뀌지 않습니다. 다른 기기에는 보이지 않으니 백업을 복사해 보관하세요.</p>
+<p class="note">저장 상태: ${storeOk?"이 브라우저에 자동 저장 중":"저장할 수 없음(새로고침하면 사라집니다)"} · 수정·추가 ${Object.keys(DB.ent).length}개 · 삭제 ${T.length}개 · 이력 ${DB.log.length}건 · 저장 용량 약 ${Math.round(sz/1024)}KB<br>기존 로컬 저장과 함께 Supabase 동기화를 사용할 수 있습니다.</p>
+<h3>Supabase 클라우드 동기화</h3>
+<p class="note">상태: ${esc(SB.status)}<br>로그인 사용자: ${who}<br>프로젝트: ${esc(SB_URL)}<br>테이블: <code>${esc(SB_TABLE)}</code> · 레코드 ID: <code>${SB_ROW_ID}</code> · 버전: <code>${SB.ver==null?"(미확인)":String(SB.ver)}</code></p>${sbErr}${auth}${mig}${cf}
 <h3>백업</h3><div class="bar"><button class="btn2" onclick="showBk('bk')">복구용 백업 보기</button><button class="btn2" onclick="showBk('all')">현재 전체 항목 JSON 보기</button></div>
 ${MG.view?`<textarea id="bk" class="big" readonly>${esc(MG.view==="bk"?bk():JSON.stringify(E,null,1))}</textarea><div class="bar"><button class="btn" onclick="copyTA()">전체 선택·복사</button></div>`:""}
 <h3>복구</h3>${er}<textarea id="imp" class="big" placeholder="복구용 백업 내용을 여기에 붙여 넣으세요"></textarea><div class="bar"><button class="btn2" onclick="stageImp($('#imp').value)">백업 확인</button></div>
@@ -128,7 +194,7 @@ $("#app").innerHTML=w+(FL?`<div class="flash" role="status">${esc(FL)}</div>`:""
 if(!known)location.hash="";
 document.title=(e?e.t+" · ":"")+"니에코라 기록관 · Nyekora Archive";
 }
-$("#foot").innerHTML=`<p><b>자료 출처 안내.</b> 현재 기록은 대화 일부와 정리 문서에서 가져왔습니다. 원본 대화 전체와 이미지 원본은 아직 확인되지 않았고, 2차 자료만 근거인 내용은 Canon으로 표시하지 않습니다. 기록 원문은 원본 언어 그대로 보여 줍니다.</p><p>이 시제품에는 예시용으로 지어낸 설정이 없습니다. 항목 제목과 분야 배정은 찾아보기 편하도록 붙인 이름표이며 설정이 아닙니다.</p><p>편집한 내용은 이 브라우저에만 저장되며 HTML에 내장된 원본 데이터는 바뀌지 않습니다. 관리 화면에서 백업을 복사해 두세요.</p>`;
+$("#foot").innerHTML=`<p><b>자료 출처 안내.</b> 현재 기록은 대화 일부와 정리 문서에서 가져왔습니다. 원본 대화 전체와 이미지 원본은 아직 확인되지 않았고, 2차 자료만 근거인 내용은 Canon으로 표시하지 않습니다. 기록 원문은 원본 언어 그대로 보여 줍니다.</p><p>이 시제품에는 예시용으로 지어낸 설정이 없습니다. 항목 제목과 분야 배정은 찾아보기 편하도록 붙인 이름표이며 설정이 아닙니다.</p><p>편집한 내용은 기본적으로 이 브라우저에 저장됩니다. 관리 화면에서 Supabase 동기화를 켜면 클라우드 백업/복구도 사용할 수 있습니다.</p>`;
 addEventListener("hashchange",()=>{F="";MODE=null;FM=null;MG={};route();scrollTo(0,0)});
-load();rebuild();route();
+load();rebuild();route();sbInit(true).then(()=>{if(SB.user&&!SB.loginChecked)cloudAfterLogin()});
 
