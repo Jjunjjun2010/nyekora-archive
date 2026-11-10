@@ -1,0 +1,16 @@
+PASS entries count = 133 | 133
+PASS SEED count = 133 | 133
+PASS SEED order equals entries(2).json order
+PASS CATS count = 6 | 6
+PASS CATNOTE count = 6 | 6
+PASS generated SRC includes creator-decision-app
+PASS all entry sourceId exist in sources(1).json | []
+PASS all conflict sourceId exist in sources(1).json | []
+PASS localStorage key preserved
+PASS approve/reject/resolve actions preserved
+PASS app core extracted from original without logic edits
+PASS data JS safe for embed (no </script or <!--)
+PASS work html generated
+PASS release html generated
+
+FAILS: 0
