@@ -1,0 +1,45 @@
+{
+ "meta": {
+  "schema": 1,
+  "statuses": [
+   "Canon",
+   "Proposal",
+   "Unknown",
+   "Conflict",
+   "Rejected"
+  ],
+  "langDefault": "en"
+ },
+ "categories": [
+  {
+   "id": "language",
+   "name": "언어",
+   "note": "자료.docx의 언어·문법·발음·어휘·숫자·문자 내용을 항목으로 나눠 옮겼습니다. 대부분 2차 자료가 근거라 Proposal·Unknown으로 두었고, “canon-candidate” 태그는 작성자 확인 후 Canon으로 올릴 후보입니다."
+  },
+  {
+   "id": "music",
+   "name": "음악",
+   "note": "자료.docx의 악기·음악 내용을 항목으로 나눠 옮겼습니다. 대부분 2차 자료가 근거라 Proposal·Unknown으로 두었습니다."
+  },
+  {
+   "id": "history",
+   "name": "역사",
+   "note": "자료.docx의 스토리/역사 내용을 옮겼습니다. 이야기 본편 구상이 함께 들어 있어 story-plot 태그를 붙였습니다."
+  },
+  {
+   "id": "clothing",
+   "name": "의복",
+   "note": "자료.docx의 의복·장신구 내용을 항목으로 나눠 옮겼습니다. 남성 하의 길이 규칙은 기존 Canon 항목에 있습니다."
+  },
+  {
+   "id": "society",
+   "name": "사회·관습",
+   "note": "자료.docx의 관습·의례 내용을 옮겼습니다. 자료가 “아직 설정되지 않음”이라고 한 부분은 Unknown으로 두었습니다."
+  },
+  {
+   "id": "architecture",
+   "name": "건축",
+   "note": "건축.docx는 AI가 정리한 2차 자료이고 “5-2 니에코라 고유의 조각 문양”에서 내용이 끊겨 있습니다. 문서의 이미지는 실제 유적 사진이라 가져오지 않았습니다."
+  }
+ ]
+}

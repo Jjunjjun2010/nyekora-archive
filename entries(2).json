@@ -1,0 +1,3644 @@
+[
+ {
+  "id": "harat-square-axial-plan",
+  "title": "하랏(Harat)의 평면 구성",
+  "category": "architecture",
+  "topic": "architecture.harat",
+  "status": "Canon",
+  "verification": "primary_source",
+  "claim": "Harat’s creator-provided design is square-based, organized on straight axes, and symmetrical. A rectangular base is occasionally allowed but not commonly used. Circularized generated versions were assistant-generated embellishments and are not evidence for the original design.",
+  "sources": [
+   {
+    "sourceId": "chat-village-architecture-branch",
+    "locator": "Turn dated 2026-09-07; user correction and assistant acknowledgement, source messages 365a9038-75b9-4c95-bff1-749306de60d2 and 6407b0af-f740-42b1-81aa-71e9ab2f88dc"
+   },
+   {
+    "sourceId": "creator-decisions-2026-11-07",
+    "locator": "작성자 답변: “직사각형 때로 허용 자주쓰진 않지만”"
+   }
+  ],
+  "conflict": {
+   "state": "resolved",
+   "positions": [
+    {
+     "claim": "Square-based plan",
+     "sourceId": "chat-village-architecture-branch"
+    },
+    {
+     "claim": "정사각형 또는 직사각형 기단",
+     "sourceId": "source-docx-architecture"
+    }
+   ],
+   "resolution": {
+    "by": "creator",
+    "date": "2026-11-07",
+    "note": "정사각형이 기본, 직사각형은 가끔 허용(자주 쓰지 않음). 작성자 결정, 2026-11-07."
+   }
+  },
+  "tags": [
+   "architecture",
+   "temple",
+   "creator-correction"
+  ],
+  "createdAt": "2026-11-07",
+  "legacy": {
+   "resolutionNote": "정사각형이 기본, 직사각형은 가끔 허용(자주 쓰지 않음)."
+  }
+ },
+ {
+  "id": "ranked-mens-garment-volume",
+  "title": "계급과 남성 하의의 길이",
+  "category": "clothing",
+  "topic": "clothing.social-rank",
+  "status": "Canon",
+  "verification": "primary_source",
+  "claim": "Men’s lower garments become longer and use more fabric (more layering) as social rank increases.",
+  "sources": [
+   {
+    "sourceId": "chat-village-architecture",
+    "locator": "User message c9c907ee-81b6-413d-b3d0-f422cdc9579d"
+   },
+   {
+    "sourceId": "creator-decisions-2026-11-07",
+    "locator": "작성자 결정: 계급이 높을수록 길어지는 것 확정"
+   }
+  ],
+  "decision": {
+   "state": "approved",
+   "note": "작성자 직접 결정(2026-11-07). 이 규칙 한 줄만 확정했고, 의복 자료의 나머지 남성 복식 항목은 검토 대기입니다."
+  },
+  "tags": [
+   "clothing",
+   "social-rank"
+  ],
+  "createdAt": "2026-11-07",
+  "legacy": {
+   "decisionNote": "작성자 직접 결정. 이 규칙 한 줄만 승격. 의복 자료의 나머지 남성 복식 항목은 검토 대기."
+  }
+ },
+ {
+  "id": "sutari-metal-bars",
+  "title": "Sutari (금속 건반 악기)",
+  "category": "music",
+  "topic": "music.instruments.sutari",
+  "status": "Canon",
+  "verification": "primary_source",
+  "claim": "Sutari is described as an instrument with metal bars; Demung is cited as its closest timbral comparison.",
+  "sources": [
+   {
+    "sourceId": "chat-worldbuilding-agent",
+    "locator": "User message 66fe0c5b-6755-4b91-8e2b-e3acc757f067 and preceding comparison discussion"
+   }
+  ],
+  "tags": [
+   "music",
+   "instrument"
+  ],
+  "createdAt": "2026-11-07"
+ },
+ {
+  "id": "surala-wood-bars",
+  "title": "Surala (나무 건반 악기)",
+  "category": "music",
+  "topic": "music.instruments.surala",
+  "status": "Canon",
+  "verification": "primary_source",
+  "claim": "Surala is described as having wooden bars and being similar or nearly identical to a ranat; it is said to be more commonly used than Sutari.",
+  "sources": [
+   {
+    "sourceId": "chat-worldbuilding-agent",
+    "locator": "User messages 01b90ed5-b325-42e3-a11e-a5b0fc43bb62 and 66fe0c5b-6755-4b91-8e2b-e3acc757f067"
+   }
+  ],
+  "tags": [
+   "music",
+   "instrument"
+  ],
+  "createdAt": "2026-11-07"
+ },
+ {
+  "id": "language-v2-working-reference",
+  "title": "현대 니에코라어 작업 참고서",
+  "category": "language",
+  "topic": "language.modern-nyekora",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "The modern Nyekora language working reference describes SOV as the default prose order, with postposed markers and selective hyphenation; the reference itself marks several details as unresolved or proposals. (Adjusted to Proposal because the only basis is a secondary source. Individual items will be promoted to Canon once confirmed.)",
+  "sources": [
+   {
+    "sourceId": "nyekora-encyclopedia-v2",
+    "locator": "Pages 2-13; especially sections 2-6 and 12"
+   }
+  ],
+  "decision": {
+   "state": "pending",
+   "note": "2차 자료만으로는 Canon으로 올리지 않는다는 원칙에 따라 조정했습니다. 항목별 검토 후 승격합니다."
+  },
+  "tags": [
+   "language",
+   "working-reference",
+   "verify-original-agreements"
+  ],
+  "createdAt": "2026-11-07",
+  "legacy": {
+   "decisionNote": "2차 자료만으로는 Canon으로 올리지 않는다는 원칙에 따라 조정. 항목별 검토 후 승격.",
+   "claim": "The modern Nyekora language working reference describes SOV as the default prose order, with postposed markers and selective hyphenation; the reference itself marks several details as unresolved or proposals. (2차 자료만 근거이므로 Proposal로 조정. 항목별로 확인되면 개별 Canon으로 승격.)"
+  }
+ },
+ {
+  "id": "sulora-script-details",
+  "title": "Sûlora 문자의 세부 사항",
+  "category": "language",
+  "topic": "language.script.sulora",
+  "status": "Unknown",
+  "verification": "secondary_source",
+  "claim": "Sûlora’s glyph inventory, writing direction, and romanization correspondences remain unsettled. (The script’s name and the meaning of “aksor” are recorded separately as Canon.)",
+  "sources": [
+   {
+    "sourceId": "nyekora-encyclopedia-v2",
+    "locator": "Page 10, section 9 ‘문자’"
+   },
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "writing_system 항목: 구체적 글자 목록과 철자-발음 대응 규칙은 추가 정리 필요"
+   }
+  ],
+  "tags": [
+   "language",
+   "script",
+   "open-question"
+  ],
+  "createdAt": "2026-11-07"
+ },
+ {
+  "id": "king-gold-trident-idea",
+  "title": "왕의 금 삼지창 상징 (제안)",
+  "category": "society",
+  "topic": "symbols.royal-regalia",
+  "status": "Proposal",
+  "verification": "primary_source",
+  "claim": "A gold trident as a royal symbol was suggested in an assistant reply; no creator acceptance is visible in the retrieved excerpt.",
+  "sources": [
+   {
+    "sourceId": "chat-village-architecture",
+    "locator": "Assistant response to user message b07b1d8e-e20b-4b29-a801-a32adca1866f"
+   }
+  ],
+  "decision": {
+   "state": "pending",
+   "note": "AI의 제안이며 작성자 승인 전에는 설정이 아닙니다."
+  },
+  "tags": [
+   "royalty",
+   "symbol",
+   "assistant-suggestion"
+  ],
+  "createdAt": "2026-11-07",
+  "legacy": {
+   "decisionNote": "Assistant suggestions do not become canon without creator approval."
+  }
+ },
+ {
+  "id": "name-spelling-nyekora",
+  "title": "국가명 표기: 니에코라",
+  "category": "language",
+  "topic": "language.orthography",
+  "status": "Canon",
+  "verification": "primary_source",
+  "claim": "The civilization’s name is standardized in Korean as 니에코라 (Nyekora). The variant spelling 녜코라 found in some sources is not used.",
+  "sources": [
+   {
+    "sourceId": "creator-decisions-2026-11-07",
+    "locator": "작성자 결정: 표기는 니에코라로 통일"
+   }
+  ],
+  "conflict": {
+   "state": "resolved",
+   "positions": [
+    {
+     "claim": "니에코라",
+     "sourceId": "source-docx-culture"
+    },
+    {
+     "claim": "녜코라 (음악 영역·건축 문서)",
+     "sourceId": "source-docx-architecture"
+    }
+   ],
+   "resolution": {
+    "by": "creator",
+    "date": "2026-11-07",
+    "note": "작성자 결정으로 해소 (2026-11-07)"
+   }
+  },
+  "tags": [
+   "naming",
+   "orthography"
+  ],
+  "createdAt": "2026-11-07",
+  "legacy": {
+   "decision": {
+    "state": "approved",
+    "date": "2026-11-07",
+    "note": "작성자 직접 결정."
+   },
+   "resolutionNote": "작성자 결정으로 해소.",
+   "conflictPositions": [
+    {
+     "claim": "니에코라",
+     "sourceId": "source-docx-culture"
+    },
+    {
+     "claim": "녜코라 (음악 영역 및 건축 문서의 Welora 설명)",
+     "sourceId": "source-docx-architecture"
+    }
+   ]
+  }
+ },
+ {
+  "id": "tense-suffix-ja-excluded",
+  "title": "시제 접미사에서 -ja 제외",
+  "category": "language",
+  "topic": "language.grammar.tense",
+  "status": "Canon",
+  "verification": "primary_source",
+  "claim": "-ja is excluded from the tense suffix set. (Whether -ta/-na/-ra is the final system, and the status of -ran, remain unresolved.)",
+  "sources": [
+   {
+    "sourceId": "creator-decisions-2026-11-07",
+    "locator": "작성자 결정: -ja는 뺀다"
+   }
+  ],
+  "conflict": {
+   "state": "resolved",
+   "positions": [
+    {
+     "claim": "-ta/-na/-ra 초기 체계",
+     "sourceId": "source-docx-culture"
+    },
+    {
+     "claim": "-ja, -ran 등 이후 초안의 형태 (단 j는 기본 음운 체계에서 제외)",
+     "sourceId": "source-docx-culture"
+    }
+   ],
+   "resolution": {
+    "by": "creator",
+    "date": "2026-11-07",
+    "note": "작성자 결정으로 해소 (2026-11-07)"
+   }
+  },
+  "tags": [
+   "grammar",
+   "tense"
+  ],
+  "createdAt": "2026-11-07",
+  "legacy": {
+   "decision": {
+    "state": "approved",
+    "date": "2026-11-07",
+    "note": "작성자 직접 결정."
+   },
+   "resolutionNote": "작성자 결정으로 해소."
+  }
+ },
+ {
+  "id": "pronoun-we-clusivity",
+  "title": "‘우리’의 두 형태",
+  "category": "language",
+  "topic": "language.grammar.pronouns",
+  "status": "Canon",
+  "verification": "primary_source",
+  "claim": "“We” has two forms: ahunga (excludes the listener) and ahuk (includes the listener). Their possessive forms are ahungan and ahukin respectively.",
+  "sources": [
+   {
+    "sourceId": "creator-decisions-2026-11-07",
+    "locator": "작성자 결정: ahunga/ahuk, 소유형 ahungan/ahukin"
+   }
+  ],
+  "conflict": {
+   "state": "resolved",
+   "positions": [
+    {
+     "claim": "문법 규칙 예시 ‘ahunga apu = 우리의 아버지’",
+     "sourceId": "source-docx-culture"
+    },
+    {
+     "claim": "대표 문구 ‘Ahungan apu’ (ahungan은 청자 제외 소유형)",
+     "sourceId": "source-docx-culture"
+    }
+   ],
+   "resolution": {
+    "by": "creator",
+    "date": "2026-11-07",
+    "note": "작성자 결정으로 해소 (2026-11-07)"
+   }
+  },
+  "tags": [
+   "grammar",
+   "pronoun"
+  ],
+  "createdAt": "2026-11-07",
+  "legacy": {
+   "decision": {
+    "state": "approved",
+    "date": "2026-11-07",
+    "note": "작성자 직접 결정."
+   },
+   "resolutionNote": "작성자 결정으로 해소."
+  }
+ },
+ {
+  "id": "sulora-script-name-and-aksor",
+  "title": "Sûlora 문자 이름과 aksor",
+  "category": "language",
+  "topic": "language.script.sulora",
+  "status": "Canon",
+  "verification": "primary_source",
+  "claim": "Sûlora is the name of Nyekora’s script (also called Nyekora Aksor), and “aksor” is the word for “script/writing”. The etymology of aksor is not yet decided.",
+  "sources": [
+   {
+    "sourceId": "creator-decisions-2026-11-07",
+    "locator": "작성자 결정: 술로라는 문자 이름, aksor는 문자라는 뜻의 단어"
+   }
+  ],
+  "conflict": {
+   "state": "resolved",
+   "positions": [
+    {
+     "claim": "Sûlora가 문자 이름인지 미확인",
+     "sourceId": "nyekora-encyclopedia-v2"
+    },
+    {
+     "claim": "Sûlora는 문자 이름, aksor는 뜻 미확정 외래어",
+     "sourceId": "source-docx-culture"
+    }
+   ],
+   "resolution": {
+    "by": "creator",
+    "date": "2026-11-07",
+    "note": "작성자 결정으로 해소 (2026-11-07)"
+   }
+  },
+  "tags": [
+   "language",
+   "script"
+  ],
+  "createdAt": "2026-11-07",
+  "legacy": {
+   "decision": {
+    "state": "approved",
+    "date": "2026-11-07",
+    "note": "작성자 직접 결정."
+   },
+   "resolutionNote": "작성자 결정으로 해소."
+  }
+ },
+ {
+  "id": "lang-name-basa",
+  "title": "언어 이름: 니에코라어 (Nyekora Bâsa)",
+  "category": "language",
+  "topic": "language.char",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "언어 이름은 ‘니에코라어 (Nyekora Bâsa)’로 적혀 있다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › language_name"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "naming"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "sulora-description",
+  "title": "Sûlora 문자의 성격",
+  "category": "language",
+  "topic": "language.orth",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "물의 흐름, 나뭇잎, 달의 형태에서 영감을 받은 니에코라의 고유 문자 체계다. 현재 어휘와 문법 표기는 주로 라틴 문자 기반의 로마자 표기를 사용한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › writing_system › description"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "script"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "orth-runic-cleanup",
+  "title": "이전 룬 문자풍 표기의 정리",
+  "category": "language",
+  "topic": "language.orth",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "이전의 룬 문자풍 표기와 일부 확장 문자를 정리했다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › writing_system › orthographic_features"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "orthography"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "orth-v-to-w",
+  "title": "v를 w로 통일",
+  "category": "language",
+  "topic": "language.orth",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "v는 w로 통일하는 방향이다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › writing_system › orthographic_features"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "orthography"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "orth-y-status",
+  "title": "y의 지위",
+  "category": "language",
+  "topic": "language.orth",
+  "status": "Unknown",
+  "verification": "secondary_source",
+  "claim": "y는 완전히 제거되지 않았다. (남은 범위와 용법은 자료에 적혀 있지 않다.)",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › writing_system › orthographic_features"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 미확정 또는 확인 필요로 표시한 내용입니다."
+  },
+  "tags": [
+   "language",
+   "orthography",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "orth-excluded-consonants",
+  "title": "제외된 자음 c, f, j",
+  "category": "language",
+  "topic": "language.orth",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "c, f, j는 기본 음운 체계에서 제외되었다. 파찰음과 순치음도 사용하지 않는 방향이다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › pronunciation_rules › 제외된 자음 / writing_system › orthographic_features"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 단정적으로 서술한 ‘Canon 후보’입니다. 작성자 확인 후 Canon으로 올립니다."
+  },
+  "tags": [
+   "language",
+   "orthography",
+   "phonology",
+   "canon-candidate"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "vowels-long",
+  "title": "모음과 장모음 표기",
+  "category": "language",
+  "topic": "language.orth",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "a, e, i, o, u를 기본 모음으로 사용하며 â, ê, î, ô, û는 장모음 표기로 사용한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › pronunciation_rules › 모음"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 1, 2026-09-05T14:45:27Z (음운론 요약·발음 변이 논의). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 단정적으로 서술한 ‘Canon 후보’입니다. 작성자 확인 후 Canon으로 올립니다."
+  },
+  "tags": [
+   "language",
+   "orthography",
+   "phonology",
+   "canon-candidate"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "hyphen-rules",
+  "title": "하이픈 표기",
+  "category": "language",
+  "topic": "language.orth",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "시제 표지, 일부 조사나 문법 요소, 의문 표지 및 독립 형태소로 이루어진 합성어에 하이픈을 사용하는 방향이다. 모든 접사에 일괄적으로 사용하지는 않는다. 존칭 pe-와 복수 -nga는 하이픈 없이 붙인다.",
+  "lang": "ko",
+  "examples": "pagûn-ta, lora-ta, kora-nîlun",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › grammar_rules › 하이픈 표기"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "orthography",
+   "grammar"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "negation-conditional",
+  "title": "부정문·조건문 규칙",
+  "category": "language",
+  "topic": "language.grammar",
+  "status": "Unknown",
+  "verification": "secondary_source",
+  "claim": "부정과 조건 표현은 단어 앞에 띄어 쓰는 것으로 설명되었다. 표기와 문법 규칙은 확정이 필요하다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › grammar_rules › 하이픈 표기 / unresolved_or_revisable_items"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 미확정 또는 확인 필요로 표시한 내용입니다."
+  },
+  "tags": [
+   "language",
+   "grammar",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "regional-influences",
+  "title": "영감을 받은 지역과 언어권",
+  "category": "language",
+  "topic": "language.char",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "태국 남부, 말레이시아, 캄보디아, 말레이·인도네시아를 포함한 오스트로네시아 언어권, 일부 폴리네시아 언어의 음성적 인상에서 영감을 얻었다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › regional_influence › main_influences"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 1, 2026-09-10T23:46:48Z (폴리네시아 언어와의 어감 논의). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "influence"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "regional-design-direction",
+  "title": "특정 언어를 복제하지 않는 방향",
+  "category": "language",
+  "topic": "language.char",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "특정 현실 언어 하나를 모방하지 않고 여러 언어와 문화에서 영감을 얻은 독립적인 언어다. 특정 지역의 인상이 지나치게 강해지지 않도록 여러 지역의 어감과 요소를 조합한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › regional_influence › description, design_direction"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "influence"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "population-genetic-background",
+  "title": "인구의 유전적 배경",
+  "category": "language",
+  "topic": "language.char",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "니에코라 사람들의 가상적인 인구적 배경에는 태국 남부, 말레이시아, 캄보디아 일대와 유전적으로 유사한 집단이 많다는 설정이 있다. 인구의 유전적 배경과 언어의 계통은 별개의 요소다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › regional_influence › design_direction, note"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "demography",
+   "category-review"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "language-character-goals",
+  "title": "어감 목표",
+  "category": "language",
+  "topic": "language.char",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "동남아시아와 폴리네시아 언어를 연상시키는 부드럽고 개방적인 어감이 목표다. 부드럽고 유동적이며 물이 흐르는 듯한 리듬을 지향한다. 오스트로네시아 언어권과 비슷한 음운적 인상을 독자적으로 발전시키려 하며, 장모음, 비음 연결, 어말 자음, 탄음의 사용으로 독자적인 인상을 목표로 한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › basic_structure › language_character / pronunciation_rules › 전체적인 음성적 인상, 동남아시아 및 폴리네시아와의 유사성"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 1, 2026-09-10T23:46:48Z (폴리네시아 언어와의 어감 논의). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "phonology",
+   "style"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "metaphor-richness",
+  "title": "자연·공동체 은유와 관용 표현",
+  "category": "language",
+  "topic": "language.char",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "자연과 물, 공동체에 관한 은유와 관용 표현이 풍부하다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › basic_structure › language_character"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "style"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "syllable-structure",
+  "title": "음절 구조",
+  "category": "language",
+  "topic": "language.phon",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "개음절이 많은 편이며 대부분의 어근은 두 음절의 열린 음절로 구성되는 경향이 있다. 다만 어말 자음이 있는 단어도 존재한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › pronunciation_rules › 음절 구조 / basic_structure › language_character"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 1, 2026-09-05T14:45:27Z (음운론 요약·발음 변이 논의). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 단정적으로 서술한 ‘Canon 후보’입니다. 작성자 확인 후 Canon으로 올립니다."
+  },
+  "tags": [
+   "language",
+   "phonology",
+   "canon-candidate"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "word-order-svo",
+  "title": "SVO 변형",
+  "category": "language",
+  "topic": "language.grammar",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "기본 어순은 SOV이나(기존 항목 참고) 관용구, 비유적 표현, 문체적 표현에서는 SVO가 나타날 수 있다. SVO가 언제나 특별한 의미를 만드는 것은 아니며 구체적인 사용 조건은 추가 정리가 필요하다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › grammar_rules › 어순의 변형"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 1, 2026-11-07 (ni, SOV/SVO, 어말 자음, 모음 조화, 산스크리트 차용어 추가 논의). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "grammar",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "conjugation-agglutinative",
+  "title": "교착어적 동사 요소",
+  "category": "language",
+  "topic": "language.grammar",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "동사에 시제나 문법적 의미를 나타내는 요소를 붙이는 교착어적 특징을 구상했다. 시제 접미사의 형태와 사용 조건은 아직 개정 중이다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › basic_structure › conjugation_pattern"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "grammar"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "tense-ta-na-ra",
+  "title": "시제 접미사 초안 -ta/-na/-ra",
+  "category": "language",
+  "topic": "language.grammar",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "초기 문법에서 제안된 시제 접미사다. 이후 초안에서는 -ja, -ran 등 다른 형태도 등장했으므로 최종 체계로 단정하지 않는다. (-ja는 작성자 결정으로 제외됨. -ran의 지위는 미결정.)",
+  "lang": "ko",
+  "examples": "과거 -ta, 현재 -na, 미래 -ra",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › grammar_rules › 시제 표현 / unresolved_or_revisable_items"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "grammar",
+   "tense"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "personal-pronouns",
+  "title": "인칭대명사",
+  "category": "language",
+  "topic": "language.grammar",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "인칭대명사는 문장의 주어 또는 목적어를 나타내는 기본 어휘다. (‘우리’의 두 형태는 기존 항목 참고.)",
+  "lang": "ko",
+  "examples": "ahu = 나, moru = 너, soru = 그/그녀/그것",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › grammar_rules › 인칭대명사"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 단정적으로 서술한 ‘Canon 후보’입니다. 작성자 확인 후 Canon으로 올립니다."
+  },
+  "tags": [
+   "language",
+   "grammar",
+   "pronoun",
+   "canon-candidate"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "possessive-pronouns",
+  "title": "소유형 대명사",
+  "category": "language",
+  "topic": "language.grammar",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "대명사에 n을 붙여 소유 관계를 표현하는 방식이 제안되었다. 어근이 자음으로 끝나면 n 앞에 i를 삽입하는 형태도 제안되었다. 세부 규칙은 추가 확인이 필요하다. (ahungan, ahukin은 기존 Canon 항목 참고.)",
+  "lang": "ko",
+  "examples": "ahun = 나의, morun = 너의, sorun = 그의/그녀의; ahu → ahun, ahuk → ahukin",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › grammar_rules › 소유형 대명사"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "grammar",
+   "pronoun"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "plural-nga",
+  "title": "복수형 -nga",
+  "category": "language",
+  "topic": "language.grammar",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "-nga를 복수 표지로 사용하는 방식이 제안되었다. 명사에 붙여 쓰며 하이픈을 넣지 않는다.",
+  "lang": "ko",
+  "examples": "nyara = 새, nyaranga = 새들",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › grammar_rules › 복수형"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "grammar"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "honorific-pe",
+  "title": "존칭 접두사 pe-",
+  "category": "language",
+  "topic": "language.grammar",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "pe-는 존칭 또는 신성함과 관련된 접두 요소다. pehara는 신성한 보호라는 의미다.",
+  "lang": "ko",
+  "examples": "pe- + hara → pehara",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › grammar_rules › 존칭 접두사"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 단정적으로 서술한 ‘Canon 후보’입니다. 작성자 확인 후 Canon으로 올립니다."
+  },
+  "tags": [
+   "language",
+   "grammar",
+   "canon-candidate"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "prefix-nye",
+  "title": "새로움 접두사 nye-",
+  "category": "language",
+  "topic": "language.grammar",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "nye-는 새로운이라는 의미를 나타내는 접두사로 제안되었다. nyeta는 사람을 뜻한다. 정확한 파생 규칙은 추가 정리가 필요하다.",
+  "lang": "ko",
+  "examples": "nye- + ta → nyeta",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › grammar_rules › 새로움을 나타내는 접두사"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "grammar"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "connective-pong",
+  "title": "관계절·보문 연결어 pong",
+  "category": "language",
+  "topic": "language.grammar",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "pong은 영어의 that, who, which와 비슷하게 문장이나 명사를 연결하는 기능을 가진다. 인도네시아어 yang이나 자바어 sing과 기능적으로 비교되었다. 이전 표기 pon에서 pong으로 변경되었다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › grammar_rules › 관계절 및 보문 연결어"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 단정적으로 서술한 ‘Canon 후보’입니다. 작성자 확인 후 Canon으로 올립니다."
+  },
+  "tags": [
+   "language",
+   "grammar",
+   "canon-candidate"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "ni-usage",
+  "title": "ni의 의미와 사용",
+  "category": "language",
+  "topic": "language.grammar",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "ni는 주격 조사가 아니다. 소유, 소속, 관련성을 나타내는 연결 요소다. 명사 뒤에 ni를 두고 관련 대상을 이어 붙일 수 있다. 어순이 다른 표현도 같은 의미로 사용될 수 있다.",
+  "lang": "ko",
+  "examples": "Yora ni kuna = 산의 노래; Kuna yora도 같은 의미",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › grammar_rules › ni의 의미와 사용"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 1, 2026-11-07 (ni, SOV/SVO, 어말 자음, 모음 조화, 산스크리트 차용어 추가 논의). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 단정적으로 서술한 ‘Canon 후보’입니다. 작성자 확인 후 Canon으로 올립니다."
+  },
+  "tags": [
+   "language",
+   "grammar",
+   "canon-candidate"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "relation-markers",
+  "title": "관계·방향 표현 sa, ga, lo, me",
+  "category": "language",
+  "topic": "language.grammar",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "sa는 함께함, ga는 유사성·비유, lo는 방향·목적지, me는 내부·안쪽의 의미로 제안되었다. 이 요소들의 정확한 문법적 지위와 사용 조건은 미확정이다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › grammar_rules › 관계 및 방향 표현"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "grammar",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "postpositions-li-su",
+  "title": "후치 요소 -li, -su",
+  "category": "language",
+  "topic": "language.grammar",
+  "status": "Unknown",
+  "verification": "secondary_source",
+  "claim": "tara-li는 강이나 호수 안에서 또는 강가에서와 관련된 표현, sôra-su는 방향 또는 목적지를 나타내는 예시로 등장했다. 각 요소의 정확한 의미와 사용 범위는 추가 확인이 필요하다.",
+  "lang": "ko",
+  "examples": "tara-li, sôra-su",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › grammar_rules › 격조사와 후치 요소"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 미확정 또는 확인 필요로 표시한 내용입니다."
+  },
+  "tags": [
+   "language",
+   "grammar",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "question-ka",
+  "title": "의문 표지 -ka",
+  "category": "language",
+  "topic": "language.grammar",
+  "status": "Unknown",
+  "verification": "secondary_source",
+  "claim": "문장이나 표현 뒤에 -ka를 붙여 의문문을 만드는 방식이 이전 문법 초안에 등장했다. 최신 문법에서도 유지되는지는 확인이 필요하다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › grammar_rules › 의문문"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 미확정 또는 확인 필요로 표시한 내용입니다."
+  },
+  "tags": [
+   "language",
+   "grammar",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "root-derivation",
+  "title": "어말 자음 제거 파생",
+  "category": "language",
+  "topic": "language.grammar",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "관련 어휘 사이에서 어말 자음을 제거해 파생된 형태를 만드는 패턴을 선호한다.",
+  "lang": "ko",
+  "examples": "nîlun(달) → nîlu(밤), pagûn(정화) → pagû(씻다), tulak → tula, wêngat → wênga",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › grammar_rules › 어근과 파생어"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "grammar",
+   "derivation"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "noun-verb-derivation",
+  "title": "명사와 동사의 의미 연관",
+  "category": "language",
+  "topic": "language.grammar",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "같은 어근에서 명사와 동사를 파생하는 방식을 사용한다.",
+  "lang": "ko",
+  "examples": "môka = 땅, môkan = 농사짓다",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › grammar_rules › 명사와 동사의 의미 연관"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "grammar",
+   "derivation"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "ritual-suffix-revision",
+  "title": "의식·축복 요소의 표기 개정",
+  "category": "language",
+  "topic": "language.grammar",
+  "status": "Conflict",
+  "verification": "secondary_source",
+  "claim": "두 서술이 함께 남아 있다. 머리말은 축복(va)과 의식(ta)을 뜻하는 요소를 wati, tayu로 바꿨다고 적었다. 반면 어휘표와 관용구에는 surava, marava, pagûn-ta, lora-ta 형태가 그대로 남아 있다.",
+  "lang": "ko",
+  "examples": "머리말: surawati = 태양의 축복, lora-tayu = 빛의 의식",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › 문서 머리말 / vocabulary_categories › formal_words / key_phrases"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "두 서술이 맞서 있어 작성자 결정이 필요합니다."
+  },
+  "conflict": {
+   "state": "open",
+   "positions": [
+    {
+     "claim": "머리말: va(축복)·ta(의식)를 wati·tayu로 바꿈 (예: surawati, lora-tayu)",
+     "sourceId": "source-docx-culture"
+    },
+    {
+     "claim": "어휘표·관용구: surava, marava, pagûn-ta, lora-ta 형태가 그대로 남아 있음",
+     "sourceId": "source-docx-culture"
+    }
+   ]
+  },
+  "tags": [
+   "language",
+   "spelling",
+   "needs-decision"
+  ],
+  "createdAt": "2026-11-08",
+  "legacy": {
+   "conflictPositions": [
+    {
+     "claim": "머리말: va(축복)·ta(의식)를 wati·tayu로 바꿈",
+     "sourceId": "source-docx-culture"
+    },
+    {
+     "claim": "어휘표·관용구: surava, marava, pagûn-ta, lora-ta 형태가 남아 있음",
+     "sourceId": "source-docx-culture"
+    }
+   ]
+  }
+ },
+ {
+  "id": "vowel-harmony",
+  "title": "모음 조화",
+  "category": "language",
+  "topic": "language.phon",
+  "status": "Unknown",
+  "verification": "secondary_source",
+  "claim": "같은 계열의 모음이 연속해서 나타나는 경향이 있다. 다만 모음의 계열 구분과 적용 조건은 아직 확정되지 않았다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › pronunciation_rules › 모음 조화"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 1, 2026-11-07 (ni, SOV/SVO, 어말 자음, 모음 조화, 산스크리트 차용어 추가 논의). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 미확정 또는 확인 필요로 표시한 내용입니다."
+  },
+  "tags": [
+   "language",
+   "phonology",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "e-o-variation",
+  "title": "e와 o의 실제 발음 변이",
+  "category": "language",
+  "topic": "language.phon",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "e는 명목상 [e~ɛ] 범위로 상정했지만 편안한 발화에서는 [ə]에 가까워지는 변이가 가능하다는 의견이 제시되었다. o는 [o~ɔ] 범위의 변이가 가능하다는 제안이 있었다. 둘 다 아직 확정된 음운 규칙이 아니다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › pronunciation_rules › e의 실제 발음, o의 실제 발음"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 1, 2026-09-05T14:45:27Z (음운론 요약·발음 변이 논의). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "phonology",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "r-flap",
+  "title": "r의 발음",
+  "category": "language",
+  "topic": "language.phon",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "기본 발음은 짧은 치경 탄음 [ɾ]에 가까운 것으로 구상되었다. 강한 전동음처럼 자주 굴러가지 않는 방향이다. 강조 발화에서의 변이 허용 여부는 결정이 필요하다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › pronunciation_rules › r / unresolved_or_revisable_items"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 1, 2026-09-05T14:51:27Z (r 탄음 논의). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "phonology",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "h-sound",
+  "title": "h의 발음",
+  "category": "language",
+  "topic": "language.phon",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "강한 마찰음보다는 부드럽고 약한 [h]를 지향한다. 다만 h는 어말에 올 수 없다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › pronunciation_rules › h"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 단정적으로 서술한 ‘Canon 후보’입니다. 작성자 확인 후 Canon으로 올립니다."
+  },
+  "tags": [
+   "language",
+   "phonology",
+   "canon-candidate"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "sound-linking",
+  "title": "폐쇄음·비음·반모음의 연결",
+  "category": "language",
+  "topic": "language.phon",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "폐쇄음은 기식이 강하지 않고 부드럽게 발음되는 방향이다. 비음은 음절 경계에서 코 공명을 이어 다음 음절과 자연스럽게 연결한다. 모음 뒤에 w 또는 y가 오는 경우 두 소리가 부드럽게 이어지는 경향이 있으며 세부 실현 규칙은 미확정이다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › pronunciation_rules › 폐쇄음, 비음, 반모음 연결"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "phonology"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "nasal-assimilation",
+  "title": "비음 동화",
+  "category": "language",
+  "topic": "language.phon",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "n 뒤에 k 또는 g가 오면 n이 연구개 비음 ng [ŋ]에 가까워지는 동화 현상이 나타난다. 표기까지 ng로 바꿀지는 별도의 철자 규칙으로 정리할 수 있다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › pronunciation_rules › 비음 동화"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "phonology"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "final-consonants",
+  "title": "어말에 올 수 있는 자음",
+  "category": "language",
+  "topic": "language.phon",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "어말에 올 수 있는 자음은 p, t, k, m, n, ng, r, l이다. p, t, k는 개방하지 않는 미파음으로 실현되는 방향이다. 어말 마찰음(s, h 등), 파찰음, 순치음, 반모음(w, y), ny는 허용하지 않는다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › pronunciation_rules › 어말 자음"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 1, 2026-11-07 (ni, SOV/SVO, 어말 자음, 모음 조화, 산스크리트 차용어 추가 논의). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 단정적으로 서술한 ‘Canon 후보’입니다. 작성자 확인 후 Canon으로 올립니다."
+  },
+  "tags": [
+   "language",
+   "phonology",
+   "canon-candidate"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "final-bdg",
+  "title": "어말 b, d, g",
+  "category": "language",
+  "topic": "language.phon",
+  "status": "Unknown",
+  "verification": "secondary_source",
+  "claim": "b, d, g는 어말에서 p, t, k와 비슷하게 실현될 수 있다는 의견이 있으나 철자 및 음소상 허용 여부는 미확정이다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › pronunciation_rules › 어말 자음 / unresolved_or_revisable_items"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 1, 2026-11-07 (ni, SOV/SVO, 어말 자음, 모음 조화, 산스크리트 차용어 추가 논의). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 미확정 또는 확인 필요로 표시한 내용입니다."
+  },
+  "tags": [
+   "language",
+   "phonology",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "prosody",
+  "title": "억양과 리듬",
+  "category": "language",
+  "topic": "language.phon",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "완만하게 상승하다가 마지막 강세에서 부드럽게 하강하는 억양 곡선이 제안되었다. 리듬은 음절박자를 중심으로 균등하게 이어지며 장모음에서 물결처럼 출렁이는 무게감을 준다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › pronunciation_rules › 억양, 리듬"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "phonology"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "sanskrit-adaptation",
+  "title": "산스크리트 차용어의 음운 대응",
+  "category": "language",
+  "topic": "language.loan",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "산스크리트어를 비롯한 인도 문화권에서 유래한 어휘가 있으며, 원형을 유지하기도 하지만 크게 변형되기도 한다. 대응 후보: ch → t에 가까운 소리(제안된 대응), j → s에 가까운 소리(제안된 대응), dh → d(구상된 대응), bh → b(구상된 대응), 장모음 → 곡절 부호 표기(기존 철자 체계와 연결). 실제 음운 변화 규칙과 예외는 정리가 필요하다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › sanskrit_loanwords › adaptation_patterns / unresolved_or_revisable_items"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 1, 2026-11-07 (ni, SOV/SVO, 어말 자음, 모음 조화, 산스크리트 차용어 추가 논의). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "loanword"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "loanword-examples",
+  "title": "산스크리트 차용어 예",
+  "category": "language",
+  "topic": "language.loan",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "nagor: 도시 또는 나라와 관련된 의미, 원어 후보 Sanskrit nagara (사용자가 제안한 차용어, 의미 범위는 확인 필요, nagara와의 관계도 확인 필요). panya: 지혜, 원어 후보 prajñā (어원 추정). apsor: 압사라에서 유래한 요정 또는 무희와 관련된 의미 (정확한 음운 변화 과정은 미확정). Bûloka: 지상, 그들이 살아가는 바깥 세계, 원어 후보 bhūloka (의미는 확인되었으며 어원은 추정).",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › sanskrit_loanwords › loanword_examples"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 1, 2026-11-07 (ni, SOV/SVO, 어말 자음, 모음 조화, 산스크리트 차용어 추가 논의). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "loanword",
+   "etymology"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "loan-basa",
+  "title": "basa / bâsa",
+  "category": "language",
+  "topic": "language.loan",
+  "status": "Unknown",
+  "verification": "secondary_source",
+  "claim": "basa와 bâsa는 ‘언어와 관련된 의미’이며 원어 후보는 Sanskrit bhāṣā이다. 어원과 장모음 표기 여부를 확인해야 하고, 어떤 표기를 공식으로 쓸지 결정해야 한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › sanskrit_loanwords › loanword_examples / unresolved_or_revisable_items"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 1, 2026-11-07 (ni, SOV/SVO, 어말 자음, 모음 조화, 산스크리트 차용어 추가 논의). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 미확정 또는 확인 필요로 표시한 내용입니다."
+  },
+  "tags": [
+   "language",
+   "loanword",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "loan-phonotactics",
+  "title": "외래어의 자음 연속",
+  "category": "language",
+  "topic": "language.loan",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "일반적인 니에코라 고유어에서는 자음군을 제한하는 경향이 있지만 외래어에서는 aksor, apsor처럼 자음이 연속되는 형태도 허용될 수 있다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › sanskrit_loanwords › phonotactics"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "loanword",
+   "phonology"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "loan-semantic-change",
+  "title": "차용어의 의미 변화",
+  "category": "language",
+  "topic": "language.loan",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "차용어의 의미가 원래 산스크리트어의 뜻에서 크게 달라지는 경우가 있다. 니에코라의 문화적 해석과 역사적 사용에 따라 원래 의미가 약해지거나 새로운 의미가 부여될 수 있다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › sanskrit_loanwords › semantic_change"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "loanword"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "vocab-common",
+  "title": "일반 어휘 (common_words)",
+  "category": "language",
+  "topic": "language.vocab",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "tara 강; mara 바다; lora 빛; nîlun 달; nîlu 밤; sura 태양; ruwa 물; wata 나무; kala 숲; yara 꽃; tema 바람; buru 안개; senga 별; nalu 파도; kora 생명; nyara 새; mura 물고기; kalun 사슴; tora 호랑이; balu 원숭이; sira 뱀; renga 독수리; kawi 밥, 조리된 쌀; mai 면; manu 전설, 민담; layan 배; ura 폭풍; tama 지식; môka 땅, 대지; garu 하늘; amu 어머니; apu 아버지; nyeta 사람; lari 기쁨; maru 슬픔; kori 사랑; sena 희망; torai 분노; welu 평화; pagûni 감사; nilara 그리움\n(인칭대명사 ahu, moru, soru, ahunga, ahuk은 문법 항목 참고)",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › vocabulary_categories › common_words"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 1, 2026-09-05 (철자 개정 후 어휘·숫자·기본 문법·어감 논의). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "vocabulary"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "vocab-formal",
+  "title": "격식 어휘 (formal_words)",
+  "category": "language",
+  "topic": "language.vocab",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "wêngat 구원; pehara 신성한 보호; nilûna 달의 영혼; garun 하늘의 힘, 권능; nagara 강의 영혼; surava 태양의 축복; marava 바다의 축복; pagûn 정화; hara 보호, 수호; pagûnar 사제; nilari 무녀, 여성 주술사 또는 여사제; saran 장로; welan 족장, 우두머리; korawa 전사; welora 궁전; hara-tulak 성소; nilûn-hara 달의 사원; naga-hara 나가 사원; garuda-hara 가루다 사원; pagûn-ta 정화 의식; lora-ta 빛의 의식; nagor 도시 또는 나라와 관련된 의미\n(surava, marava, pagûn-ta, lora-ta의 표기는 ‘의식·축복 요소의 표기 개정’ 충돌 항목 참고)",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › vocabulary_categories › formal_words"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 1, 2026-09-05 (철자 개정 후 어휘·숫자·기본 문법·어감 논의). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "vocabulary"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "vocab-informal",
+  "title": "일상 어휘 (informal_words)",
+  "category": "language",
+  "topic": "language.vocab",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "tula 집; wênga 끌어올리다, 끌어당기다; pagû 씻다; sôra 삼키다; môkan 농사짓다; upo 기름에 튀기거나 볶다, 뜨거운 기름으로 조리하다",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › vocabulary_categories › informal_words"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 1, 2026-09-05 (철자 개정 후 어휘·숫자·기본 문법·어감 논의). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "vocabulary"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "vocab-technical",
+  "title": "전문 용어 (technical_terms)",
+  "category": "language",
+  "topic": "language.vocab",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "tulak 마을, 정착지; tulak-wara 큰 마을; kalawa 광장; maran 부두; taran 다리; luwara 풀; kalalu 덩굴; yaralu 꽃잎; loran 은은한 향이 나는 흰쌀; taralor 강가에서 재배하는 향기로운 쌀; sûrawa 축제용 황금빛 향미; merun 상인; laren 어부; watari 장인; garuda 가루다; naga 나가; bakunawa 바쿠나와; sokura 공허, 아무것도 없음; soku 검은색; panya 지혜",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › vocabulary_categories › technical_terms"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 1, 2026-09-05 (철자 개정 후 어휘·숫자·기본 문법·어감 논의). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "vocabulary"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "numerals-1-10",
+  "title": "숫자 1~10",
+  "category": "language",
+  "topic": "language.vocab",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "1 sia, 2 lua, 3 teru, 4 pati, 5 lima, 6 namu, 7 pitu, 8 oru, 9 sewa, 10 sapu",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › vocabulary_categories › numerals"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 1, 2026-09-05 (철자 개정 후 어휘·숫자·기본 문법·어감 논의). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 단정적으로 서술한 ‘Canon 후보’입니다. 작성자 확인 후 Canon으로 올립니다."
+  },
+  "tags": [
+   "language",
+   "numerals",
+   "canon-candidate"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "vocab-upo-fire",
+  "title": "upo와 불 관련 어휘",
+  "category": "language",
+  "topic": "language.vocab",
+  "status": "Unknown",
+  "verification": "secondary_source",
+  "claim": "upo와 불을 나타내는 어휘의 관계, 그리고 불에서 파생되는 동사 체계를 확정해야 한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › unresolved_or_revisable_items"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 미확정 또는 확인 필요로 표시한 내용입니다."
+  },
+  "tags": [
+   "language",
+   "vocabulary",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "vocab-count",
+  "title": "전체 어휘 수",
+  "category": "language",
+  "topic": "language.vocab",
+  "status": "Unknown",
+  "verification": "secondary_source",
+  "claim": "정확한 전체 어휘 수는 미확정이다. 자연, 동물, 식물, 종교, 건축, 감정, 사회, 직업, 음식, 숫자 등 여러 범주의 어휘가 작성되어 있으며, 현재까지의 전체 어휘 수와 범주별 공식 목록을 집계해야 한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › basic_structure › vocabulary_count / unresolved_or_revisable_items"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 미확정 또는 확인 필요로 표시한 내용입니다."
+  },
+  "tags": [
+   "language",
+   "vocabulary",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "phrases-examples",
+  "title": "관용 표현 예시",
+  "category": "language",
+  "topic": "language.phrase",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "Tara ni ruwa 강처럼 흐른다; Mara ni sura 바다에 태양이 빛난다; Lora ga pagûn 빛이 정화한다; Nîlûn sa yara 달빛 아래의 꽃; Tema ni buru 바람이 안개를 걷어낸다; Hara sa tulak 마을을 수호하다; Nyekora ni welan 니에코라 사람들이 우두머리를 따른다; Saran ni senga 장로가 별을 바라본다; Kora ni watari 장인이 생명을 준다; Nilari sa sura 무녀가 태양을 맞이한다; Lari ga sena 기쁨이 희망을 부른다; Maru ni nîlûn 슬픔은 달과 같다; Kori ga pagûni 사랑은 감사로 이어진다; Torai sa kalun 분노가 사슴처럼 사라진다; Welu ni lora 평화가 빛과 만난다; Pagûn sa lora 정화된 빛 아래에서; Nilûn sa pagûn-ta 달이 정화되었다; Garuda sa surava 가루다가 태양의 축복을 받는다; Kalawa ni tema 바람이 광장을 가로지른다; Maran ni nalu 부두가 파도와 함께 춤춘다; Taran sa ruwa 다리가 물을 가로지른다; Velora ni sura 궁전이 태양을 맞이한다; Lora-ta ni watari 장인이 빛의 의식을 만들었다\n(‘Ahungan apu’는 기존 항목, ‘Naga ni hara, Garuda ni preu.’와 ‘Sôragâ vēnat!’는 별도 항목. Velora, surava는 구 철자 가능성이 있음)",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › key_phrases"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료.docx(2차 자료)의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "language",
+   "phrases"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "phrase-naga-preu",
+  "title": "Naga ni hara, Garuda ni preu.",
+  "category": "language",
+  "topic": "language.phrase",
+  "status": "Unknown",
+  "verification": "secondary_source",
+  "claim": "‘나가가 수호한다면 가루다가 보호할 것이다.’ 초기 관용 표현의 예시다. preu는 현재 철자 개정에서 유효성이 확인되지 않은 옛 어휘이므로 최신 표현으로 사용하기 전 재검토가 필요하다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › key_phrases"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 미확정 또는 확인 필요로 표시한 내용입니다."
+  },
+  "tags": [
+   "language",
+   "phrases",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "phrase-sora-venat",
+  "title": "Sôragâ vēnat!",
+  "category": "language",
+  "topic": "language.phrase",
+  "status": "Unknown",
+  "verification": "secondary_source",
+  "claim": "‘소라여, 우리를 구원하소서!’ 초기 기도문 또는 구원 요청 표현이다. vēnat의 최신 철자와 문법적 지위는 재확인이 필요하다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 언어/문법 › key_phrases"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 미확정 또는 확인 필요로 표시한 내용입니다."
+  },
+  "tags": [
+   "language",
+   "phrases",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "music-style",
+  "title": "니에코라 음악의 성격",
+  "category": "music",
+  "topic": "music",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "동남아시아 전통 음악, 특히 가믈란과 나무 실로폰 계열의 음악에서 영감을 받았지만 독자적인 악기와 문화적 의미를 가진다. 음악은 단순한 오락을 넘어 공동체의 정체성, 의식, 전통을 표현하는 수단이다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 악기/음악 › music_style"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 2, 2026-09-26~2026-10-01 및 2026-11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "music"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "music-genres",
+  "title": "음악 장르 4종",
+  "category": "music",
+  "topic": "music",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "궁중 합주: Surala를 중심으로 Temaru, Ohi-garun, Môka-garun, Takataka가 어우러지는 장엄하고 신비로운 전통 음악. 유려하고 장엄하며 자연스럽게 흐르는 선율을 중시한다.\n전투·시험 음악: Temaru, Sutari, Môka-garun, Kunga, Takataka를 중심으로 하는 역동적인 음악. 펠로그 계열 음계와 빠른 반복 리듬을 사용하며 필요에 따라 Surala를 추가할 수 있다.\n의식 음악: 공동체의 의식과 전통을 표현하는 음악. 악기별 역할과 악절의 시작 및 종료가 중요하다.\n주술적·신비 음악: Swarga와 Sutari의 문화적 연관성을 활용해 공허하고 신비로우며 으스스한 분위기를 표현하는 음악.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 악기/음악 › music_style, music_genres"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 2, 2026-09-26~2026-10-01 및 2026-11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "music",
+   "genre"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "instr-surala-sutari",
+  "title": "Surala와 Sutari의 연주와 음색",
+  "category": "music",
+  "topic": "music",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "Surala(목재 실로폰): 여러 개의 나무 음판을 타격용 채로 연주하며 곡선형으로 배열된 음판으로 선율을 연주한다. 부드럽고 따뜻하며 맑은 목재 공명음. 궁중 합주의 주선율, 의식 음악, Temaru와 선율을 주고받는 연주에 쓰이며 전투 음악에서는 필요에 따라 보조 선율을 맡는다.\nSutari(금속 실로폰): 금속 음판을 타격용 채로 연주하며 짧고 반복적인 음형과 서로 맞물리는 리듬을 연주한다. 밝고 선명하며 울림이 있는 금속성 음색으로 Surala보다 날카롭고 긴장감 있는 인상. 전투·시험 음악의 핵심 리듬과 선율, 주술적이고 신비로운 분위기의 음악에 쓰인다.\n(재료와 사용 빈도는 기존 Sutari/Surala 항목 참고)",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 악기/음악 › instruments › Surala, Sutari"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 2, 2026-09-26~2026-10-01 및 2026-11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "music",
+   "instrument"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "instr-temaru",
+  "title": "Temaru (목관 피리)",
+  "category": "music",
+  "topic": "music",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "입으로 불어 연주하는 목관 피리. 호흡과 운지로 선율과 장식음을 표현한다. 숨결이 섞인 부드럽고 자연스러운 음색으로 중고음역을 중심으로 한다. 바람의 이미지를 상징하는 주요 관악기. 궁중 합주에서는 Surala의 선율을 장식하고, 전투·시험 음악에서는 빠르고 역동적인 연주로 긴장감을 만든다. 곡의 도입부 자유로운 독주, 절정의 고음역 장식음과 빠른 연속음도 연주한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 악기/음악 › instruments › Temaru"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 2, 2026-09-26~2026-10-01 및 2026-11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 단정적으로 서술한 ‘Canon 후보’입니다. 작성자 확인 후 Canon으로 올립니다."
+  },
+  "tags": [
+   "music",
+   "instrument",
+   "canon-candidate"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "instr-ohi-garun",
+  "title": "Ohi-garun (저음 관악기)",
+  "category": "music",
+  "topic": "music",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "입으로 불어 낮은 음을 지속하거나 길게 연주하는 저음 관악기. 재료는 미정이다. 깊고 웅장하며 울림이 긴 저음으로 불과 용의 목소리를 연상시킨다. 불의 힘을 의미하며 궁중 합주에서 저음의 기반과 신비로운 분위기를 담당한다(도입부 저음 드론, Temaru 뒷받침).",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 악기/음악 › instruments › Ohi-garun"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 2, 2026-09-26~2026-10-01 및 2026-11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "music",
+   "instrument"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "instr-moka-garun",
+  "title": "Môka-garun (양면 북)",
+  "category": "music",
+  "topic": "music",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "가로로 놓인 양면 북의 양쪽을 손으로 연주한다. 묵직하고 깊은 저음과 건조한 중저음 타격으로 반복적인 리듬에 추진력을 준다. 땅의 힘, 땅의 심장 박동을 상징하며 일반 합주와 전투 음악 모두에서 리듬 기반을 형성한다. 북의 재료와 세부 제작 방식은 미정이다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 악기/음악 › instruments › Môka-garun"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 2, 2026-09-26~2026-10-01 및 2026-11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "music",
+   "instrument"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "instr-takataka",
+  "title": "Takataka (목제 클라퍼)",
+  "category": "music",
+  "topic": "music",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "한 쌍의 나무 막대를 서로 부딪쳐 연주한다. 날카롭고 선명하며 짧게 끊기는 목재 타격음. 의식의 시작과 끝, 악절의 구분을 알려 주며 음악의 흐름을 정리하고 중요한 순간을 강조한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 악기/음악 › instruments › Takataka"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 2, 2026-09-26~2026-10-01 및 2026-11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 단정적으로 서술한 ‘Canon 후보’입니다. 작성자 확인 후 Canon으로 올립니다."
+  },
+  "tags": [
+   "music",
+   "instrument",
+   "canon-candidate"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "instr-kunga",
+  "title": "Kunga (금속 징)",
+  "category": "music",
+  "topic": "music",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "타격하여 중저음의 울림을 만드는 금속 징. 중저음의 묵직한 금속 타격음으로, 깊고 긴 저음이 지속되는 대형 징보다는 짧은 리듬 강조와 악절 구분에 적합하다. 전투·시험 음악에서 중요한 순간과 리듬의 전환을 강조하며 동남아시아의 Kempul과 유사한 음악적 역할을 가진다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 악기/음악 › instruments › Kunga"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 2, 2026-09-26~2026-10-01 및 2026-11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 단정적으로 서술한 ‘Canon 후보’입니다. 작성자 확인 후 Canon으로 올립니다."
+  },
+  "tags": [
+   "music",
+   "instrument",
+   "canon-candidate"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "music-patala-swarga",
+  "title": "Patala와 Swarga",
+  "category": "music",
+  "topic": "music",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "Patala는 인도 문화권의 지하세계 개념에서 유래한 요소로 Surala 및 펜타토닉 음악 계열과 연관된다. 단순히 악이나 어둠을 의미하지 않으며 니에코라 고유의 예술적 해석을 반영한다. Swarga는 원래 천상계와 관련된 개념이며 Sutari 및 펠로그 음악 계열과 연관된다. 니에코라에서는 공허하고 주술적이며 으스스한 장소나 분위기를 연상시키는 방향으로 의미가 변형될 수 있다. 둘의 구분은 단순한 선악이나 지하와 천상의 대립이 아니다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 악기/음악 › cosmological_concepts, art_and_music"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 2, 2026-09-26~2026-10-01 및 2026-11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "music",
+   "cosmology",
+   "scale"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "music-ceremonial-use",
+  "title": "의례에서의 음악 사용",
+  "category": "music",
+  "topic": "music",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "궁중 의식과 전통 의례에서 궁중 합주를 사용한다. 전투·시험 및 공동체 구성원으로 인정받는 의식에서 역동적인 합주를 사용한다. Takataka로 의식의 시작과 끝, 악절을 구분한다. 주술적·신비로운 분위기를 표현하는 음악에서 Sutari를 활용한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 악기/음악 › performance_contexts › ceremonial"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 2, 2026-09-26~2026-10-01 및 2026-11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "music",
+   "ritual"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "music-master-instruments",
+  "title": "주요 악기 3종",
+  "category": "music",
+  "topic": "music",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "Surala: 전통적이고 일반적으로 널리 사용되는 주요 악기. Sutari: 펠로그 계열 음악과 전투·시험 음악에서 중요한 금속 악기. Temaru: 궁중 및 전투 합주에서 주요 선율을 담당하는 관악기.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 악기/음악 › master_instruments"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 2, 2026-09-26~2026-10-01 및 2026-11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "music",
+   "instrument"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "music-performance-open",
+  "title": "축제·일상 연주 (미정)",
+  "category": "music",
+  "topic": "music",
+  "status": "Unknown",
+  "verification": "secondary_source",
+  "claim": "구체적인 축제별 음악과 악기 편성은 아직 미정이다. 일상적인 연주 방식과 대중 음악의 세부 형태는 미정이다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 악기/음악 › performance_contexts › festivals, daily_use"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 2, 2026-09-26~2026-10-01 및 2026-11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 미정 또는 미설정으로 표시한 내용입니다."
+  },
+  "tags": [
+   "music",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "music-notation-learning",
+  "title": "악보 표기와 음악 교육 (미정)",
+  "category": "music",
+  "topic": "music",
+  "status": "Unknown",
+  "verification": "secondary_source",
+  "claim": "악보 표기 체계는 아직 확정되지 않았다. 작곡 초안에서는 MIDI와 음표 표기를 활용했으며 펜타토닉 및 펠로그 계열의 음계를 구분하여 사용한다. 악기별 정식 교육 과정, 연주자 양성 체계, 음악 교육 기관 및 구전 교육의 구체적인 방식은 아직 설정되지 않았다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 악기/음악 › notation_system, learning_process"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 2, 2026-09-26~2026-10-01 및 2026-11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 미정 또는 미설정으로 표시한 내용입니다."
+  },
+  "tags": [
+   "music",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "hist-origin-date",
+  "title": "건국 시기",
+  "category": "history",
+  "topic": "history",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "건국 시기는 약 12~13세기경이다. 정확한 연도는 미정이다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 스토리/역사 › origin_story › creation_date"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 3, 2026-10-11·10-13·10-26·11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "history",
+   "origin"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "hist-origin-place",
+  "title": "건국 장소: 지하세계에 해당하는 공간",
+  "category": "history",
+  "topic": "history",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "건국 장소는 지하세계에 해당하는 별도의 공간이며, 지상과 연결되는 통로가 존재한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 스토리/역사 › origin_story › creation_place"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 3, 2026-10-11·10-13·10-26·11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "history",
+   "origin"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "hist-passage-location",
+  "title": "지상 쪽 통로의 위치",
+  "category": "history",
+  "topic": "history",
+  "status": "Unknown",
+  "verification": "secondary_source",
+  "claim": "지상 쪽 통로의 위치는 보르네오섬 인근 말레이시아가 후보이나 최종 확정되지 않았다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 스토리/역사 › origin_story › creation_place, current_state › territory"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 3, 2026-10-11·10-13·10-26·11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 미정 또는 미설정으로 표시한 내용입니다."
+  },
+  "tags": [
+   "history",
+   "origin",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "hist-founders-motive",
+  "title": "건국 주체와 동기",
+  "category": "history",
+  "topic": "history",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "건국 주체는 나가족과 가루다족, 그리고 지상에서 이주한 일부 인간들이다. 전쟁과 사회적 혼란으로 고통받던 사람들을 구하고 지상의 혼란에서 벗어나 살아갈 새로운 공동체를 만들기 위해 건국했다는 설정이 유력하다. 나가족이 인간들에게 직접 나타나 구원했다는 기원 이야기도 검토되었다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 스토리/역사 › origin_story › creator, motivation"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 3, 2026-10-11·10-13·10-26·11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "history",
+   "origin"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "hist-initial-state",
+  "title": "초기 니에코라의 모습",
+  "category": "history",
+  "topic": "history",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "초기 니에코라는 지상에서 도망치거나 추방된 사람들을 받아들이는 피난처였다. 나가족은 건국의 주체이자 공동체의 보호자였으며, 초기 사회에는 다양한 출신의 사람들이 공존했다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 스토리/역사 › origin_story › initial_state"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 3, 2026-10-11·10-13·10-26·11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "history",
+   "origin"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "hist-era-1-2",
+  "title": "시대 1~2: 건국 이전과 건국·초기 정착기",
+  "category": "history",
+  "topic": "history",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "1. 건국 이전과 나가족의 등장(12~13세기 이전, 시기 미정): 지상에서 전쟁과 사회적 혼란이 발생한다. 나가족이 고통받는 인간들에게 나타나 도움을 주었다는 기원 이야기가 존재한다. 인간 일부가 나가족과 함께 새로운 세계를 건설한다.\n2. 건국과 초기 정착기(약 12~13세기경): 나가족, 가루다족, 인간들이 함께 니에코라를 건설하고, 지상에서 벗어나려는 사람들을 받아들이는 피난처로 기능한다. 나가족은 건국 이념을 수호하고 공동체의 질서를 유지하는 역할을 맡는다. 초기 건축과 문화에 동남아시아 및 크메르 문명, 인도 신화의 영향을 반영한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 스토리/역사 › timeline › 1, 2"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 3, 2026-10-11·10-13·10-26·11-07 / 건국 기원·나가족 설정, 건국 시기와 건축 양식 논의. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "history",
+   "era"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "hist-era-3",
+  "title": "시대 3: 정착 확대와 문화 발전기",
+  "category": "history",
+  "topic": "history",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "(건국 이후 수세기) 지상에서 자발적으로 이주하거나 추방된 사람들이 정착하고, 서로 다른 출신의 사람들이 하나의 사회를 형성한다. 니에코라 고유의 문자와 음악, 의복, 건축, 종교적 전통이 발전한다. 나가족의 수명과 관련된 특별한 생명 연장 약물이 사회적으로 중요한 의미를 갖는다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 스토리/역사 › timeline › 3"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 3, 2026-10-11·10-13·10-26·11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "history",
+   "era"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "hist-era-4",
+  "title": "시대 4: 계급사회와 상호 견제 체계",
+  "category": "history",
+  "topic": "history",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "(건국 이후 중세 및 근현대 이전, 시기 미정) 니에코라에 계급과 권력 구조가 형성된다. 계급 자체를 완전히 폐지하기보다는 계층 간 상호 견제와 비교적 자유로운 계급 이동을 추구한다. 나가족이 감시와 견제에 직접 참여하며 권력자의 부패와 착취를 억제한다. 공동체를 심각하게 해치는 부패한 권력자는 추방할 수 있다는 원칙이 발전한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 스토리/역사 › timeline › 4"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 3, 2026-10-11·10-13·10-26·11-07 / 2026-10-13 나가족의 감시와 견제 참여 논의. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "history",
+   "era"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "hist-era-5",
+  "title": "시대 5: 건국 이념의 변질과 지상 인식 변화",
+  "category": "history",
+  "topic": "history",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "(수세기에 걸친 변화) 초기 이주민의 후손들은 지상에서의 고통을 역사와 전통을 통해 배운다. 세대가 바뀌면서 지상에 대한 직접적인 경험은 줄고 부정적인 인식이 일부 사회에 정착한다. 피난처가 점차 외부인을 경계하는 폐쇄적인 사회로 변할 가능성이 생기고, 건국 당시의 구원 정신과 후대의 배타적인 해석 사이에 차이가 발생한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 스토리/역사 › timeline › 5"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 3, 2026-10-11·10-13·10-26·11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "history",
+   "era"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "hist-story-modern",
+  "title": "시대 6~7 (본편 이전): 지상과의 접촉, 왕의 실각",
+  "category": "history",
+  "topic": "history",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "6. (이야기 본편 이전 수년) 니에코라의 존재가 지상에 알려지고 일부 지상인들이 존재와 생명 연장 약물에 관심을 갖는다. 왕이 지상을 방문하거나 사절단을 보내 실제 상황을 확인한다는 설정이 검토되었다. 왕은 내부 반대에도 생명 연장 약물을 지상인들에게 판매하고, 존재가 더 널리 알려져 대규모 이주 움직임이 발생한다.\n7. (본편 직전 및 초반) 내부 반발이 커지고 왕은 대규모 이주를 제대로 관리하지 못해 실각하거나 추방된다. 지상에서는 AI 기술의 혜택이 소수의 부유층에 집중되고 불평등이 심화되어 니에코라를 새로운 피난처로 여기는 사람들이 늘며, 부유층과 권력자들은 니에코라를 차지할 대상으로 바라보기 시작한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 스토리/역사 › timeline › 6, 7"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 3, 2026-10-11·10-13·10-26·11-07 / 왕의 지상 방문과 약물 판매, 지상의 AI 불평등, 왕의 실각 논의. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "history",
+   "era",
+   "story-plot"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "hist-story-main",
+  "title": "시대 8~9 (본편): 서준과 삼총사, 통로 붕괴",
+  "category": "history",
+  "topic": "history",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "8. 서준은 지상의 어려운 취업 상황을 벗어나 동남아시아로 향한다. 필리핀에서는 기회를 얻기 어렵고(관광 안내나 통로 주변 조사 같은 일자리를 알아보는 설정이 제안됨), 이후 말레이시아까지 이동하며 니에코라 소문을 다시 접한다. 서준은 니에코라에서 임시 지도자이자 전사로 활동하며 ‘테마 웰란’이라는 칭호를 얻는다. 민준, 유나, 지훈은 지상에 남아 생존을 모색하다가 서준을 찾고 군중과 함께 이주 움직임에 참여한다.\n9. (본편 후반) 대규모 지상인들이 통로 주변에 모여 부유층과 일반 이주민 사이에 충돌과 혼란이 발생한다. 니에코라는 양측을 모두 통제하려 하고, 통로가 붕괴하며 문제가 심각해진다. 니에코라는 자신들도 과거 지상의 혼란과 억압에서 벗어난 이들의 후손임을 설명하고, 서준과 삼총사는 사태의 평화로운 해결에 기여한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 스토리/역사 › timeline › 8, 9"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 3, 2026-10-11·10-13·10-26·11-07 / 2026-10-26 서준의 이동 경로, 2026-10-11 본편 후반 구상. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "history",
+   "era",
+   "story-plot"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "hist-story-ending",
+  "title": "시대 10: 새로운 공존의 가능성 (구상 단계)",
+  "category": "history",
+  "topic": "history",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "니에코라와 지상은 서로의 사회적 문제와 한계를 인정한다. 니에코라는 지상의 일부 지역에 제한적인 방문을 허용하는 방안을 검토한다. 서준과 삼총사는 평화로운 공존을 위한 노력의 상징적인 인물로 자리한다. 서준은 생명 연장 약물을 들고 개인의 장수와 사회의 지속 가능성을 연결하는 메시지를 전한다. 후속 이야기 여부도 미정이다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 스토리/역사 › timeline › 10, evolution_stages"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 3, 2026-10-11·10-13·10-26·11-07 / 2026-10-11 결말과 약물의 상징성 논의. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "history",
+   "era",
+   "story-plot"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "hist-drug-decision",
+  "title": "서준의 약물 복용 여부",
+  "category": "history",
+  "topic": "history",
+  "status": "Unknown",
+  "verification": "secondary_source",
+  "claim": "서준이 생명 연장 약물을 복용할지는 아직 결정되지 않았다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 스토리/역사 › timeline › 10"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 3, 2026-10-11·10-13·10-26·11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 미정 또는 미설정으로 표시한 내용입니다."
+  },
+  "tags": [
+   "history",
+   "story-plot",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "hist-population",
+  "title": "인구 (미정)",
+  "category": "history",
+  "topic": "history",
+  "status": "Unknown",
+  "verification": "secondary_source",
+  "claim": "정확한 인구수는 미정이다. 나가족, 가루다족, 인간 및 여러 출신의 후손들이 함께 살아가는 사회다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 스토리/역사 › current_state › population"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 3, 2026-10-11·10-13·10-26·11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 미정 또는 미설정으로 표시한 내용입니다."
+  },
+  "tags": [
+   "history",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "hist-culture-status",
+  "title": "현재의 문화 상태",
+  "category": "history",
+  "topic": "history",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "동남아시아와 크메르 문명, 인도 신화에서 영감을 받은 독자적인 문화가 발전했다. 고유 문자, 음악, 의복, 건축, 종교적 유산을 보유한다. 현대에는 전통과 건국 이념의 변질, 외부인 수용 문제를 둘러싼 갈등이 존재한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 스토리/역사 › current_state › culture_status"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 3, 2026-10-11·10-13·10-26·11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "history"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "hist-themes",
+  "title": "이야기의 주제",
+  "category": "history",
+  "topic": "history",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "피난처로 건설된 문명이 오히려 외부인을 배척하게 되는 역설; AI 기술이 인간을 해방하기보다 소수에게 부를 집중시킬 수 있다는 문제; 계급을 없애는 것과 권력의 부패를 억제하는 것은 서로 다른 문제라는 관점; 나가족의 감시와 견제를 통한 권력 통제; 건국 이념과 후대의 정치적 해석 사이의 차이; 생명 연장 약물이 개인의 장수뿐 아니라 사회의 미래를 상징한다는 점; 지상과 니에코라 중 어느 한쪽도 완벽한 사회가 아니라는 관점; 구원받지 못한 세계에서 온 사람이 피난처의 가치를 되살리려 한다는 역설; 문명의 역사와 이상, 실제 현실 사이의 간극; 서준과 삼총사의 우정 및 서로 다른 삶의 선택",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 스토리/역사 › current_state › themes"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 3, 2026-10-11·10-13·10-26·11-07. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "history",
+   "story-plot"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "cloth-style",
+  "title": "복식의 성격",
+  "category": "clothing",
+  "topic": "clothing",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "동남아시아의 수상 문명과 강·바다 중심 생활에서 영감을 얻은 독자적인 전통 의상이며 특정 현실 문화의 복제를 지향하지 않는다. 주요 특징은 사롱형 랩 하의, 대각선으로 걸치는 어깨천, 정교한 직조 및 바틱풍 문양, 금속 장신구, 청록색과 남색의 조화이다. 주름과 천의 겹침을 아름다움의 중요한 요소로 여기며 사회적 지위에 따라 의상의 길이와 장식의 양이 달라진다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 의복/장신구 › clothing_style"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 4, 2026-08-21 계층별 복식. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "clothing"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "cloth-fabrics",
+  "title": "직물의 종류",
+  "category": "clothing",
+  "topic": "clothing",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "전통 직조 직물; 바틱풍 문양 염색 직물; 청록색 및 남색 계열의 염색 천; 크림색과 아이보리색의 가벼운 직물; 금색 및 장식용 테두리가 들어간 고급 직물; 얇고 유연하게 드레이프되는 장식용 천. 정확한 섬유 원료와 직물의 명칭은 미확정이다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 의복/장신구 › fabric_types"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 4 (2026-08-21~2026-10-07). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "clothing",
+   "fabric"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "cloth-colors",
+  "title": "색의 상징",
+  "category": "clothing",
+  "topic": "clothing",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "청록색: 강과 바다, 생명의 근원, 니에코라의 대표적인 문화적 정체성. 남색: 전통 직물과 수상 생활의 안정감, 깊은 물. 금색: 권위, 부유함, 귀족적 지위와 신성함. 아이보리 및 크림색: 단정함, 우아함, 청결함. 갈색: 자연, 목재, 실용적인 생활. 적갈색: 전통적인 장식과 직물의 깊이감. 붉은색: 고귀함과 장식적 강조. 녹색: 자연과 생명력.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 의복/장신구 › color_symbolism"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 4, 2026-08-21 평민·중산층·귀족·사제의 색상 차이. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "clothing",
+   "color"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "cloth-male",
+  "title": "남성 복식",
+  "category": "clothing",
+  "topic": "clothing",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "사롱형 랩 하의와 짧은 반바지를 결합한 형태; 허리 앞쪽에서 천을 묶는 구조; 상체에 대각선으로 걸치는 어깨천; 상체를 드러내거나 짧은 상의를 함께 착용; 평민은 짧고 실용적인 하의를 주로 착용; 귀족은 긴 장식용 천과 다층적인 드레이프를 활용. 재료: 남색·청록색 직조 직물, 금색 문양의 바틱풍 직물, 아이보리색 보조 천, 갈색·적갈색 허리띠와 장식용 천. 장신구: 직조 머리띠, 금속 팔찌, 팔 위쪽의 장식용 완장, 목걸이와 구슬 장신구, 허리띠와 장식용 매듭, 샌들, 귀족용 금속 장식 및 보석.\n(계급이 높을수록 길어지는 규칙은 기존 Canon 항목 참고)",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 의복/장신구 › gender_differences › male_clothing"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 4, 2026-08-22, 2026-09-20 남성 사롱형 하의·반바지 구조. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "clothing"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "cloth-female",
+  "title": "여성 복식",
+  "category": "clothing",
+  "topic": "clothing",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "랩 스커트 형태의 하의; 어깨에서 대각선으로 내려오는 드레이프 천; 짧은 상의 또는 가슴을 감싸는 천; 허리 부분에 여러 장의 천을 겹쳐 장식하는 형태; 긴 치마와 풍성한 천의 주름을 활용하는 귀족 복식; 꽃 장식과 머리 장식으로 우아함을 강조. 재료: 청록색·남색 직조 직물, 금색 문양의 장식용 직물, 아이보리색 상의용 천, 적갈색·금색 보조 천, 가볍게 늘어지는 장식용 천. 장신구: 꽃 장식 머리핀, 꽃으로 장식한 올림머리, 금속 귀걸이, 목걸이, 팔찌와 발찌, 금속 완장, 보석 장식, 장식용 허리띠.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 의복/장신구 › gender_differences › female_clothing"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 4, 2026-08-22 여성 어깨 드레이프와 랩 스커트. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "clothing"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "cloth-genderless",
+  "title": "성별 구분 없는 복식",
+  "category": "clothing",
+  "topic": "clothing",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "대각선 어깨천, 사롱형 랩 직물, 직조 머리띠, 메가멘둥 구름문양이 들어간 장식용 천. 재료는 청록색 직조 직물, 남색 직물, 금색 장식 직물, 아이보리색 보조 직물. 장신구는 구슬 목걸이, 금속 팔찌, 직조 머리띠, 구름 및 물결 문양 장식.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 의복/장신구 › gender_differences › genderless_clothing"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 4, 2026-08-22 메가멘둥 문양. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "clothing"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "cloth-formal-events",
+  "title": "의례·행사 복식",
+  "category": "clothing",
+  "topic": "clothing",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "귀족은 다층적인 직물과 긴 드레이프, 금실 문양과 정교한 바틱풍 장식을 사용한다. 왕족은 화려한 왕관과 보석 장신구를 착용한다. 고위 사제는 연꽃과 신성한 물을 상징하는 장식을 활용한다. 성스러운 무용수는 대각선 어깨천, 랩 스커트, 꽃과 깃털 장식, 금색 및 청록색 장신구를 활용한다. 전통 축제에서는 꽃과 깃털 장식을 활용할 수 있고, 가면춤과 민속 공연에는 별도의 공연용 복식이 존재할 수 있다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 의복/장신구 › ceremonial_attire › festivals, formal_events"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 4, 2026-10-07 전통 무용수 복식. 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "clothing",
+   "ritual"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "cloth-accessories",
+  "title": "장신구 5종",
+  "category": "clothing",
+  "topic": "clothing",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "전통 직조 머리띠(직조 직물·금색 장식; 전통성과 문화적 소속감; 평민부터 귀족까지 남녀). 꽃 장식(꽃·장식용 금속; 자연의 아름다움과 우아함; 여성의 일상·의례 복식). 전통 구슬 목걸이(구슬·금속·청록색 장식석; 장식적 아름다움과 지위; 남녀 모두, 귀족은 더 정교한 형태). 금속 완장(황동·금색 금속; 신분과 장식적 권위; 평민과 귀족의 일상·의례 복식). 장식용 허리띠(직조 직물·금속·가죽 또는 끈; 복식의 구조를 잡고 장식적 위엄을 표현; 사롱과 랩 하의 고정).",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 의복/장신구 › adornments"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 4 (2026-08-21~2026-10-07). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "clothing",
+   "accessory"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "cloth-patterns",
+  "title": "문양 3종: Sena-bula, 연꽃, 나가",
+  "category": "clothing",
+  "topic": "clothing",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "Sena-bula(세나-불라): 희망의 구름과 바람의 상징, 직조 및 바틱풍 염색 직물, 평민과 귀족의 의복 및 장식품. 연꽃 문양: 순수함과 번영, 신앙 관련 장식과 귀족·사제 복식. 나가 문양: 수호와 지혜, 금속 세공과 직물 자수, 왕족·사제 및 전통 장신구.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 의복/장신구 › adornments › 문양"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 4 (2026-08-21~2026-10-07). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "clothing",
+   "pattern"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "cloth-crown",
+  "title": "니에코라 왕관",
+  "category": "clothing",
+  "topic": "clothing",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "금색 금속, 청록색 보석, 진주 장식으로 이루어진다. 왕권과 나가 신앙, 수상 문명의 권위를 상징하며 왕의 즉위 및 공식적인 왕실 행사에 쓰인다. (금색 삼지창은 기존 항목 참고)",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 의복/장신구 › adornments › 니에코라 왕관"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 4 (2026-08-21~2026-10-07). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "clothing",
+   "regalia"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "cloth-beauty",
+  "title": "아름다움의 기준",
+  "category": "clothing",
+  "topic": "clothing",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "의복의 단정한 주름과 자연스러운 드레이프, 직물의 섬세한 문양과 색상 조화, 꽃과 금속 장신구의 조화, 머리 장식과 헤어스타일의 정교함, 자연과 조화를 이루는 우아한 외형을 가치 있게 여긴다. 올림머리와 꽃 장식, 직조 머리띠, 금속 장신구와 보석으로 꾸민다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 의복/장신구 › beauty_standards"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 4 (2026-08-21~2026-10-07). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "clothing"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "cloth-open",
+  "title": "혼례복·신체 개조·계절 복식 (미정)",
+  "category": "clothing",
+  "topic": "clothing",
+  "status": "Unknown",
+  "verification": "secondary_source",
+  "claim": "결혼식 전용 복식의 구체적인 형태는 아직 미확정이며 기존 귀족 복식과 금색·꽃 장식을 활용할 가능성이 있다. 신체 개조 및 문신의 구체적인 문화적 관습은 미확정이다. 계절별 의복 체계는 아직 확립되지 않았다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 의복/장신구 › ceremonial_attire › wedding, beauty_standards, seasonal_variations"
+   }
+  ],
+  "sourceHint": "자료.docx의 출처 단서: chat_id 4 (2026-08-21~2026-10-07). 자료.docx의 출처 표기는 chat_id 번호뿐이라 어느 대화인지 연결되지 않았습니다. (연결 미확인)",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 미정 또는 미설정으로 표시한 내용입니다."
+  },
+  "tags": [
+   "clothing",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "soc-hierarchy",
+  "title": "사회 계층 구조",
+  "category": "society",
+  "topic": "society",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "왕을 중심으로 귀족, 고위 사제, 상인 및 장인 계층, 평민 등이 존재하는 계층 사회이다. 상인과 장인 중 일부는 중간 귀족에 가까운 지위를 갖는다. 나가와 가루다는 건국에 참여한 종족으로서 특별한 역사적·종교적 권위를 지닌다. 권력은 한곳에 집중되지 않도록 견제와 균형을 중시하며 부패하거나 부적절한 권력자는 지위에서 축출될 수 있다. 나가들도 통치와 권력 감시에 참여한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 관습/의례 › social_structure › hierarchy"
+   }
+  ],
+  "sourceHint": "자료.docx의 이 영역에는 출처 표기(chat_id)가 없습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "society"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "soc-roles",
+  "title": "계층별 역할",
+  "category": "society",
+  "topic": "society",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "왕: 정치와 행정을 총괄하고 국가의 안정과 번영을 책임진다. 건국설화와 미래 예언을 바탕으로 지상의 상황을 관찰하고 장기 정책을 검토하며, 필요하면 사절단이나 상인으로 위장한 조사 인원을 파견한다.\n고위 사제: 나가와 관련된 종교적 전통과 의례를 담당하고 건국설화와 예언 문헌을 보존·해석하며 나가와 인간 사회 사이의 종교적 관계를 유지한다.\n귀족: 국가 운영과 행정에 참여하고 지역사회와 주요 시설을 관리하며 왕권을 견제하는 역할을 수행할 수 있다.\n상인 및 장인: 생산·유통·교역을 담당하고 문화와 기술 발전에 기여하며, 일부 고위 상인은 외국 상인이나 사절단의 형태로 지상을 조사한다. 일부는 경제적 능력과 사회적 공헌으로 중간 귀족에 가까운 지위를 얻는다.\n평민: 농업, 어업, 수공업, 서비스업 등에 종사하고 일상적인 경제활동을 유지하며 축제와 문화행사에 참여한다.\n나가 및 가루다: 건국의 역사적·종교적 유산을 계승한다. 나가들은 인간 사회의 보호와 국가 운영에 참여하고 부패를 감시·견제한다. 가루다는 나가와 함께 건국과 보호에 참여한 종족으로 기억된다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 관습/의례 › social_structure › roles"
+   }
+  ],
+  "sourceHint": "자료.docx의 이 영역에는 출처 표기(chat_id)가 없습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "society"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "soc-role-requirements",
+  "title": "신분 요건 (미설정)",
+  "category": "society",
+  "topic": "society",
+  "status": "Unknown",
+  "verification": "secondary_source",
+  "claim": "왕위 계승 및 선출 방식, 고위 사제의 선발 기준과 교육 과정, 가문·공적·임명 등 귀족 지위 획득 방식, 평민의 신분 요건, 종족별 사회적 지위와 구체적인 직책 체계는 아직 설정되지 않았다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 관습/의례 › social_structure › roles › requirements"
+   }
+  ],
+  "sourceHint": "자료.docx의 이 영역에는 출처 표기(chat_id)가 없습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 미정 또는 미설정으로 표시한 내용입니다."
+  },
+  "tags": [
+   "society",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "soc-lifespan",
+  "title": "수명과 코라-루와 (kora-ruwa)",
+  "category": "society",
+  "topic": "society",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "니에코라인은 수명 연장 약물인 코라-루와(kora-ruwa)의 영향으로 지상 인간보다 긴 수명을 누린다. 평균 수명은 약 200년 정도로 설정되어 있으나 개인차가 존재한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 관습/의례 › age_groups"
+   }
+  ],
+  "sourceHint": "자료.docx의 이 영역에는 출처 표기(chat_id)가 없습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "society",
+   "lifespan"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "soc-family-age",
+  "title": "가족 구조와 연령 구분 (미설정)",
+  "category": "society",
+  "topic": "society",
+  "status": "Unknown",
+  "verification": "secondary_source",
+  "claim": "가족의 구성 방식, 친족 관계, 혼인 후 거주 형태, 상속 및 가계 계승 방식은 아직 구체적으로 설정되지 않았다. 다양한 지상 출신 조상의 후손들이 함께 살아왔으므로 여러 문화적 가족 전통이 존재할 가능성이 있다. 연령 집단(어린이, 청소년, 성인, 노년층)의 정확한 구분과 성년 기준은 설정되지 않았다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 관습/의례 › family_structure, age_groups"
+   }
+  ],
+  "sourceHint": "자료.docx의 이 영역에는 출처 표기(chat_id)가 없습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 미정 또는 미설정으로 표시한 내용입니다."
+  },
+  "tags": [
+   "society",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "soc-work",
+  "title": "생업과 일",
+  "category": "society",
+  "topic": "society",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "농업, 어업, 상업, 장인업 등 다양한 생업이 존재한다. 상인과 장인은 경제와 문화 발전에 중요한 역할을 한다. 일부 고위 상인은 지상의 상황을 확인하기 위한 비밀 조사 활동에 참여한다. 국가 운영은 권력 견제와 균형을 중시한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 관습/의례 › daily_customs › work_practices"
+   }
+  ],
+  "sourceHint": "자료.docx의 이 영역에는 출처 표기(chat_id)가 없습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "society"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "soc-daily-open",
+  "title": "일상 습관·식사·관계 (미설정)",
+  "category": "society",
+  "topic": "society",
+  "status": "Unknown",
+  "verification": "secondary_source",
+  "claim": "아침 기상과 의례, 일상적인 종교 활동과 기도 방식, 저녁의 가족 활동·여가·공동체 모임, 식사 예절·시간·음식의 종류는 아직 설정되지 않았다. 우정의 표현 방식, 가족 간 유대와 세대 간 관계, 연애와 혼인에 관한 사회적 관습도 설정되지 않았다. 지상에서 이주한 여러 민족의 후손이 있어 다양한 음식 문화가 형성되었을 가능성이 있다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 관습/의례 › daily_customs, relationship_dynamics"
+   }
+  ],
+  "sourceHint": "자료.docx의 이 영역에는 출처 표기(chat_id)가 없습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 미정 또는 미설정으로 표시한 내용입니다."
+  },
+  "tags": [
+   "society",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "soc-fest-founding",
+  "title": "건국 기념 의례",
+  "category": "society",
+  "topic": "society",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "나가와 가루다, 인간이 함께 니에코라를 세운 역사와 건국의 의미를 기념한다. 나가를 상징하는 깃발과 가루다를 상징하는 깃발을 사용하고 건국설화와 관련된 역사적 이야기를 전승하며, 나가와 가루다의 협력과 서약을 상징하는 행사가 열릴 수 있다. 참가자는 나가, 가루다, 인간을 포함한 주민이다. 정확한 날짜와 기간은 설정되지 않았다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 관습/의례 › festivals › 나가와 가루다의 건국 기념 의례"
+   }
+  ],
+  "sourceHint": "자료.docx의 이 영역에는 출처 표기(chat_id)가 없습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "society",
+   "festival"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "soc-fest-mask",
+  "title": "전통 가면춤 및 풍자 공연",
+  "category": "society",
+  "topic": "society",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "조상들의 종교적·문화적 유산을 보존하면서 과거의 신앙과 인간 사회를 풍자하고 비판적으로 되돌아본다. 나무와 다양한 재료로 만든 가면을 쓰고 힌두교, 불교, 이슬람교 등 지상 조상들이 믿었던 종교의 전승을 소재로 삼는다. 인간의 기도에 응답하지 않았다고 여겨지는 지상의 신들을 간접적으로 풍자하고, 자신을 버린 존재·배신자·무책임한 권력자 등을 익살스러운 가면으로 표현한다. 동남아시아에서 전해진 전설 속 인물이나 괴물, 오만·배신·두려움 같은 인간의 약점을 상징하는 가면도 쓴다. 날짜와 정기 개최 여부는 설정되지 않았다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 관습/의례 › festivals › 전통 가면춤 및 풍자 공연"
+   }
+  ],
+  "sourceHint": "자료.docx의 이 영역에는 출처 표기(chat_id)가 없습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "society",
+   "festival"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "soc-life-events",
+  "title": "통과의례 (미설정)",
+  "category": "society",
+  "topic": "society",
+  "status": "Unknown",
+  "verification": "secondary_source",
+  "claim": "출생 축하 의식과 명명식, 성년식과 성년의 기준, 혼례의 절차와 혼인 규범, 장례식과 추모 의례, 매장·화장 등 장례 방식은 아직 설정되지 않았다. 평균 수명이 약 200년인 사회이므로 장수와 죽음에 관한 독특한 문화가 존재할 가능성이 있으나 구체적인 관습은 미정이다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 관습/의례 › life_events"
+   }
+  ],
+  "sourceHint": "자료.docx의 이 영역에는 출처 표기(chat_id)가 없습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 미정 또는 미설정으로 표시한 내용입니다."
+  },
+  "tags": [
+   "society",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "soc-rule-balance",
+  "title": "규칙: 권력의 견제와 균형",
+  "category": "society",
+  "topic": "society",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "왕과 귀족 등 권력자가 부패하거나 사회에 해를 끼치는 일을 방지하기 위한 원칙이다. 권력 감시와 견제 체계가 존재하며 부패하거나 부적절한 권력자는 직위에서 축출될 수 있고, 나가들도 감시와 견제에 참여한다. 구체적인 예외 및 축출 절차는 설정되지 않았다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 관습/의례 › social_rules › 권력의 견제와 균형"
+   }
+  ],
+  "sourceHint": "자료.docx의 이 영역에는 출처 표기(chat_id)가 없습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "society",
+   "rule"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "soc-rule-prophecy",
+  "title": "규칙: 건국설화와 예언의 해석",
+  "category": "society",
+  "topic": "society",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "건국 문헌에는 인류가 멸망하기 직전 지상 사람들이 니에코라로 피신해 대대로 보금자리를 삼을 것이라는 예언이 기록되어 있으나, 어떤 방식으로 문을 열게 될지는 확정할 수 없다고 명시되어 있다. 예언에 대한 단일하고 확정적인 해석은 없으며 후대의 나가와 인간들은 서로 다른 해석을 내놓을 수 있다. 나가들 사이에서도 미래 계획에 대한 의견 차이가 존재한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 관습/의례 › social_rules › 건국설화와 예언의 해석"
+   }
+  ],
+  "sourceHint": "자료.docx의 이 영역에는 출처 표기(chat_id)가 없습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "society",
+   "rule"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "soc-rule-secrecy",
+  "title": "규칙: 지상과의 관계에 대한 비밀 유지",
+  "category": "society",
+  "topic": "society",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "건국 초기에는 지상의 종교 및 권력과 충돌하거나 박해받을 가능성 때문에 존재를 공개하지 않는 방향이 선택되었다. 초기 나가들은 존재가 알려지지 않도록 했으며 초대 이주를 거부한 사람들의 기억을 지우는 설정도 존재한다. 후대 왕들은 지상을 조사할 때 상인 등으로 위장하기도 하고, 일부 왕들은 비밀리에 지상을 방문하거나 조사단을 파견했다. 이들의 존재는 지상에서 때때로 미스터리나 전설로 남는다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 관습/의례 › social_rules › 지상과의 관계에 대한 비밀 유지"
+   }
+  ],
+  "sourceHint": "자료.docx의 이 영역에는 출처 표기(chat_id)가 없습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "society",
+   "rule"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "soc-rule-ancestor-religion",
+  "title": "규칙: 조상 종교 유산의 보존과 비판",
+  "category": "society",
+  "topic": "society",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "니에코라인들은 조상들이 지상에서 믿었던 종교의 신들이 인간에게 관심을 보이지 않았다고 생각하지만, 조상들의 종교적 문화유산 자체를 완전히 없애지는 않는다. 전통 가면춤과 풍자 공연을 통해 과거의 종교와 신앙을 간접적으로 비판하면서 문화유산으로 보존한다. 모든 주민이 이러한 관점에 동의하는 것은 아닐 수 있다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-culture",
+    "locator": "자료.docx › 관습/의례 › social_rules › 조상 종교 유산의 보존과 비판"
+   }
+  ],
+  "sourceHint": "자료.docx의 이 영역에는 출처 표기(chat_id)가 없습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "society",
+   "rule"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "arch-identity",
+  "title": "건축의 기본 정체성",
+  "category": "architecture",
+  "topic": "architecture",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "동남아시아, 특히 크메르·자바를 비롯한 여러 지역의 건축문화에서 출발하되 특정 국가의 양식을 그대로 가져오지 않고 여러 요소를 재구성해 새로운 양식으로 만드는 방향이다. 건축 형태는 사각형 기단과 계단식 구조, 공간 구성은 중앙축과 좌우대칭, 지붕은 층층이 상승하는 탑과 장식적인 지붕, 장식은 나가·연꽃·구름·바람 문양, 재료 이미지는 석재와 목재의 조화, 색채는 자연적인 석재색·갈색·금색·청록색, 자연과의 관계는 연못·열대식물·정원과 건축의 조화이다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-architecture",
+    "locator": "건축.docx › 1. 니에코라 건축의 기본 정체성"
+   }
+  ],
+  "sourceHint": "건축.docx에는 출처 표기가 없고 AI가 대화 내용을 정리한 문서입니다. 확립된 설정과 AI의 제안이 문장 단위로 구분되어 있지 않습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "architecture"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "arch-references",
+  "title": "참고한 실제 건축 (설정 아님)",
+  "category": "architecture",
+  "topic": "architecture",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "참고 대상: 프람바난(중앙 성소와 여러 작은 성소의 배치), 마하발리푸람(기둥·문틀·벽면·계단의 장식 조각), 앙코르 와트(사각형 기단과 상승 구조, 중앙 성소와 주변 탑의 위계, 회랑, 나가 장식; 현재 가장 중요한 참고 문화 중 하나), 보로부두르(사각형 테라스에서 원형 테라스로 변하는 구조의 참고 사례이며 Harat가 반드시 따를 필요는 없음). 조각 양식은 자바(신화와 역사를 묘사하는 조각), 남인도(조각 자체가 건축의 일부가 되는 방식), 크메르(건축 전체를 이야기의 공간으로 만드는 방식)를 참고 방향으로 든다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-architecture",
+    "locator": "건축.docx › 2. 실제 건축문화에서 참고한 양식, 5-1"
+   }
+  ],
+  "sourceHint": "건축.docx에는 출처 표기가 없고 AI가 대화 내용을 정리한 문서입니다. 확립된 설정과 AI의 제안이 문장 단위로 구분되어 있지 않습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "architecture",
+   "reference-not-lore"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "arch-harat-name",
+  "title": "Harat(하랏): 사원",
+  "category": "architecture",
+  "topic": "architecture",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "Harat(하랏)은 니에코라어로 사원을 뜻한다. 어원은 hara이며 hara는 수호하거나 지킨다는 의미를 가진다. 따라서 단순한 종교시설이 아니라 신성한 존재와 공동체를 보호하는 장소라는 의미를 담는다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-architecture",
+    "locator": "건축.docx › 3. 니에코라의 사원: Harat"
+   }
+  ],
+  "sourceHint": "건축.docx에는 출처 표기가 없고 AI가 대화 내용을 정리한 문서입니다. 확립된 설정과 AI의 제안이 문장 단위로 구분되어 있지 않습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 단정적으로 서술한 ‘Canon 후보’입니다. 작성자 확인 후 Canon으로 올립니다."
+  },
+  "tags": [
+   "architecture",
+   "harat",
+   "canon-candidate"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "arch-harat-structure",
+  "title": "Harat의 기본 구조",
+  "category": "architecture",
+  "topic": "architecture",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "기단: 넓은 정사각형 또는 직사각형(기존 Harat 항목: 정사각형이 기본이고 직사각형은 가끔 허용). 중앙 건물: 가장 높고 규모가 큰 중앙 성소. 주변 탑: 중앙을 보조하는 여러 개의 작은 탑. 계단: 중앙 성소로 이어지는 넓고 직선적인 계단. 난간: 나가 형상의 장식. 회랑: 건물을 둘러싸거나 연결하는 공간. 정원: 열대식물과 연못을 활용한 자연 공간. 상부: 여러 단계로 좁아지는 탑과 장식적인 첨탑. (문서는 ‘사원 참고 이미지에서 확인한 요소’라고 하나 그 이미지는 확인되지 않았고, 도식은 개념도이지 확정된 설계도가 아니라고 밝힌다.)",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-architecture",
+    "locator": "건축.docx › 3-1. 기본 건축 구조"
+   }
+  ],
+  "sourceHint": "건축.docx에는 출처 표기가 없고 AI가 대화 내용을 정리한 문서입니다. 확립된 설정과 AI의 제안이 문장 단위로 구분되어 있지 않습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "architecture",
+   "harat"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "arch-harat-tower",
+  "title": "Harat의 탑 형태",
+  "category": "architecture",
+  "topic": "architecture",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "사원 탑 형태 세 방향 중 현재 Harat의 방향은 ‘앙코르 와트처럼 사각형 기반에서 위로 갈수록 좁아지는 형태’에 가장 가깝다. 원형 요소가 절대 금지되는 것은 아니며 연못이나 장식적인 문양에는 사용할 수 있다. 다만 건축물의 기본 구조는 원형으로 변형되지 않는다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-architecture",
+    "locator": "건축.docx › 3-2. 탑의 형태와 사각형 구조"
+   }
+  ],
+  "sourceHint": "건축.docx에는 출처 표기가 없고 AI가 대화 내용을 정리한 문서입니다. 확립된 설정과 AI의 제안이 문장 단위로 구분되어 있지 않습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "architecture",
+   "harat"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "arch-naga-carving",
+  "title": "나가 조각의 의미와 위치",
+  "category": "architecture",
+  "topic": "architecture",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "Harat에서 나가는 단순한 장식용 동물이 아니라 신성한 장소의 수호자, 사원 입구의 보호자, 신앙과 공동체를 연결하는 존재, 건국의 역사를 기억하게 하는 상징의 의미를 가질 수 있다. 배치 후보는 계단 좌우의 난간, 성소 입구, 기둥의 하단과 상단, 지붕의 가장자리, 외벽의 부조, 연못 주변의 석조 조각이다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-architecture",
+    "locator": "건축.docx › 3-3. 나가 조각"
+   }
+  ],
+  "sourceHint": "건축.docx에는 출처 표기가 없고 AI가 대화 내용을 정리한 문서입니다. 확립된 설정과 AI의 제안이 문장 단위로 구분되어 있지 않습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "architecture",
+   "harat",
+   "carving"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "arch-lotus-nature",
+  "title": "연꽃과 자연의 조화",
+  "category": "architecture",
+  "topic": "architecture",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "Harat의 외부 공간에서 연꽃과 물을 활용하는 방향이다. 예: 사원 입구의 연못, 계단 앞의 작은 수경시설, 연꽃을 새긴 바닥 장식, 연못을 둘러싼 석조 난간, 열대식물과 석조 건축이 만나는 정원. 이 공간은 사원을 일상적인 마을과 구별되는 신성한 장소로 만든다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-architecture",
+    "locator": "건축.docx › 3-4. 연꽃과 자연의 조화"
+   }
+  ],
+  "sourceHint": "건축.docx에는 출처 표기가 없고 AI가 대화 내용을 정리한 문서입니다. 확립된 설정과 AI의 제안이 문장 단위로 구분되어 있지 않습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "architecture",
+   "harat"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "arch-welora-name",
+  "title": "Welora(웰로라): 왕궁",
+  "category": "architecture",
+  "topic": "architecture",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "왕궁은 니에코라어로 Welora(웰로라)라고 한다. Harat가 수호와 신앙을 중심으로 하는 공간이라면 Welora는 정치와 통치, 외교와 왕실 생활의 중심이다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-architecture",
+    "locator": "건축.docx › 4. 니에코라의 왕궁: Welora"
+   }
+  ],
+  "sourceHint": "건축.docx에는 출처 표기가 없고 AI가 대화 내용을 정리한 문서입니다. 확립된 설정과 AI의 제안이 문장 단위로 구분되어 있지 않습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 단정적으로 서술한 ‘Canon 후보’입니다. 작성자 확인 후 Canon으로 올립니다."
+  },
+  "tags": [
+   "architecture",
+   "welora",
+   "canon-candidate"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "arch-welora-form",
+  "title": "Welora의 높이와 공간 구성",
+  "category": "architecture",
+  "topic": "architecture",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "고층형과 저층 광역형 중 현재까지 발전시킨 방향은 저층 광역형을 기본으로 하되 중앙 건물만 높게 만드는 혼합형이다(문서는 이를 ‘중요한 결정’이라 표현한다). 권장 구성: 중앙 왕궁 2~3층(왕실의 중심 공간), 좌우 전각 1~2층(행정·접견·의례), 외부 회랑(낮고 길게, 건물 연결), 중정(개방형, 행사와 집회), 정원(넓은 자연 공간), 연못(선택적 배치).",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-architecture",
+    "locator": "건축.docx › 4-1, 4-2"
+   }
+  ],
+  "sourceHint": "건축.docx에는 출처 표기가 없고 AI가 대화 내용을 정리한 문서입니다. 확립된 설정과 AI의 제안이 문장 단위로 구분되어 있지 않습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "architecture",
+   "welora"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "arch-welora-exterior",
+  "title": "Welora의 외관",
+  "category": "architecture",
+  "topic": "architecture",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "Harat보다 목재의 존재감을 강조하는 방향이다. 짙은 갈색 목재, 금색 장식, 석재 기단, 조각된 기둥, 층층이 겹쳐지는 지붕, 나가와 연꽃 장식, 구름과 바람 문양. 중앙 왕궁은 주변 전각보다 높고 화려하게 만들되, 높이만이 아니라 넓은 중정과 회랑, 정교한 장식, 건축물의 배치도 권위를 표현한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-architecture",
+    "locator": "건축.docx › 4-3. 왕궁의 외관"
+   }
+  ],
+  "sourceHint": "건축.docx에는 출처 표기가 없고 AI가 대화 내용을 정리한 문서입니다. 확립된 설정과 AI의 제안이 문장 단위로 구분되어 있지 않습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "architecture",
+   "welora"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "arch-compare",
+  "title": "Harat와 Welora의 차이",
+  "category": "architecture",
+  "topic": "architecture",
+  "status": "Proposal",
+  "verification": "secondary_source",
+  "claim": "Harat: 종교·수호·신성함, 기본 형태 수직적, 중심은 성소와 탑, 신성한 영역, 석재 중심, 장식은 나가·연꽃. Welora: 정치·왕실·통치, 기본 형태 수평적, 중심은 중앙 왕궁, 복합적인 생활공간, 목재와 석재, 장식은 구름·바람·나가·연꽃.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-architecture",
+    "locator": "건축.docx › 4-4. Welora와 Harat의 차이"
+   }
+  ],
+  "sourceHint": "건축.docx에는 출처 표기가 없고 AI가 대화 내용을 정리한 문서입니다. 확립된 설정과 AI의 제안이 문장 단위로 구분되어 있지 않습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "작성자 확인 전. 자료의 서술이 유일한 근거입니다."
+  },
+  "tags": [
+   "architecture",
+   "harat",
+   "welora"
+  ],
+  "createdAt": "2026-11-08"
+ },
+ {
+  "id": "arch-carving-open",
+  "title": "니에코라 고유의 조각 문양 (자료 끊김)",
+  "category": "architecture",
+  "topic": "architecture",
+  "status": "Unknown",
+  "verification": "secondary_source",
+  "claim": "문서의 ‘5-2. 니에코라 고유의 조각 문양’은 제목만 있고 내용이 없다. 내용을 확보해야 한다.",
+  "lang": "ko",
+  "sources": [
+   {
+    "sourceId": "source-docx-architecture",
+    "locator": "건축.docx › 5-2. 니에코라 고유의 조각 문양"
+   }
+  ],
+  "sourceHint": "건축.docx에는 출처 표기가 없고 AI가 대화 내용을 정리한 문서입니다. 확립된 설정과 AI의 제안이 문장 단위로 구분되어 있지 않습니다.",
+  "decision": {
+   "state": "pending",
+   "note": "자료가 미정 또는 미설정으로 표시한 내용입니다."
+  },
+  "tags": [
+   "architecture",
+   "open-question"
+  ],
+  "createdAt": "2026-11-08"
+ }
+]
