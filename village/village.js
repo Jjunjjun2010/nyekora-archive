@@ -468,11 +468,32 @@ var npcSchedules = {
   setRuwataStatus("악기 제작 중");
   updateTimeDisplay();
   startClock();
+
+  /*
+    대화 시스템(아래 별도 IIFE)에서 현재 마을 상태를 읽을 수 있도록
+    읽기 전용 스냅샷을 노출한다.
+  */
+  window.ruwataVillageState = {
+    getSnapshot: function () {
+      var schedule = getCurrentSchedule();
+      var hours = Math.floor(gameMinutes / 60);
+      var minutes = gameMinutes % 60;
+
+      return {
+        time: pad2(hours) + ":" + pad2(minutes),
+        period: schedule ? schedule.period : "",
+        status: ruwataState.status,
+        activity: schedule ? schedule.description : ""
+      };
+    }
+  };
 })();
 
 /* =========================================================
    Ruwata 대화 시스템
-   현재는 외부 API를 사용하지 않는 테스트용 구현이다.
+   CHAT_API_URL이 설정되어 있으면 Supabase Edge Function을 통해
+   Ollama Cloud AI 응답을 받고, 비어 있으면 테스트용 고정 응답으로 동작한다.
+   실제 AI 키는 Edge Function 시크릿에만 보관되며 이 파일에는 없다.
    ========================================================= */
 (function () {
   "use strict";
@@ -491,6 +512,11 @@ var npcSchedules = {
   };
 
   var ruwataData = npcData.ruwata;
+  /*
+    대화 백엔드(Supabase Edge Function 경유 Ollama Cloud).
+    빈 문자열로 두면 예전처럼 테스트용 고정 응답으로 동작한다.
+  */
+  var CHAT_API_URL = "https://yzytuvsjsbmyxsybixru.supabase.co/functions/v1/chat";
   var ruwataElement = document.getElementById("ruwata");
   var speechBubble = document.getElementById("ruwata-speech-bubble");
   var chat = document.getElementById("ruwata-chat");
@@ -529,6 +555,52 @@ var npcSchedules = {
 
   }
 
+  function getVillageStateSnapshot() {
+    try {
+      if (window.ruwataVillageState && window.ruwataVillageState.getSnapshot) {
+        return window.ruwataVillageState.getSnapshot();
+      }
+    } catch (err) {
+      console.warn("마을 상태를 읽지 못했습니다.", err);
+    }
+    return null;
+  }
+
+  // Supabase Edge Function을 통해 Ollama Cloud에 대화를 요청한다.
+  function requestRuwataReply() {
+    var history = ruwataData.conversation.slice(-16).map(function (message) {
+      return {
+        role: message.role === "assistant" ? "assistant" : "user",
+        content: String(message.content || "").slice(0, 1000)
+      };
+    });
+
+    var controller = new AbortController();
+    var timeoutId = window.setTimeout(function () { controller.abort(); }, 30000);
+
+    return fetch(CHAT_API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ messages: history, state: getVillageStateSnapshot() }),
+      signal: controller.signal
+    }).then(function (response) {
+      window.clearTimeout(timeoutId);
+      if (!response.ok) {
+        throw new Error("채팅 서버 오류 (" + response.status + ")");
+      }
+      return response.json();
+    }, function (networkErr) {
+      window.clearTimeout(timeoutId);
+      throw networkErr;
+    }).then(function (data) {
+      var reply = data && typeof data.reply === "string" ? data.reply.trim() : "";
+      if (!reply) {
+        throw new Error("빈 응답을 받았습니다.");
+      }
+      return reply;
+    });
+  }
+
   function sendMessage() {
     var text = chatInput.value.trim();
     if (!text) return;
@@ -538,14 +610,28 @@ var npcSchedules = {
     setSpeechBubble("...");
     setChatDisabled(true);
 
-    window.setTimeout(function () {
-      // TEST RESPONSE ONLY: 고정 테스트 응답이며 실제 AI/Ollama 응답이 아니다.
-      var testResponse = createTestResponse(text);
-      addNpcMessage(testResponse);
+    // CHAT_API_URL이 비어 있으면 예전처럼 테스트 응답으로 동작한다.
+    if (!CHAT_API_URL) {
+      window.setTimeout(function () {
+        var testResponse = createTestResponse(text); // TEST RESPONSE ONLY
+        addNpcMessage(testResponse);
+        setSpeechBubble("...");
+        setChatDisabled(false);
+        chatInput.focus();
+      }, 650);
+      return;
+    }
+
+    requestRuwataReply().then(function (reply) {
+      addNpcMessage(reply);
+    }).catch(function (err) {
+      console.error("Ruwata AI 응답 실패:", err);
+      addNpcMessage("...죄송해요, 지금은 대답하기가 어렵네요. 잠시 뒤에 다시 말을 걸어 주세요.");
+    }).finally(function () {
       setSpeechBubble("...");
       setChatDisabled(false);
       chatInput.focus();
-    }, 650);
+    });
   }
 
   function addUserMessage(text) {
