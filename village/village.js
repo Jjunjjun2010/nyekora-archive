@@ -54,55 +54,64 @@
     start/end는 게임 내부 시각의 '분' 단위다.
     예: 6 * 60 = 06:00
   */
-  var npcSchedules = {
-    ruwata: [
-      {
-        id: "morning_work",
-        period: "아침",
-        start: 6 * 60,
-        end: 12 * 60,
-        destination: "workshop",
-        status: "악기 제작 중",
-        description: "Ruwata는 작업장에서 수랄라와 수타리의 울림을 다듬고 있습니다."
-      },
-      {
-        id: "day_social",
-        period: "낮",
-        start: 12 * 60,
-        end: 18 * 60,
-        destination: "kalawa",
-        status: "광장에서 휴식 중",
-        description: "Ruwata는 kalawa 광장에서 주민들과 이야기를 나누고 있습니다."
-      },
-      {
-        id: "evening_return",
-        period: "저녁",
-        start: 18 * 60,
-        end: 21 * 60,
-        destination: "workshop",
-        status: "작업장으로 이동 중",
-        description: "Ruwata는 해가 저물 무렵 작업장으로 돌아가고 있습니다."
-      },
-      {
-        id: "night_rest",
-        period: "밤",
-        start: 21 * 60,
-        end: 24 * 60,
-        destination: "workshop",
-        status: "휴식 중",
-        description: "Ruwata는 작업장 근처에서 조용히 쉬고 있습니다."
-      },
-      {
-        id: "late_night_rest",
-        period: "밤",
-        start: 0,
-        end: 6 * 60,
-        destination: "workshop",
-        status: "휴식 중",
-        description: "Ruwata는 새벽이 오기 전까지 쉬고 있습니다."
-      }
-    ]
-  };
+var npcSchedules = {
+  ruwata: [
+    {
+      id: "early_morning_warmup",
+      period: "아침",
+      start: 6 * 60,
+      end: 9 * 60,
+      destination: "workshop",
+      status: "악기 제작을 준비 중",
+      description: "Ruwata는 작업 도구를 정리하고 오늘 사용할 나무를 고르고 있습니다."
+    },
+    {
+      id: "day_deep_work",
+      period: "낮",
+      start: 9 * 60,
+      end: 15 * 60,
+      destination: "workshop",
+      status: "악기 제작 중",
+      description: "Ruwata는 수랄라와 수타리의 음색을 세심하게 다듬고 있습니다."
+    },
+    {
+      id: "afternoon_social",
+      period: "낮",
+      start: 15 * 60,
+      end: 18 * 60,
+      destination: "kalawa",
+      status: "광장에서 주민들과 교류 중",
+      description: "Ruwata는 kalawa 광장에서 악기 소리를 들려 주고 주민들과 이야기를 나눕니다."
+    },
+    {
+      id: "evening_cleanup",
+      period: "저녁",
+      start: 18 * 60,
+      end: 20 * 60,
+      destination: "workshop",
+      status: "작업장 정리 중",
+      description: "Ruwata는 하루 동안 사용한 도구를 정리하고 나무를 정돈하고 있습니다."
+    },
+    {
+      id: "night_rest",
+      period: "밤",
+      start: 20 * 60,
+      end: 24 * 60,
+      destination: "workshop",
+      status: "휴식 중",
+      description: "Ruwata는 작업장을 닫고 조용히 휴식하고 있습니다."
+    },
+    {
+      id: "late_night_rest",
+      period: "밤",
+      start: 0,
+      end: 6 * 60,
+      destination: "workshop",
+      status: "휴식 중",
+      description: "Ruwata는 새벽이 오기 전까지 깊이 잠들어 있습니다."
+    }
+  ]
+};
 
   var moveTimer = null;
 
