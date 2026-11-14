@@ -697,7 +697,7 @@ html, body {
 
 .ruwata-chat-message { display: flex; margin: 0 0 11px; }
 .ruwata-chat-message.user { justify-content: flex-end; }
-.ruwata-chat-message.npc { justify-content: flex-start; }
+.ruwata-chat-message.assistant { justify-content: flex-start; }
 
 .ruwata-chat-bubble {
   max-width: 82%;
@@ -715,7 +715,7 @@ html, body {
   color: #fff9e8;
 }
 
-.ruwata-chat-message.npc .ruwata-chat-bubble {
+.ruwata-chat-message.assistant .ruwata-chat-bubble {
   border-bottom-left-radius: 4px;
   background: #f1e5c4;
   color: #173e3a;

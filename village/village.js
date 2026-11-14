@@ -558,16 +558,22 @@ var npcSchedules = {
     ruwataData.conversation.push({ role: "assistant", content: text, createdAt: new Date().toISOString() });
   }
 
-  function addMessage(role, text) {
-    var row = document.createElement("div");
-    var bubble = document.createElement("div");
-    row.className = "ruwata-chat-message " + role;
-    bubble.className = "ruwata-chat-bubble";
-    bubble.textContent = text;
-    row.appendChild(bubble);
-    chatMessages.appendChild(row);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  }
+function addMessage(role, text) {
+  var row = document.createElement("div");
+  var bubble = document.createElement("div");
+
+  // 지도 캐릭터의 .npc 스타일과 충돌하지 않도록 이름을 분리한다.
+  var messageClass = role === "npc" ? "assistant" : role;
+
+  row.className = "ruwata-chat-message " + messageClass;
+  bubble.className = "ruwata-chat-bubble";
+  bubble.textContent = text;
+
+  row.appendChild(bubble);
+  chatMessages.appendChild(row);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
 
   function setSpeechBubble(text) { speechBubble.textContent = text; }
 
