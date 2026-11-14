@@ -484,3 +484,97 @@ html, body {
     animation: none;
   }
 }
+/* =========================================================
+   마을 시간 HUD / Ruwata 일상 상태 표시
+   ========================================================= */
+
+#time-hud {
+  position: fixed;
+  top: 76px;
+  left: 20px;
+  width: 280px;
+  padding: 12px 14px;
+  border: 1px solid rgba(85, 170, 158, 0.8);
+  border-radius: 12px;
+  background: rgba(8, 40, 38, 0.86);
+  color: var(--cream);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+  z-index: 15;
+  backdrop-filter: blur(4px);
+}
+
+.time-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 7px;
+  font-size: 13px;
+}
+
+.time-label {
+  min-width: 74px;
+  color: #a9dcd2;
+  font-weight: 700;
+}
+
+#village-time {
+  color: #ffe9b0;
+  font-size: 17px;
+  letter-spacing: 0.5px;
+}
+
+#village-period {
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(255, 233, 176, 0.14);
+  color: #ffe9b0;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+#ruwata-status {
+  color: #fff7df;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.time-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.time-controls button {
+  min-height: 31px;
+  padding: 6px 9px;
+  border: 1px solid #55aa9e;
+  border-radius: 7px;
+  background: #17635c;
+  color: #fff7df;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease;
+}
+
+.time-controls button:hover {
+  background: #228076;
+  transform: translateY(-1px);
+}
+
+.time-controls button:focus-visible {
+  outline: 2px solid #ffe9a8;
+  outline-offset: 2px;
+}
+
+/* 작은 화면에서는 시간 패널이 너무 크게 가리지 않도록 조정 */
+@media (max-width: 760px), (max-height: 620px) {
+  #time-hud {
+    top: 70px;
+    left: 12px;
+    width: min(290px, calc(100vw - 24px));
+  }
+}

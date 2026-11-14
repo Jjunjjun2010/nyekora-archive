@@ -11,6 +11,24 @@
   <!-- 화면 상단 고정 안내 (지도 크기와 무관하게 항상 같은 위치) -->
   <div id="hud-title">니에코라 마을 (시제품)</div>
   <div id="hud-hint">건물이나 주민을 클릭하면 설명이 표시됩니다</div>
+<!-- 마을 시간과 Ruwata의 현재 상태 -->
+<div id="time-hud" aria-label="마을 시간 정보">
+  <div class="time-row">
+    <span class="time-label">마을 시간</span>
+    <strong id="village-time">06:00</strong>
+    <span id="village-period">아침</span>
+  </div>
+
+  <div class="time-row">
+    <span class="time-label">Ruwata 상태</span>
+    <strong id="ruwata-status">악기 제작 중</strong>
+  </div>
+
+  <div class="time-controls">
+    <button id="time-toggle" type="button">시간 일시정지</button>
+    <button id="behavior-toggle" type="button">자동 행동: 켜짐</button>
+  </div>
+</div>
 
   <!-- 창 크기에 맞춰 축소/확대되는 영역 -->
   <div id="viewport">
@@ -104,6 +122,10 @@
     <dt>기억</dt>
     <dd id="npc-memory"></dd>
   </div>
+  <div>
+  <dt>현재 상태</dt>
+  <dd id="npc-current-status"></dd>
+</div>
 </dl>
 
 <!-- NPC를 클릭했을 때만 나타나는 이동 버튼 -->
