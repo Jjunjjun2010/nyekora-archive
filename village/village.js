@@ -469,3 +469,194 @@ var npcSchedules = {
   updateTimeDisplay();
   startClock();
 })();
+
+/* =========================================================
+   Ruwata 대화 시스템
+   현재는 외부 API를 사용하지 않는 테스트용 구현이다.
+   ========================================================= */
+(function () {
+  "use strict";
+
+  var npcData = {
+    ruwata: {
+      id: "ruwata",
+      name: "Ruwata",
+      displayName: "Ruwata (루와타)",
+      job: "전통 악기 제작자",
+      personality: "신중하고 호기심이 많음",
+      knowledge: ["수랄라(Surala)", "수타리(Sutari)"],
+      longTermMemory: [],
+      conversation: []
+    }
+  };
+
+  var ruwataData = npcData.ruwata;
+  var ruwataElement = document.getElementById("ruwata");
+  var speechBubble = document.getElementById("ruwata-speech-bubble");
+  var chat = document.getElementById("ruwata-chat");
+  var chatClose = document.getElementById("ruwata-chat-close");
+  var chatMessages = document.getElementById("ruwata-chat-messages");
+  var chatForm = document.getElementById("ruwata-chat-form");
+  var chatInput = document.getElementById("ruwata-chat-input");
+
+  if (!ruwataElement || !speechBubble || !chat || !chatClose || !chatMessages || !chatForm || !chatInput) {
+    console.warn("Ruwata 대화 UI 요소를 찾을 수 없습니다.");
+    return;
+  }
+
+  ruwataElement.addEventListener("click", openChat);
+  chatClose.addEventListener("click", closeChat);
+  chatForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    sendMessage();
+  });
+
+  function openChat() {
+    chat.classList.remove("hidden");
+    if (ruwataData.conversation.length === 0) {
+      addNpcMessage("안녕하세요. 저는 Ruwata입니다. 오늘도 악기를 다듬고 있어요.");
+    }
+    window.setTimeout(function () { chatInput.focus(); }, 0);
+  }
+
+  function closeChat() {
+    chat.classList.add("hidden");
+  }
+
+  function sendMessage() {
+    var text = chatInput.value.trim();
+    if (!text) return;
+
+    addUserMessage(text);
+    chatInput.value = "";
+    setSpeechBubble("...");
+    setChatDisabled(true);
+
+    window.setTimeout(function () {
+      // TEST RESPONSE ONLY: 고정 테스트 응답이며 실제 AI/Ollama 응답이 아니다.
+      var testResponse = createTestResponse(text);
+      addNpcMessage(testResponse);
+      setSpeechBubble("...");
+      setChatDisabled(false);
+      chatInput.focus();
+    }, 650);
+  }
+
+  function addUserMessage(text) {
+    addMessage("user", text);
+    ruwataData.conversation.push({ role: "user", content: text, createdAt: new Date().toISOString() });
+  }
+
+  function addNpcMessage(text) {
+    addMessage("npc", text);
+    ruwataData.conversation.push({ role: "assistant", content: text, createdAt: new Date().toISOString() });
+  }
+
+  function addMessage(role, text) {
+    var row = document.createElement("div");
+    var bubble = document.createElement("div");
+    row.className = "ruwata-chat-message " + role;
+    bubble.className = "ruwata-chat-bubble";
+    bubble.textContent = text;
+    row.appendChild(bubble);
+    chatMessages.appendChild(row);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function setSpeechBubble(text) { speechBubble.textContent = text; }
+
+  function setChatDisabled(disabled) {
+    chatInput.disabled = disabled;
+    chatForm.querySelector("button").disabled = disabled;
+  }
+
+  // TEST RESPONSE ONLY: 입력별로 미리 정한 문장을 반환한다.
+  function createTestResponse(userText) {
+    var normalized = userText.toLowerCase();
+    if (normalized.includes("이름") || normalized.includes("누구")) {
+      return "저는 Ruwata입니다. ruwa는 물, wata는 나무를 뜻해요.";
+    }
+    if (normalized.includes("악기") || normalized.includes("수랄라") || normalized.includes("수타리")) {
+      return "저는 수랄라와 수타리의 소리를 살피며 전통 악기를 만들고 있어요.";
+    }
+    if (normalized.includes("광장") || normalized.includes("kalawa")) {
+      return "kalawa 광장에서는 주민들의 이야기를 듣는 시간이 좋아요.";
+    }
+    return "흥미로운 이야기네요. 저는 아직 많은 것을 배우는 중이에요. 이 메시지는 테스트용 응답입니다.";
+  }
+
+  // 이후 장기 기억 저장을 연결할 자리. 현재는 실제 저장하지 않는다.
+  function addLongTermMemory(memoryText) {
+    if (!memoryText) return;
+    ruwataData.longTermMemory.push({ content: memoryText, createdAt: new Date().toISOString() });
+  }
+
+  window.ruwataConversationState = {
+    npc: ruwataData,
+    addLongTermMemory: addLongTermMemory
+  };
+})();
+/* Ruwata 대화창 표시 제어 — 외부 API를 사용하지 않는 테스트 기능 */
+(function () {
+  "use strict";
+
+  var npc = document.getElementById("ruwata");
+  var bubble = document.getElementById("ruwata-speech-bubble");
+  var chat = document.getElementById("ruwata-chat");
+  var closeButton = document.getElementById("ruwata-chat-close");
+  var messages = document.getElementById("ruwata-chat-messages");
+  var form = document.getElementById("ruwata-chat-form");
+  var input = document.getElementById("ruwata-chat-input");
+
+  if (!npc || !bubble || !chat || !closeButton || !messages || !form || !input) {
+    console.warn("Ruwata 대화창 요소를 찾을 수 없습니다. HTML에 대화창 요소가 있는지 확인하세요.");
+    return;
+  }
+
+  function openChat() {
+    chat.classList.remove("hidden");
+    npc.classList.add("chat-open");
+    bubble.setAttribute("aria-hidden", "false");
+
+    if (!messages.childElementCount) {
+      addMessage("npc", "안녕하세요. 저는 Ruwata입니다. 오늘도 악기를 다듬고 있어요.");
+    }
+
+    input.focus();
+  }
+
+  function closeChat() {
+    chat.classList.add("hidden");
+    npc.classList.remove("chat-open");
+    bubble.setAttribute("aria-hidden", "true");
+  }
+
+  function addMessage(role, text) {
+    var message = document.createElement("div");
+    message.className = "ruwata-chat-message " + role;
+    message.textContent = text;
+    messages.appendChild(message);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  npc.addEventListener("click", openChat);
+  closeButton.addEventListener("click", closeChat);
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    var text = input.value.trim();
+    if (!text) return;
+
+    addMessage("user", text);
+    input.value = "";
+
+    window.setTimeout(function () {
+      addMessage(
+        "npc",
+        "흥미로운 이야기네요. 이 응답은 대화 기능 확인을 위한 테스트용입니다."
+      );
+    }, 500);
+  });
+})();
+

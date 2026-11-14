@@ -83,6 +83,16 @@
 >
   <span class="npc-name">Ruwata</span>
 
+  <!-- 대화 중에도 기본값은 ...으로 표시 -->
+  <span
+    id="ruwata-speech-bubble"
+    class="ruwata-speech-bubble"
+    aria-live="polite"
+    aria-hidden="true"
+  >
+    ...
+  </span>
+
   <!-- CSS 도형으로 만든 작은 탑다운 캐릭터 -->
   <span class="npc-sprite" aria-hidden="true">
     <span class="npc-hair"></span>
@@ -141,6 +151,71 @@
   </button>
 </div>
   </div>
+
+  <!-- Ruwata 대화창 -->
+  <section
+    id="ruwata-chat"
+    class="ruwata-chat hidden"
+    aria-labelledby="ruwata-chat-title"
+  >
+    <header class="ruwata-chat-header">
+      <div>
+        <h2 id="ruwata-chat-title">Ruwata</h2>
+        <p>전통 악기 제작자</p>
+      </div>
+
+      <button
+        id="ruwata-chat-close"
+        class="ruwata-chat-close"
+        type="button"
+        aria-label="대화창 닫기"
+      >
+        ✕
+      </button>
+    </header>
+
+    <div
+      id="ruwata-chat-messages"
+      class="ruwata-chat-messages"
+      aria-live="polite"
+      aria-label="Ruwata와의 대화 내용"
+    ></div>
+
+    <form id="ruwata-chat-form" class="ruwata-chat-form">
+      <label class="sr-only" for="ruwata-chat-input">
+        Ruwata에게 보낼 메시지
+      </label>
+
+      <input
+        id="ruwata-chat-input"
+        type="text"
+        maxlength="300"
+        autocomplete="off"
+        placeholder="Ruwata에게 말을 걸어 보세요"
+      >
+
+      <button type="submit">전송</button>
+    </form>
+
+    <p class="ruwata-chat-note">
+      현재 응답은 테스트용이며 실제 AI 응답이 아닙니다.
+    </p>
+  </section>
+<section id="ruwata-chat" class="ruwata-chat hidden" aria-label="Ruwata와 대화">
+  <header class="ruwata-chat-header">
+    <strong>Ruwata — 전통 악기 제작자</strong>
+    <button id="ruwata-chat-close" type="button" aria-label="대화창 닫기">✕</button>
+  </header>
+
+  <div id="ruwata-chat-messages" class="ruwata-chat-messages" aria-live="polite"></div>
+
+  <form id="ruwata-chat-form" class="ruwata-chat-form">
+    <label class="sr-only" for="ruwata-chat-input">Ruwata에게 보낼 메시지</label>
+    <input id="ruwata-chat-input" type="text" maxlength="300"
+           autocomplete="off" placeholder="Ruwata에게 말을 걸어 보세요">
+    <button type="submit">전송</button>
+  </form>
+</section>
 
   <script src="village.js"></script>
 </body>
