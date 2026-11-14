@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>니에코라 마을 - 시제품</title>
+  <link rel="stylesheet" href="village.css">
+</head>
+<body>
+
+  <!-- 화면 상단 고정 안내 (지도 크기와 무관하게 항상 같은 위치) -->
+  <div id="hud-title">니에코라 마을 (시제품)</div>
+  <div id="hud-hint">건물을 클릭하면 설명이 표시됩니다</div>
+
+  <!-- 창 크기에 맞춰 축소/확대되는 영역 -->
+  <div id="viewport">
+    <div id="stage">
+
+      <!-- 흙길 -->
+      <div class="path path-h"></div>
+      <div class="path path-v"></div>
+
+      <!-- 중앙 광장 (Kalawa) -->
+      <div class="plaza"
+           id="kalawa"
+           data-name="카라와 (Kalawa, 중앙 광장)"
+           data-desc="마을 사람들이 모여 이야기를 나누고 작은 축제가 열리는 열린 광장입니다. 배치는 아직 임시이며, 방향이나 건축 양식은 확정된 것이 아닙니다.">
+      </div>
+
+      <!-- 기록관 -->
+      <div class="building archive"
+           id="building-archive"
+           data-name="니에코라 기록관"
+           data-desc="마을의 역사와 구전 이야기를 모아 기록하고 보관하는 건물입니다. 야자잎 지붕과 목재 기둥으로 지어졌습니다.">
+      </div>
+
+      <!-- 작은 시장 -->
+      <div class="building market"
+           id="building-market"
+           data-name="작은 시장"
+           data-desc="아침마다 열리는 소규모 시장입니다. 열대 과일과 생활용품을 파는 좌판이 늘어서 있습니다.">
+      </div>
+
+      <!-- Ruwata의 악기 작업장 -->
+      <div class="building workshop"
+           id="building-workshop"
+           data-name="루와타의 악기 작업장"
+           data-desc="장인 루와타가 전통 타악기와 현악기를 만드는 작업장입니다. 나무를 깎고 다듬는 소리가 끊이지 않습니다.">
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 클릭 시 나타나는 설명 패널 -->
+  <div id="info-panel" class="hidden">
+    <button id="info-close" aria-label="닫기">✕</button>
+    <h2 id="info-title"></h2>
+    <p id="info-desc"></p>
+  </div>
+
+  <script src="village.js"></script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+:root {
+  --teal-dark: #0b4a46;
+  --teal-light: #1e8c82;
+  --green-dark: #2f6b43;
+  --green: #3c8d58;
+  --green-light: #5ba36b;
+  --sand: #c9a66b;
+  --sand-dark: #a9824f;
+  --wood: #6b4423;
+  --wood-light: #8a5a34;
+  --leaf: #2f6b43;
+  --cream: #f3e9d2;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #04201e;
+  overflow: hidden;
+  font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+}
+
+/* 창 크기에 맞춰 중앙 정렬되는 뷰포트 */
+#viewport {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* 고정 해상도의 마을 지도. JS에서 transform:scale로 축소/확대 */
+#stage {
+  position: relative;
+  width: 1280px;
+  height: 800px;
+  background:
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0 2px, transparent 2px 40px),
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.03) 0 2px, transparent 2px 40px),
+    linear-gradient(180deg, var(--green-light), var(--green) 60%, var(--green-dark));
+  border: 6px solid var(--teal-dark);
+  border-radius: 12px;
+  box-shadow: 0 0 60px rgba(0,0,0,0.5);
+  transform-origin: center center;
+  overflow: hidden;
+}
+
+/* 흙길 */
+.path {
+  position: absolute;
+  background: linear-gradient(180deg, var(--sand), var(--sand-dark));
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.15);
+  border-radius: 6px;
+}
+.path-h { left: 300px; top: 410px; width: 650px; height: 60px; }
+.path-v { left: 610px; top: 140px; width: 60px; height: 300px; }
+
+/* 중앙 광장 */
+.plaza {
+  position: absolute;
+  left: 540px;
+  top: 340px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 45%, var(--sand) 0%, var(--sand-dark) 70%, #8f6a3d 100%);
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.25);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.plaza:hover { transform: scale(1.03); }
+
+/* 건물 공통 */
+.building {
+  position: absolute;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.building:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.08);
+}
+.building::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -14px;
+  width: 70%;
+  height: 14px;
+  background: rgba(0,0,0,0.25);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  filter: blur(2px);
+  z-index: -1;
+}
+
+/* 기록관: 야자잎 지붕 + 목재 */
+.archive {
+  left: 560px; top: 110px; width: 160px; height: 130px;
+  background: linear-gradient(180deg, var(--wood-light) 0%, var(--wood) 70%);
+  border: 4px solid var(--wood);
+}
+.archive::before {
+  content: "";
+  position: absolute;
+  top: -40px; left: -10px;
+  width: 180px; height: 50px;
+  background: linear-gradient(180deg, var(--leaf), #1f4a2d);
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
+/* 작은 시장: 천막형 좌판 */
+.market {
+  left: 260px; top: 380px; width: 150px; height: 110px;
+  background: repeating-linear-gradient(90deg, var(--cream) 0 20px, #e3d2a8 20px 40px);
+  border: 4px solid var(--wood);
+}
+.market::before {
+  content: "";
+  position: absolute;
+  top: -30px; left: -8px;
+  width: 166px; height: 36px;
+  background: linear-gradient(180deg, #b23b3b, #8c2d2d);
+  border-radius: 8px 8px 0 0;
+}
+
+/* 루와타의 악기 작업장 */
+.workshop {
+  left: 870px; top: 380px; width: 150px; height: 110px;
+  background: linear-gradient(180deg, var(--wood-light), var(--wood));
+  border: 4px solid var(--wood);
+}
+.workshop::before {
+  content: "";
+  position: absolute;
+  top: -34px; left: -8px;
+  width: 166px; height: 40px;
+  background: linear-gradient(180deg, var(--leaf), #1f4a2d);
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
+/* 야자수 장식 */
+.tree {
+  position: absolute;
+  width: 34px; height: 34px;
+  left: var(--x); top: var(--y);
+  background: radial-gradient(circle at 50% 40%, var(--leaf) 0%, #1f4a2d 80%);
+  border-radius: 50%;
+  box-shadow: 0 16px 6px -4px rgba(0,0,0,0.25);
+}
+.tree::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: 28px;
+  width: 6px; height: 14px;
+  background: var(--wood);
+  transform: translateX(-50%);
+}
+
+/* 건물/광장 이름표 (JS가 삽입) */
+.label {
+  position: absolute;
+  bottom: -26px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  color: var(--cream);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* 좌상단 고정 타이틀 (지도 크기와 무관) */
+#hud-title {
+  position: fixed;
+  top: 16px; left: 20px;
+  color: var(--cream);
+  font-size: 20px;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+  z-index: 10;
+}
+#hud-hint {
+  position: fixed;
+  top: 46px; left: 20px;
+  color: rgba(243,233,210,0.75);
+  font-size: 13px;
+  z-index: 10;
+}
+
+/* 설명 패널 */
+#info-panel {
+  position: fixed;
+  right: 24px; bottom: 24px;
+  width: 280px;
+  background: rgba(10, 40, 38, 0.92);
+  border: 2px solid var(--teal-light);
+  border-radius: 12px;
+  padding: 16px 18px;
+  color: var(--cream);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 20;
+}
+#info-panel.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+}
+#info-panel h2 { margin: 0 0 8px; font-size: 17px; color: #ffe9b0; }
+#info-panel p { margin: 0; font-size: 13px; line-height: 1.5; }
+#info-close {
+  position: absolute;
+  top: 8px; right: 10px;
+  background: none; border: none;
+  color: var(--cream);
+  font-size: 14px;
+  cursor: pointer;
+}
