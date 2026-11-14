@@ -89,7 +89,7 @@
 
   async function pull() {
     CL.lastPull = Date.now(); setS("syncing", "불러오는 중…");
-    var r = await CL.sb.from("nyekora_archive").select("data,version,updated_at").eq("owner", CL.uid).maybeSingle();
+    var r = await CL.sb.from("nyekora_archive").select("data,version,updated_at").eq("owner_id", CL.uid).maybeSingle();
     if (r.error) throw r.error;
     var row = r.data, m = readMeta(), mine = m.uid === CL.uid;
     if (!row) {
@@ -119,12 +119,12 @@
     var seq = CL.seq, payload = { schema: 1, db: DB }, stamp = new Date().toISOString(), nv;
     setS("syncing", "저장 중…");
     if (CL.ver === 0) {
-      var ins = await CL.sb.from("nyekora_archive").insert({ owner: CL.uid, data: payload, version: 1, updated_at: stamp });
+      var ins = await CL.sb.from("nyekora_archive").insert({ owner_id: CL.uid, data: payload, version: 1, updated_at: stamp });
       if (ins.error) { if (String(ins.error.code) === "23505") return pull(); throw ins.error; }
       nv = 1;
     } else {
       var up = await CL.sb.from("nyekora_archive").update({ data: payload, version: CL.ver + 1, updated_at: stamp })
-        .eq("owner", CL.uid).eq("version", CL.ver).select("version");
+        .eq("owner_id", CL.uid).eq("version", CL.ver).select("version");
       if (up.error) throw up.error;
       if (!up.data || up.data.length === 0) return pull();
       nv = CL.ver + 1;
