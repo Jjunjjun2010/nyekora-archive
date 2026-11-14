@@ -224,3 +224,263 @@ html, body {
   font-size: 14px;
   cursor: pointer;
 }
+
+/* =========================================================
+   첫 번째 NPC: Ruwata
+   기존 지도 디자인 위에 독립된 캐릭터 요소만 추가한다.
+   ========================================================= */
+
+/* 캐릭터 전체 버튼 */
+.npc {
+  position: absolute;
+  left: 930px;
+  top: 510px;
+  width: 58px;
+  height: 82px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--cream);
+  cursor: pointer;
+  z-index: 12;
+
+  /*
+    left와 top에 전환 효과를 적용한다.
+    실제 위치가 계속 변하므로 이동 중에도 클릭할 수 있다.
+  */
+  transition:
+    left 1.8s ease-in-out,
+    top 1.8s ease-in-out,
+    filter 0.15s ease;
+}
+
+.npc:hover,
+.npc:focus-visible {
+  filter: brightness(1.12);
+}
+
+.npc:focus-visible {
+  outline: 3px solid #ffe9a8;
+  outline-offset: 5px;
+  border-radius: 8px;
+}
+
+/* 이동 중임을 보여 주는 가벼운 상하 움직임 */
+.npc.is-moving .npc-sprite {
+  animation: ruwata-walk 0.35s ease-in-out infinite alternate;
+}
+
+@keyframes ruwata-walk {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-4px);
+  }
+}
+
+/* NPC 이름표 */
+.npc-name {
+  position: absolute;
+  left: 50%;
+  top: -22px;
+  transform: translateX(-50%);
+  padding: 3px 7px;
+  border-radius: 8px;
+  background: rgba(8, 50, 47, 0.88);
+  color: #fff4cf;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
+  pointer-events: none;
+}
+
+/* 작은 탑다운 캐릭터 */
+.npc-sprite {
+  position: absolute;
+  left: 8px;
+  top: 3px;
+  width: 42px;
+  height: 68px;
+  pointer-events: none;
+}
+
+/* 바닥 그림자 */
+.npc-sprite::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  bottom: -2px;
+  width: 30px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.28);
+  filter: blur(2px);
+  z-index: -1;
+}
+
+/* 머리카락 */
+.npc-hair {
+  position: absolute;
+  left: 8px;
+  top: 1px;
+  width: 27px;
+  height: 23px;
+  border-radius: 48% 52% 44% 44%;
+  background: #263b34;
+  box-shadow: inset 0 -5px 0 rgba(0, 0, 0, 0.12);
+  z-index: 3;
+}
+
+/* 얼굴 */
+.npc-head {
+  position: absolute;
+  left: 11px;
+  top: 9px;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #5e3e28;
+  border-radius: 48%;
+  background: #b8794f;
+  z-index: 4;
+}
+
+/* 몸통: 열대 지역의 차분한 청록색 작업복 */
+.npc-body {
+  position: absolute;
+  left: 8px;
+  top: 29px;
+  width: 28px;
+  height: 34px;
+  border: 2px solid #123f3b;
+  border-radius: 9px 9px 6px 6px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0 42%,
+      #d1b06d 42% 57%,
+      transparent 57%
+    ),
+    #24766d;
+  z-index: 2;
+}
+
+/* 양팔 */
+.npc-arm {
+  position: absolute;
+  top: 34px;
+  width: 8px;
+  height: 25px;
+  border: 2px solid #5e3e28;
+  border-radius: 6px;
+  background: #a96f48;
+  z-index: 1;
+}
+
+.npc-arm-left {
+  left: 2px;
+  transform: rotate(7deg);
+}
+
+.npc-arm-right {
+  right: 2px;
+  transform: rotate(-7deg);
+}
+
+/* NPC 상세 정보 */
+.npc-details {
+  margin: 14px 0 0;
+  padding: 11px 0 0;
+  border-top: 1px solid rgba(243, 233, 210, 0.24);
+}
+
+.npc-details.hidden,
+.npc-actions.hidden {
+  display: none;
+}
+
+.npc-details div {
+  display: grid;
+  grid-template-columns: 66px 1fr;
+  gap: 8px;
+  margin: 0 0 7px;
+}
+
+.npc-details dt {
+  color: #a9dcd2;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.npc-details dd {
+  margin: 0;
+  color: var(--cream);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+/* NPC 이동 영역 */
+.npc-actions {
+  margin-top: 13px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(243, 233, 210, 0.24);
+}
+
+.npc-actions-title {
+  margin: 0 0 8px !important;
+  color: #ffe9b0;
+  font-size: 12px !important;
+  font-weight: 700;
+}
+
+.npc-actions button {
+  min-height: 34px;
+  margin: 0 6px 6px 0;
+  padding: 7px 10px;
+  border: 1px solid #55aa9e;
+  border-radius: 7px;
+  background: #17635c;
+  color: #fff7df;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease;
+}
+
+.npc-actions button:hover {
+  background: #228076;
+  transform: translateY(-1px);
+}
+
+.npc-actions button:focus-visible {
+  outline: 2px solid #ffe9a8;
+  outline-offset: 2px;
+}
+
+/* 작은 PC 창에서도 패널이 지도 대부분을 가리지 않도록 조정 */
+@media (max-width: 760px), (max-height: 620px) {
+  #info-panel {
+    right: 12px;
+    bottom: 12px;
+    width: min(310px, calc(100vw - 24px));
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+  }
+}
+
+/* 사용자가 운영체제에서 동작 줄이기를 선택한 경우 */
+@media (prefers-reduced-motion: reduce) {
+  .npc {
+    transition-duration: 0.01ms;
+  }
+
+  .npc.is-moving .npc-sprite {
+    animation: none;
+  }
+}

@@ -10,7 +10,7 @@
 
   <!-- 화면 상단 고정 안내 (지도 크기와 무관하게 항상 같은 위치) -->
   <div id="hud-title">니에코라 마을 (시제품)</div>
-  <div id="hud-hint">건물을 클릭하면 설명이 표시됩니다</div>
+  <div id="hud-hint">건물이나 주민을 클릭하면 설명이 표시됩니다</div>
 
   <!-- 창 크기에 맞춰 축소/확대되는 영역 -->
   <div id="viewport">
@@ -47,7 +47,33 @@
            data-name="루와타의 악기 작업장"
            data-desc="장인 루와타가 전통 타악기와 현악기를 만드는 작업장입니다. 나무를 깎고 다듬는 소리가 끊이지 않습니다.">
       </div>
+<!--
+  첫 번째 NPC: Ruwata
+  초기 위치는 악기 작업장 근처이며, 위치와 이동 목적지는 임시 배치입니다.
+-->
+<button
+  id="ruwata"
+  class="npc"
+  type="button"
+  aria-label="Ruwata, 전통 악기 제작자"
+  data-name="Ruwata"
+  data-job="전통 악기 제작자"
+  data-name-meaning="ruwa(물) + wata(나무)"
+  data-personality="신중하고 호기심이 많음"
+  data-knowledge="수랄라, 수타리"
+  data-memory="아직 저장된 기억 없음"
+>
+  <span class="npc-name">Ruwata</span>
 
+  <!-- CSS 도형으로 만든 작은 탑다운 캐릭터 -->
+  <span class="npc-sprite" aria-hidden="true">
+    <span class="npc-hair"></span>
+    <span class="npc-head"></span>
+    <span class="npc-body"></span>
+    <span class="npc-arm npc-arm-left"></span>
+    <span class="npc-arm npc-arm-right"></span>
+  </span>
+</button>
     </div>
   </div>
 
@@ -56,6 +82,42 @@
     <button id="info-close" aria-label="닫기">✕</button>
     <h2 id="info-title"></h2>
     <p id="info-desc"></p>
+<!-- NPC를 클릭했을 때만 나타나는 상세 정보 -->
+<dl id="npc-details" class="npc-details hidden" aria-label="NPC 상세 정보">
+  <div>
+    <dt>이름 뜻</dt>
+    <dd id="npc-meaning"></dd>
+  </div>
+  <div>
+    <dt>직업</dt>
+    <dd id="npc-job"></dd>
+  </div>
+  <div>
+    <dt>성격</dt>
+    <dd id="npc-personality"></dd>
+  </div>
+  <div>
+    <dt>지식</dt>
+    <dd id="npc-knowledge"></dd>
+  </div>
+  <div>
+    <dt>기억</dt>
+    <dd id="npc-memory"></dd>
+  </div>
+</dl>
+
+<!-- NPC를 클릭했을 때만 나타나는 이동 버튼 -->
+<div id="npc-actions" class="npc-actions hidden">
+  <p class="npc-actions-title">이동할 장소</p>
+
+  <button type="button" data-destination="kalawa">
+    kalawa 광장
+  </button>
+
+  <button type="button" data-destination="workshop">
+    악기 작업장
+  </button>
+</div>
   </div>
 
   <script src="village.js"></script>
