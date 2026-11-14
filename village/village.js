@@ -513,6 +513,9 @@ var npcSchedules = {
 
   function openChat() {
     chat.classList.remove("hidden");
+    ruwataElement.classList.add("chat-open");
+    speechBubble.setAttribute("aria-hidden", "false");
+
     if (ruwataData.conversation.length === 0) {
       addNpcMessage("안녕하세요. 저는 Ruwata입니다. 오늘도 악기를 다듬고 있어요.");
     }
@@ -521,6 +524,9 @@ var npcSchedules = {
 
   function closeChat() {
     chat.classList.add("hidden");
+    ruwataElement.classList.remove("chat-open");
+    speechBubble.setAttribute("aria-hidden", "true");
+
   }
 
   function sendMessage() {
@@ -596,67 +602,3 @@ var npcSchedules = {
     addLongTermMemory: addLongTermMemory
   };
 })();
-/* Ruwata 대화창 표시 제어 — 외부 API를 사용하지 않는 테스트 기능 */
-(function () {
-  "use strict";
-
-  var npc = document.getElementById("ruwata");
-  var bubble = document.getElementById("ruwata-speech-bubble");
-  var chat = document.getElementById("ruwata-chat");
-  var closeButton = document.getElementById("ruwata-chat-close");
-  var messages = document.getElementById("ruwata-chat-messages");
-  var form = document.getElementById("ruwata-chat-form");
-  var input = document.getElementById("ruwata-chat-input");
-
-  if (!npc || !bubble || !chat || !closeButton || !messages || !form || !input) {
-    console.warn("Ruwata 대화창 요소를 찾을 수 없습니다. HTML에 대화창 요소가 있는지 확인하세요.");
-    return;
-  }
-
-  function openChat() {
-    chat.classList.remove("hidden");
-    npc.classList.add("chat-open");
-    bubble.setAttribute("aria-hidden", "false");
-
-    if (!messages.childElementCount) {
-      addMessage("npc", "안녕하세요. 저는 Ruwata입니다. 오늘도 악기를 다듬고 있어요.");
-    }
-
-    input.focus();
-  }
-
-  function closeChat() {
-    chat.classList.add("hidden");
-    npc.classList.remove("chat-open");
-    bubble.setAttribute("aria-hidden", "true");
-  }
-
-  function addMessage(role, text) {
-    var message = document.createElement("div");
-    message.className = "ruwata-chat-message " + role;
-    message.textContent = text;
-    messages.appendChild(message);
-    messages.scrollTop = messages.scrollHeight;
-  }
-
-  npc.addEventListener("click", openChat);
-  closeButton.addEventListener("click", closeChat);
-
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    var text = input.value.trim();
-    if (!text) return;
-
-    addMessage("user", text);
-    input.value = "";
-
-    window.setTimeout(function () {
-      addMessage(
-        "npc",
-        "흥미로운 이야기네요. 이 응답은 대화 기능 확인을 위한 테스트용입니다."
-      );
-    }, 500);
-  });
-})();
-
