@@ -4,6 +4,6 @@
 // 주의: 여기에는 "공개용(anon 또는 publishable)" 키만 넣습니다.
 //       "service_role" 키(또는 secret 키)는 절대 넣지 마세요. 인터넷에 공개되는 파일입니다.
 window.NYEKORA_CLOUD = {
-  url: "",      // 예: "https://abcdefghijklmn.supabase.co"
-  anonKey: ""   // Project Settings → API 의 anon public 키 (또는 publishable 키)
+  url: "https://yzytuvsjsbmyxsybixru.supabase.co",      // 예: "https://abcdefghijklmn.supabase.co"
+  anonKey: "sb_publishable_WO2hIwK5QIkW7ALtsBfA_g_7bkTicGF"   // Project Settings → API 의 anon public 키 (또는 publishable 키)
 };
