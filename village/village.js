@@ -512,6 +512,15 @@ var npcSchedules = {
   };
 
   var ruwataData = npcData.ruwata;
+
+  // 대화 영구 저장(localStorage)과 기록관 자료 검색 모듈.
+  // 스크립트를 불러오지 못해도 아래 코드는 기존처럼 메모리 대화로 동작한다.
+  var CHAT_STORAGE_KEY = "nyekora-village:chat:v1:ruwata";
+  var NPC_ID = "ruwata";
+  var chatStore = window.NyekoraChatStore || null;
+  var loreLookup = window.NyekoraLore || null;
+  var isSending = false;
+
   /*
     대화 백엔드(Supabase Edge Function 경유 Ollama Cloud).
     빈 문자열로 두면 예전처럼 테스트용 고정 응답으로 동작한다.
@@ -524,10 +533,23 @@ var npcSchedules = {
   var chatMessages = document.getElementById("ruwata-chat-messages");
   var chatForm = document.getElementById("ruwata-chat-form");
   var chatInput = document.getElementById("ruwata-chat-input");
+  var chatNote = document.querySelector(".ruwata-chat-note");
+  var CHAT_NOTE_DEFAULT = "대화는 이 브라우저에 저장됩니다. AI(Ollama Cloud)가 생성한 응답은 사실과 다를 수 있습니다.";
 
   if (!ruwataElement || !speechBubble || !chat || !chatClose || !chatMessages || !chatForm || !chatInput) {
     console.warn("Ruwata 대화 UI 요소를 찾을 수 없습니다.");
     return;
+  }
+
+  // 페이지를 새로 열어도 이전 대화를 복원한다.
+  if (chatStore) {
+    var restored = chatStore.load(CHAT_STORAGE_KEY);
+    if (restored.messages.length) {
+      ruwataData.conversation = restored.messages;
+    }
+    if (!restored.ok && chatNote) {
+      chatNote.textContent = "저장된 대화를 읽지 못했습니다. 원문은 브라우저의 :corrupt 백업에 보존했습니다.";
+    }
   }
 
   ruwataElement.addEventListener("click", openChat);
@@ -537,13 +559,25 @@ var npcSchedules = {
     sendMessage();
   });
 
+  // 같은 브라우저의 다른 탭에서 대화가 바뀌면 현재 화면도 맞춘다.
+  if (chatStore) {
+    window.addEventListener("storage", function (event) {
+      if (event.key !== CHAT_STORAGE_KEY) return;
+      var reloaded = chatStore.load(CHAT_STORAGE_KEY);
+      ruwataData.conversation = reloaded.messages;
+      renderConversation();
+    });
+  }
+
   function openChat() {
     chat.classList.remove("hidden");
     ruwataElement.classList.add("chat-open");
     speechBubble.setAttribute("aria-hidden", "false");
 
     if (ruwataData.conversation.length === 0) {
-      addNpcMessage("안녕하세요. 저는 Ruwata입니다. 오늘도 악기를 다듬고 있어요.");
+      addGreetingMessage();
+    } else {
+      renderConversation();
     }
     window.setTimeout(function () { chatInput.focus(); }, 0);
   }
@@ -552,7 +586,14 @@ var npcSchedules = {
     chat.classList.add("hidden");
     ruwataElement.classList.remove("chat-open");
     speechBubble.setAttribute("aria-hidden", "true");
+  }
 
+  function renderConversation() {
+    chatMessages.innerHTML = "";
+    ruwataData.conversation.forEach(function (message) {
+      renderMessage(message);
+    });
+    chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 
   function getVillageStateSnapshot() {
@@ -566,14 +607,85 @@ var npcSchedules = {
     return null;
   }
 
+  // 질문과 관련된 기록관 항목만 고른다. (Rejected·reference-not-lore 제외)
+  function selectLore(userText) {
+    if (!loreLookup || !loreLookup.getRelevant) {
+      return { items: [], payload: [], brief: "", refs: [] };
+    }
+    try {
+      return loreLookup.getRelevant(userText, { limit: 6, briefLimit: 3, refLimit: 3 });
+    } catch (error) {
+      console.warn("기록관 자료를 찾지 못했습니다.", error);
+      return { items: [], payload: [], brief: "", refs: [] };
+    }
+  }
+
+  // "이어서", "계속", "마저" 같은 짧은 요청이 오면 직전 NPC 답변의 맥락을 덧붙여
+  // 자연스럽게 이어지도록 한다. 직전 답변 전체가 아닌 마지막 120자만 인용해
+  // 중복 전송을 막는다.
+  function maybeRewriteContinuation(lastUserContent, history) {
+    var text = lastUserContent.trim();
+    if (!isContinuationRequest(text)) return text;
+
+    var lastAssistant = "";
+    for (var i = history.length - 1; i >= 0; i -= 1) {
+      if (history[i].role === "assistant") {
+        lastAssistant = history[i].content;
+        break;
+      }
+    }
+    if (!lastAssistant) return text;
+
+    var snippet = lastAssistant.slice(-120).trim();
+    if (text.length <= 20) {
+      return "방금 말씀하신 \"" + snippet + "\" 부분을 이어서 설명해 주세요.";
+    }
+    return text + "\n\n(직전 답변 맥락: ...\"" + snippet + "\")";
+  }
+
+  function isContinuationRequest(text) {
+    var normalized = text.toLowerCase().replace(/[\s\.\?\!]+/g, "");
+    var patterns = [
+      "이어서", "계속", "마저", "뒷이야기", "나머지", "더말해",
+      "이어서말해", "계속해", "마저말해", "덧붙여", "덧붙혀"
+    ];
+    for (var i = 0; i < patterns.length; i += 1) {
+      if (normalized.indexOf(patterns[i]) !== -1) return true;
+    }
+    return false;
+  }
+
   // Supabase Edge Function을 통해 Ollama Cloud에 대화를 요청한다.
-  function requestRuwataReply() {
+  function requestRuwataReply(loreResult) {
     var history = ruwataData.conversation.slice(-16).map(function (message) {
       return {
-        role: message.role === "assistant" ? "assistant" : "user",
-        content: String(message.content || "").slice(0, 1000)
+        role: message.role === "assistant" || message.speaker === "npc" ? "assistant" : "user",
+        content: String(message.text || message.content || "").slice(0, 1000)
       };
     });
+
+    if (history.length) {
+      var last = history[history.length - 1];
+      if (last.role === "user") {
+        last.content = maybeRewriteContinuation(last.content, history);
+
+        if (loreResult && loreResult.brief) {
+          var room = 980 - last.content.length;
+          var brief = loreResult.brief;
+          if (room > 40) {
+            if (brief.length > room) {
+              brief = brief.slice(0, room - 24) + "\n[[/NYEKORA_LORE_BRIEF]]";
+            }
+            last.content = last.content + "\n\n" + brief;
+          }
+        }
+      }
+    }
+
+    var body = { messages: history, state: getVillageStateSnapshot() };
+    if (loreResult && loreResult.payload && loreResult.payload.length) {
+      body.lore = loreResult.payload;
+    }
 
     var controller = new AbortController();
     var timeoutId = window.setTimeout(function () { controller.abort(); }, 30000);
@@ -581,12 +693,20 @@ var npcSchedules = {
     return fetch(CHAT_API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ messages: history, state: getVillageStateSnapshot() }),
+      body: JSON.stringify(body),
       signal: controller.signal
     }).then(function (response) {
       window.clearTimeout(timeoutId);
       if (!response.ok) {
-        throw new Error("채팅 서버 오류 (" + response.status + ")");
+        return response.json().catch(function () {
+          return { error: "채팅 서버 오류 (" + response.status + ")", type: "server_error" };
+        }).then(function (errData) {
+          var err = new Error(errData.error || "채팅 서버 오류 (" + response.status + ")");
+          err.status = response.status;
+          err.type = errData.type || "server_error";
+          err.retryAfter = parseInt(response.headers.get("x-retry-after") || "0", 10) || 60;
+          throw err;
+        });
       }
       return response.json();
     }, function (networkErr) {
@@ -602,63 +722,263 @@ var npcSchedules = {
   }
 
   function sendMessage() {
+    if (isSending) return;
+
     var text = chatInput.value.trim();
     if (!text) return;
 
+    isSending = true;
     addUserMessage(text);
     chatInput.value = "";
     setSpeechBubble("...");
     setChatDisabled(true);
 
+    var loreResult = selectLore(text);
+
     // CHAT_API_URL이 비어 있으면 예전처럼 테스트 응답으로 동작한다.
     if (!CHAT_API_URL) {
       window.setTimeout(function () {
-        var testResponse = createTestResponse(text); // TEST RESPONSE ONLY
-        addNpcMessage(testResponse);
-        setSpeechBubble("...");
-        setChatDisabled(false);
-        chatInput.focus();
+        var testResponse = createTestResponse(text, loreResult); // TEST RESPONSE ONLY
+        addNpcMessage(testResponse, loreResult.refs);
+        finishSending();
       }, 650);
       return;
     }
 
-    requestRuwataReply().then(function (reply) {
-      addNpcMessage(reply);
+    requestRuwataReply(loreResult).then(function (reply) {
+      addNpcMessage(reply, loreResult.refs);
     }).catch(function (err) {
       console.error("Ruwata AI 응답 실패:", err);
-      addNpcMessage("...죄송해요, 지금은 대답하기가 어렵네요. 잠시 뒤에 다시 말을 걸어 주세요.");
+      handleReplyError(err);
     }).finally(function () {
-      setSpeechBubble("...");
-      setChatDisabled(false);
-      chatInput.focus();
+      finishSending();
     });
   }
 
+  function handleReplyError(err) {
+    var type = err && err.type ? err.type : "";
+    var retryAfter = err && err.retryAfter ? err.retryAfter : 0;
+    var status = err && err.status ? err.status : 0;
+
+    if (type === "rate_limit" || type === "upstream_rate_limit" || status === 429) {
+      var seconds = retryAfter > 0 ? retryAfter : 60;
+      addErrorMessage("요청이 너무 많습니다. " + seconds + "초 뒤에 다시 말을 걸어 주세요.");
+      setCooldown(seconds);
+      return;
+    }
+
+    addErrorMessage("...죄송해요, 지금은 대답하기가 어렵네요. 잠시 뒤에 다시 말을 걸어 주세요.");
+  }
+
+  var cooldownTimer = null;
+
+  function setCooldown(seconds) {
+    if (cooldownTimer !== null) {
+      window.clearTimeout(cooldownTimer);
+    }
+    setChatDisabled(true);
+    var remain = seconds;
+    chatForm.querySelector("button").textContent = remain + "초 뒤 전송";
+
+    function tick() {
+      remain -= 1;
+      if (remain > 0) {
+        chatForm.querySelector("button").textContent = remain + "초 뒤 전송";
+        cooldownTimer = window.setTimeout(tick, 1000);
+      } else {
+        finishCooldown();
+      }
+    }
+    cooldownTimer = window.setTimeout(tick, 1000);
+  }
+
+  function finishCooldown() {
+    cooldownTimer = null;
+    setChatDisabled(false);
+    chatForm.querySelector("button").textContent = "전송";
+    chatInput.focus();
+  }
+
+  function finishSending() {
+    if (cooldownTimer !== null) return;
+    isSending = false;
+    setSpeechBubble("...");
+    setChatDisabled(false);
+    chatInput.focus();
+  }
+
+  function addErrorMessage(text) {
+    var row = document.createElement("div");
+    var content = document.createElement("div");
+    var bubble = document.createElement("div");
+
+    row.className = "ruwata-chat-message error";
+    content.className = "ruwata-chat-content";
+    bubble.className = "ruwata-chat-bubble error";
+    bubble.textContent = text;
+
+    content.appendChild(bubble);
+    row.appendChild(content);
+    chatMessages.appendChild(row);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function addGreetingMessage() {
+    var greeting = {
+      id: "ruwata-greeting-v1",
+      speaker: "npc",
+      role: "assistant",
+      name: ruwataData.displayName,
+      text: "안녕하세요. 저는 Ruwata입니다. 오늘도 악기를 다듬고 있어요.",
+      createdAt: new Date().toISOString(),
+      refs: []
+    };
+    appendToConversation(greeting);
+  }
+
   function addUserMessage(text) {
-    addMessage("user", text);
-    ruwataData.conversation.push({ role: "user", content: text, createdAt: new Date().toISOString() });
+    appendToConversation(makeChatMessage("user", text, []));
   }
 
-  function addNpcMessage(text) {
-    addMessage("npc", text);
-    ruwataData.conversation.push({ role: "assistant", content: text, createdAt: new Date().toISOString() });
+  function addNpcMessage(text, refs) {
+    appendToConversation(makeChatMessage("npc", text, refs || []));
   }
 
-function addMessage(role, text) {
-  var row = document.createElement("div");
-  var bubble = document.createElement("div");
+  function makeChatMessage(speaker, text, refs) {
+    var name = speaker === "npc" ? ruwataData.displayName : "사용자";
+    if (chatStore && chatStore.makeMessage) {
+      return chatStore.makeMessage(speaker, text, refs, name);
+    }
+    return {
+      id: "m-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8),
+      speaker: speaker,
+      role: speaker === "npc" ? "assistant" : "user",
+      name: name,
+      text: text,
+      createdAt: new Date().toISOString(),
+      refs: refs || []
+    };
+  }
 
-  // 지도 캐릭터의 .npc 스타일과 충돌하지 않도록 이름을 분리한다.
-  var messageClass = role === "npc" ? "assistant" : role;
+  function appendToConversation(message) {
+    ruwataData.conversation.push(message);
 
-  row.className = "ruwata-chat-message " + messageClass;
-  bubble.className = "ruwata-chat-bubble";
-  bubble.textContent = text;
+    if (!chatStore) {
+      renderMessage(message);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      return;
+    }
 
-  row.appendChild(bubble);
-  chatMessages.appendChild(row);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-}
+    var result = chatStore.append(CHAT_STORAGE_KEY, NPC_ID, message);
+
+    if (result.ok) {
+      // 저장소에 이미 있던 메시지와 메모리 메시지를 합쳐 중복을 막는다.
+      var merged = chatStore.dedupe(ruwataData.conversation.concat(result.messages));
+      ruwataData.conversation = merged;
+
+      // 저장소가 비워졌거나 일부만 남아 있으면 메모리의 기록도 다시 저장한다.
+      if (merged.length > result.messages.length) {
+        chatStore.save(CHAT_STORAGE_KEY, NPC_ID, merged);
+      }
+
+      if (chatNote && chatNote.textContent !== CHAT_NOTE_DEFAULT) {
+        chatNote.textContent = CHAT_NOTE_DEFAULT;
+      }
+      if (result.added) {
+        renderMessage(result.added);
+      } else {
+        renderConversation();
+      }
+    } else {
+      // 저장에 실패해도 이번 실행 중 대화는 메모리에 남긴다.
+      console.warn("대화를 저장하지 못했습니다.", result.error);
+      if (chatNote) {
+        chatNote.textContent = "대화를 브라우저에 저장하지 못했습니다. 이번 실행 중에만 남습니다.";
+      }
+      renderMessage(message);
+    }
+
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function renderMessage(message) {
+    var speaker = message.speaker === "npc" ? "npc" : (message.speaker === "error" ? "error" : "user");
+    var text = String(message.text || message.content || "");
+    var row = document.createElement("div");
+    var content = document.createElement("div");
+    var bubble = document.createElement("div");
+
+    // 지도 캐릭터의 .npc 스타일과 충돌하지 않도록 이름을 분리한다.
+    var rowClass = "ruwata-chat-message ";
+    if (speaker === "error") {
+      rowClass += "error";
+      bubble.className = "ruwata-chat-bubble error";
+    } else {
+      rowClass += (speaker === "npc" ? "assistant" : "user");
+      bubble.className = "ruwata-chat-bubble";
+    }
+    row.className = rowClass;
+    content.className = "ruwata-chat-content";
+    bubble.textContent = text;
+
+    if (speaker !== "error") {
+      var time = document.createElement("span");
+      time.className = "ruwata-chat-time";
+      time.textContent = formatMessageTime(message.createdAt);
+      time.title = formatFullTime(message.createdAt);
+      bubble.appendChild(time);
+    }
+
+    content.appendChild(bubble);
+
+    if (speaker === "npc" && Array.isArray(message.refs) && message.refs.length) {
+      content.appendChild(buildRefs(message.refs));
+    }
+
+    row.appendChild(content);
+    chatMessages.appendChild(row);
+  }
+
+  function buildRefs(refs) {
+    var box = document.createElement("div");
+    box.className = "ruwata-chat-refs";
+    box.appendChild(document.createTextNode("참고 기록: "));
+
+    refs.slice(0, 3).forEach(function (ref, index) {
+      if (index > 0) box.appendChild(document.createTextNode(" · "));
+      box.appendChild(document.createTextNode((ref.t || ref.id || "기록") + " "));
+      var status = document.createElement("span");
+      status.className = "lore-status " + String(ref.s || "Unknown").toLowerCase();
+      status.textContent = loreStatusLabel(ref.s);
+      box.appendChild(status);
+    });
+
+    return box;
+  }
+
+  function loreStatusLabel(status) {
+    if (loreLookup && loreLookup.statusLabel && loreLookup.statusLabel[status]) {
+      return loreLookup.statusLabel[status];
+    }
+    return status || "미확인";
+  }
+
+  function formatMessageTime(value) {
+    var date = new Date(value);
+    if (isNaN(date.getTime())) return "";
+    var now = new Date();
+    var sameDay = date.getFullYear() === now.getFullYear() &&
+      date.getMonth() === now.getMonth() &&
+      date.getDate() === now.getDate();
+    var hours = String(date.getHours()).padStart(2, "0");
+    var minutes = String(date.getMinutes()).padStart(2, "0");
+    return sameDay ? hours + ":" + minutes : (date.getMonth() + 1) + "/" + date.getDate() + " " + hours + ":" + minutes;
+  }
+
+  function formatFullTime(value) {
+    var date = new Date(value);
+    return isNaN(date.getTime()) ? "" : date.toLocaleString("ko-KR");
+  }
 
 
   function setSpeechBubble(text) { speechBubble.textContent = text; }
@@ -669,7 +989,19 @@ function addMessage(role, text) {
   }
 
   // TEST RESPONSE ONLY: 입력별로 미리 정한 문장을 반환한다.
-  function createTestResponse(userText) {
+  function createTestResponse(userText, loreResult) {
+    var items = loreResult && loreResult.items ? loreResult.items : [];
+    if (items.length) {
+      var top = items[0];
+      var label = loreStatusLabel(top.s);
+      var claim = String(top.claim || "").replace(/\s+/g, " ").slice(0, 180);
+      if (top.s === "Canon") {
+        return "기록관의 확정 기록에는 ‘" + top.t + "’에 대해 이렇게 남아 있어요: " + claim;
+      }
+      return "기록관 기록에는 ‘" + top.t + "’이(가) 아직 " + label + " 상태로 남아 있어요: " + claim +
+        " 아직 확정된 내용은 아니에요.";
+    }
+
     var normalized = userText.toLowerCase();
     if (normalized.includes("이름") || normalized.includes("누구")) {
       return "저는 Ruwata입니다. ruwa는 물, wata는 나무를 뜻해요.";
@@ -691,6 +1023,15 @@ function addMessage(role, text) {
 
   window.ruwataConversationState = {
     npc: ruwataData,
-    addLongTermMemory: addLongTermMemory
+    addLongTermMemory: addLongTermMemory,
+    getMessages: function () {
+      return ruwataData.conversation.slice();
+    },
+    reload: function () {
+      if (!chatStore) return;
+      var result = chatStore.load(CHAT_STORAGE_KEY);
+      ruwataData.conversation = result.messages;
+      renderConversation();
+    }
   };
 })();

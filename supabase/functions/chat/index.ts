@@ -24,6 +24,31 @@ const RATE_WINDOW_MS = 60_000;
 const MAX_HISTORY = 16;          // 최근 대화 최대 개수
 const MAX_MESSAGE_CHARS = 1000;  // 말풍선 하나당 최대 길이
 const MAX_TOTAL_CHARS = 8000;    // 대화 전체 최대 길이
+const MAX_OUTPUT_TOKENS = 1024; // 한국어 응답이 중간에 끊기지 않도록 여유 있게 설정
+
+// 기록관 참고 자료 (브라우저에서 질문과 관련된 항목만 골라 보낸다)
+const MAX_LORE_ITEMS = 6;
+const MAX_LORE_TOTAL_CHARS = 4200;
+const MAX_LORE_TITLE_CHARS = 120;
+const MAX_LORE_CLAIM_CHARS = 700;
+const LORE_STATUSES = new Set(["Canon", "Proposal", "Unknown", "Conflict"]);
+const LORE_STATUS_LABEL: Record<string, string> = {
+  Canon: "확정",
+  Proposal: "제안",
+  Unknown: "미확인",
+  Conflict: "충돌",
+};
+const LORE_BRIEF_OPEN = "[[NYEKORA_LORE_BRIEF]]";
+const LORE_BRIEF_CLOSE = "[[/NYEKORA_LORE_BRIEF]]";
+
+type ErrorType =
+  | "missing_key"
+  | "rate_limit"
+  | "bad_request"
+  | "upstream_error"
+  | "upstream_rate_limit"
+  | "parse_error"
+  | "empty_response";
 
 const hits = new Map<string, { count: number; reset: number }>();
 
@@ -32,7 +57,7 @@ function clientIp(req: Request): string {
   return fwd.split(",")[0].trim() || "unknown";
 }
 
-function rateLimited(ip: string): boolean {
+function rateLimitInfo(ip: string): { limited: boolean; retryAfter: number } {
   const now = Date.now();
   if (hits.size > 5000) {
     for (const [key, value] of hits) {
@@ -42,10 +67,14 @@ function rateLimited(ip: string): boolean {
   const rec = hits.get(ip);
   if (!rec || now > rec.reset) {
     hits.set(ip, { count: 1, reset: now + RATE_WINDOW_MS });
-    return false;
+    return { limited: false, retryAfter: 0 };
   }
   rec.count += 1;
-  return rec.count > RATE_LIMIT;
+  if (rec.count <= RATE_LIMIT) {
+    return { limited: false, retryAfter: 0 };
+  }
+  const retryAfter = Math.max(1, Math.ceil((rec.reset - now) / 1000));
+  return { limited: true, retryAfter };
 }
 
 function corsHeaders(): Record<string, string> {
@@ -53,14 +82,37 @@ function corsHeaders(): Record<string, string> {
     "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
     "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Expose-Headers": "x-error-type, x-retry-after",
   };
 }
 
-function jsonResponse(body: unknown, status = 200): Response {
+function jsonResponse(
+  body: unknown,
+  status = 200,
+  extraHeaders: Record<string, string> = {},
+): Response {
   return new Response(JSON.stringify(body), {
     status,
-    headers: { "Content-Type": "application/json; charset=utf-8", ...corsHeaders() },
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      ...corsHeaders(),
+      ...extraHeaders,
+    },
   });
+}
+
+function errorResponse(
+  status: number,
+  error: string,
+  type: ErrorType,
+  retryAfterSeconds?: number,
+): Response {
+  const headers: Record<string, string> = { "x-error-type": type };
+  if (retryAfterSeconds != null) {
+    headers["x-retry-after"] = String(retryAfterSeconds);
+  }
+  console.error("Edge Function error", { status, type, message: error });
+  return jsonResponse({ error, type, status }, status, headers);
 }
 
 function clampText(value: unknown, maxChars: number): string {
@@ -68,6 +120,17 @@ function clampText(value: unknown, maxChars: number): string {
 }
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
+type LoreEntry = { id: string; title: string; status: string; category: string; claim: string };
+
+// 기존 배포본과의 호환용 짧은 참고자료 블록을 메시지에서 제거한다.
+// 새 함수는 구조화된 lore 필드를 system prompt에 넣는다.
+function stripLoreBrief(text: string): string {
+  const start = text.indexOf(LORE_BRIEF_OPEN);
+  if (start === -1) return text;
+  const end = text.indexOf(LORE_BRIEF_CLOSE, start + LORE_BRIEF_OPEN.length);
+  if (end === -1) return text;
+  return (text.slice(0, start) + text.slice(end + LORE_BRIEF_CLOSE.length)).trim();
+}
 
 function parseMessages(raw: unknown): ChatMessage[] {
   if (!Array.isArray(raw)) return [];
@@ -75,7 +138,11 @@ function parseMessages(raw: unknown): ChatMessage[] {
   for (const item of raw) {
     if (!item || typeof item !== "object") continue;
     const role = (item as { role?: unknown }).role;
-    const content = clampText((item as { content?: unknown }).content, MAX_MESSAGE_CHARS);
+    const rawContent = (item as { content?: unknown }).content;
+    const content = clampText(
+      stripLoreBrief(typeof rawContent === "string" ? rawContent : ""),
+      MAX_MESSAGE_CHARS,
+    );
     if ((role === "user" || role === "assistant") && content) {
       out.push({ role, content });
     }
@@ -89,7 +156,65 @@ function parseMessages(raw: unknown): ChatMessage[] {
   return trimmed;
 }
 
-function buildSystemPrompt(state: Record<string, string>): string {
+function parseLore(raw: unknown): LoreEntry[] {
+  if (!Array.isArray(raw)) return [];
+
+  const out: LoreEntry[] = [];
+  for (const item of raw) {
+    if (!item || typeof item !== "object") continue;
+
+    const status = String((item as { s?: unknown }).s ?? "");
+    if (!LORE_STATUSES.has(status)) continue; // Rejected 등은 참고자료에서 제외
+
+    const title = clampText((item as { t?: unknown }).t, MAX_LORE_TITLE_CHARS);
+    const claim = clampText((item as { claim?: unknown }).claim, MAX_LORE_CLAIM_CHARS);
+    if (!title || !claim) continue;
+
+    out.push({
+      id: clampText((item as { id?: unknown }).id, 80),
+      title,
+      status,
+      category: clampText((item as { c?: unknown }).c, 40),
+      claim,
+    });
+  }
+
+  let limited = out.slice(0, MAX_LORE_ITEMS);
+  let total = limited.reduce((sum, entry) => sum + entry.claim.length, 0);
+  while (limited.length > 1 && total > MAX_LORE_TOTAL_CHARS) {
+    total -= limited[0].claim.length;
+    limited = limited.slice(1);
+  }
+  return limited;
+}
+
+function buildSystemPrompt(state: Record<string, string>, lore: LoreEntry[]): string {
+  const loreLines: string[] = [];
+
+  if (lore.length) {
+    loreLines.push("", "기록관 참고 자료 (확정 여부 구분):");
+    for (const entry of lore) {
+      const label = LORE_STATUS_LABEL[entry.status] || entry.status;
+      loreLines.push(`- [${label} ${entry.status}] ${entry.title}: ${entry.claim}`);
+    }
+    loreLines.push(
+      "",
+      "기록 사용 규칙:",
+      "- [확정 Canon]만 확정된 사실로 단정한다.",
+      "- [제안 Proposal]은 아직 확정되지 않은 제안으로만 말하고, 공식 사실처럼 단정하지 않는다.",
+      "- [미확인 Unknown]은 기록에 확인된 내용이 없다는 뜻이므로, 사실처럼 말하지 않는다.",
+      "- [충돌 Conflict]은 자료마다 서술이 다르며 아직 확정되지 않았다고 말한다.",
+      "- 참고 자료에 없는 내용은 새로 지어내지 않는다.",
+      "- 답변에 참고한 기록이 있으면 '기록관 기록에는 …'처럼 자연스럽게 근거를 밝힌다.",
+    );
+  } else {
+    loreLines.push(
+      "",
+      "기록관 참고 자료:",
+      "- 이번 질문과 관련해 확인된 기록을 찾지 못했다. 확정된 설정처럼 지어내지 말고, 모르면 모른다고 말한다.",
+    );
+  }
+
   const lines = [
     "당신은 니에코라 마을의 전통 악기 제작자 'Ruwata(루와타)'입니다.",
     "- 이름의 뜻: ruwa(물) + wata(나무)",
@@ -102,13 +227,17 @@ function buildSystemPrompt(state: Record<string, string>): string {
     `- 마을 시간: ${state.time || "알 수 없음"} (${state.period || "시간대 미상"})`,
     `- Ruwata의 현재 상태: ${state.status || "알 수 없음"}`,
     `- 지금 하는 일: ${state.activity || "알 수 없음"}`,
+    ...loreLines,
     "",
     "대화 규칙:",
     "- 항상 루와타로서 1인칭으로, 한국어로 대답한다.",
     "- 2~4문장 정도의 짧은 대화체로 답한다. 긴 설명이나 목록은 피한다.",
     "- 확정되지 않은 마을 설정을 새로 지어내지 않는다. 모르는 것은 모른다고 하거나 추측임을 밝힌다.",
+    "- 기록관 자료 일부만으로 세계관 전체를 단정하지 않는다. 자료에 없는 내용은 지어내지 않는다.",
+    "- 기록관에 없는 정보를 묻거나 기록이 부족하면 '그건 기록관에 남아 있지 않아서 잘 모르겠어요' 또는 '제 추측일 뿐이에요'라고 답한다.",
     "- 악기, 소리, 재료, 작업에 관한 이야기를 자연스럽게 섞는다.",
     "- 마을 바깥의 현실 세계 이야기가 나오면 루와타는 그런 것을 모른다고 반응한다.",
+    "- '이어서' 또는 '계속'이라고 하면, 직전 답변의 문맥을 자연스럽게 이어간다. 직전 내용을 그대로 반복하지 않는다.",
   ];
   return lines.join("\n");
 }
@@ -121,23 +250,29 @@ Deno.serve(async (req: Request) => {
     return jsonResponse({ error: "POST만 지원합니다." }, 405);
   }
   if (!OLLAMA_API_KEY) {
-    return jsonResponse({ error: "서버에 API 키가 설정되지 않았습니다." }, 500);
+    return errorResponse(500, "서버에 API 키가 설정되지 않았습니다.", "missing_key");
   }
-  if (rateLimited(clientIp(req))) {
-    return jsonResponse({ error: "요청이 너무 많습니다. 잠시 후에 다시 시도해 주세요." }, 429);
+  const limitInfo = rateLimitInfo(clientIp(req));
+  if (limitInfo.limited) {
+    return errorResponse(
+      429,
+      "요청이 너무 많습니다. 잠시 후에 다시 시도해 주세요.",
+      "rate_limit",
+      limitInfo.retryAfter,
+    );
   }
 
   let body: unknown;
   try {
     body = await req.json();
   } catch {
-    return jsonResponse({ error: "요청 형식이 올바르지 않습니다." }, 400);
+    return errorResponse(400, "요청 형식이 올바르지 않습니다.", "bad_request");
   }
 
   const payload = (body ?? {}) as Record<string, unknown>;
   const messages = parseMessages(payload.messages);
   if (messages.length === 0 || messages[messages.length - 1].role !== "user") {
-    return jsonResponse({ error: "사용자 메시지가 필요합니다." }, 400);
+    return errorResponse(400, "사용자 메시지가 필요합니다.", "bad_request");
   }
 
   const rawState = (payload.state ?? {}) as Record<string, unknown>;
@@ -148,8 +283,10 @@ Deno.serve(async (req: Request) => {
     activity: clampText(rawState.activity, 200),
   };
 
+  const lore = parseLore(payload.lore);
+
   const ollamaMessages = [
-    { role: "system", content: buildSystemPrompt(state) },
+    { role: "system", content: buildSystemPrompt(state, lore) },
     ...messages,
   ];
 
@@ -166,37 +303,56 @@ Deno.serve(async (req: Request) => {
         messages: ollamaMessages,
         stream: false,
         temperature: 0.8,
-        max_tokens: 512,
+        max_tokens: MAX_OUTPUT_TOKENS,
       }),
       signal: AbortSignal.timeout(30_000),
     });
-  } catch (_err) {
-    return jsonResponse({ error: "응답을 받지 못했습니다. 잠시 후에 다시 시도해 주세요." }, 502);
+  } catch (err) {
+    console.error("Ollama fetch failed", err instanceof Error ? err.message : String(err));
+    return errorResponse(502, "응답을 받지 못했습니다. 잠시 후에 다시 시도해 주세요.", "upstream_error");
   }
 
   if (!upstream.ok) {
     const detail = await upstream.text().catch(() => "");
     console.error("Ollama upstream error", upstream.status, detail.slice(0, 500));
     if (upstream.status === 429) {
-      return jsonResponse({ error: "지금은 손님이 많아 대답하기 어렵습니다. 잠시 뒤에 다시 말을 걸어 주세요." }, 429);
+      return errorResponse(
+        429,
+        "지금은 손님이 많아 대답하기 어렵습니다. 잠시 뒤에 다시 말을 걸어 주세요.",
+        "upstream_rate_limit",
+      );
     }
-    return jsonResponse({ error: "지금은 대답할 수 없습니다. 잠시 후에 다시 시도해 주세요." }, 502);
+    return errorResponse(
+      502,
+      "지금은 대답할 수 없습니다. 잠시 후에 다시 시도해 주세요.",
+      "upstream_error",
+    );
   }
 
   let data: unknown;
   try {
     data = await upstream.json();
   } catch {
-    return jsonResponse({ error: "응답 형식이 올바르지 않습니다." }, 502);
+    return errorResponse(502, "응답 형식이 올바르지 않습니다.", "parse_error");
   }
 
-  const reply =
-    (data as { choices?: Array<{ message?: { content?: string } }> })
-      ?.choices?.[0]?.message?.content?.trim() ?? "";
+  const firstChoice = (data as { choices?: Array<{ message?: { content?: string }; finish_reason?: string }> })
+    ?.choices?.[0];
+  const reply = firstChoice?.message?.content?.trim() ?? "";
+  const finishReason = firstChoice?.finish_reason ?? "unknown";
+
+  console.log("Ollama response", {
+    model: OLLAMA_MODEL,
+    finish_reason: finishReason,
+    reply_length: reply.length,
+  });
 
   if (!reply) {
-    return jsonResponse({ error: "빈 응답을 받았습니다. 다시 시도해 주세요." }, 502);
+    return errorResponse(502, "빈 응답을 받았습니다. 다시 시도해 주세요.", "empty_response");
   }
 
-  return jsonResponse({ reply });
+  return jsonResponse({
+    reply,
+    refs: lore.map((entry) => ({ id: entry.id, t: entry.title, s: entry.status })),
+  });
 });
