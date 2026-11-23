@@ -817,6 +817,9 @@ html, body {
   text-align: center;
 }
 
+.ruwata-chat-note.sync-ok { color: #7fd6c2; }
+.ruwata-chat-note.sync-error { color: #e08a8a; }
+
 @media (max-width: 600px) {
   .ruwata-chat {
     right: 12px;

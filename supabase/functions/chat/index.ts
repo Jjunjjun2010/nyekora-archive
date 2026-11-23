@@ -41,6 +41,14 @@ const LORE_STATUS_LABEL: Record<string, string> = {
 const LORE_BRIEF_OPEN = "[[NYEKORA_LORE_BRIEF]]";
 const LORE_BRIEF_CLOSE = "[[/NYEKORA_LORE_BRIEF]]";
 
+const MAX_SUMMARY_MESSAGES = 60;
+const MAX_SUMMARY_MESSAGE_CHARS = 1200;
+const MAX_SUMMARY_TOTAL_CHARS = 12000;
+const MAX_MEMORY_SUMMARY_CHARS = 1200;
+const MAX_MEMORY_FACTS = 12;
+const MAX_MEMORY_FACT_CHARS = 200;
+const MAX_SUMMARY_OUTPUT_TOKENS = 600;
+
 type ErrorType =
   | "missing_key"
   | "rate_limit"
@@ -121,6 +129,7 @@ function clampText(value: unknown, maxChars: number): string {
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
 type LoreEntry = { id: string; title: string; status: string; category: string; claim: string };
+type NpcMemory = { summary: string; facts: string[] };
 
 // 기존 배포본과의 호환용 짧은 참고자료 블록을 메시지에서 제거한다.
 // 새 함수는 구조화된 lore 필드를 system prompt에 넣는다.
@@ -188,7 +197,50 @@ function parseLore(raw: unknown): LoreEntry[] {
   return limited;
 }
 
-function buildSystemPrompt(state: Record<string, string>, lore: LoreEntry[]): string {
+function parseSummaryMessages(raw: unknown): ChatMessage[] {
+  if (!Array.isArray(raw)) return [];
+
+  const out: ChatMessage[] = [];
+  for (const item of raw) {
+    if (!item || typeof item !== "object") continue;
+    const role = (item as { role?: unknown }).role;
+    const content = clampText((item as { content?: unknown }).content, MAX_SUMMARY_MESSAGE_CHARS);
+    if ((role === "user" || role === "assistant") && content) {
+      out.push({ role, content });
+    }
+  }
+
+  let trimmed = out.slice(-MAX_SUMMARY_MESSAGES);
+  let total = trimmed.reduce((sum, message) => sum + message.content.length, 0);
+  while (trimmed.length > 1 && total > MAX_SUMMARY_TOTAL_CHARS) {
+    total -= trimmed[0].content.length;
+    trimmed = trimmed.slice(1);
+  }
+  return trimmed;
+}
+
+function parseMemory(raw: unknown): NpcMemory {
+  const source = raw && typeof raw === "object" ? (raw as Record<string, unknown>) : {};
+  const summary = clampText(source.summary, MAX_MEMORY_SUMMARY_CHARS);
+  const facts: string[] = [];
+
+  if (Array.isArray(source.facts)) {
+    for (const item of source.facts) {
+      const fact = clampText(item, MAX_MEMORY_FACT_CHARS);
+      if (!fact || facts.includes(fact)) continue;
+      facts.push(fact);
+      if (facts.length >= MAX_MEMORY_FACTS) break;
+    }
+  }
+
+  return { summary, facts };
+}
+
+function buildSystemPrompt(
+  state: Record<string, string>,
+  lore: LoreEntry[],
+  memory: NpcMemory,
+): string {
   const loreLines: string[] = [];
 
   if (lore.length) {
@@ -215,6 +267,14 @@ function buildSystemPrompt(state: Record<string, string>, lore: LoreEntry[]): st
     );
   }
 
+  const memoryLines: string[] = [];
+  if (memory.summary || memory.facts.length) {
+    memoryLines.push("", "장기 기억 (이전 대화에서 정리된 내용):");
+    if (memory.summary) memoryLines.push(`- 요약: ${memory.summary}`);
+    for (const fact of memory.facts) memoryLines.push(`- ${fact}`);
+    memoryLines.push("- 위 기억에 없는 내용은 지어내지 않는다. 기억이 불확실하면 불확실하다고 말한다.");
+  }
+
   const lines = [
     "당신은 니에코라 마을의 전통 악기 제작자 'Ruwata(루와타)'입니다.",
     "- 이름의 뜻: ruwa(물) + wata(나무)",
@@ -228,6 +288,7 @@ function buildSystemPrompt(state: Record<string, string>, lore: LoreEntry[]): st
     `- Ruwata의 현재 상태: ${state.status || "알 수 없음"}`,
     `- 지금 하는 일: ${state.activity || "알 수 없음"}`,
     ...loreLines,
+    ...memoryLines,
     "",
     "대화 규칙:",
     "- 항상 루와타로서 1인칭으로, 한국어로 대답한다.",
@@ -240,6 +301,90 @@ function buildSystemPrompt(state: Record<string, string>, lore: LoreEntry[]): st
     "- '이어서' 또는 '계속'이라고 하면, 직전 답변의 문맥을 자연스럽게 이어간다. 직전 내용을 그대로 반복하지 않는다.",
   ];
   return lines.join("\n");
+}
+
+async function summarizeMemory(
+  memory: NpcMemory,
+  messages: ChatMessage[],
+): Promise<{ summary: string; facts: string[] }> {
+  const transcript = messages.map((message) =>
+    `${message.role === "assistant" ? "Ruwata" : "사용자"}: ${message.content}`
+  ).join("\n");
+
+  const existing = memory.summary || memory.facts.length
+    ? [
+      "기존 기억:",
+      memory.summary ? `- 요약: ${memory.summary}` : "",
+      ...memory.facts.map((fact) => `- ${fact}`),
+    ].filter(Boolean).join("\n")
+    : "기존 기억: 없음";
+
+  const systemPrompt = [
+    "당신은 니에코라 마을 NPC 'Ruwata(루와타)'의 장기 기억을 정리하는 도우미입니다.",
+    "아래 '기존 기억'과 '최근 대화'를 바탕으로, 앞으로의 대화에 도움이 될 사실만 간결하게 정리하세요.",
+    "규칙:",
+    "- 사용자가 알려 준 선호, 약속, 중요한 사건, 관계 변화만 남긴다.",
+    "- 추측하거나 새로운 설정을 지어내지 않는다.",
+    "- 확정되지 않은 내용은 '미확인'이라고 표시한다.",
+    "- 한국어로 작성한다.",
+    "- 반드시 JSON만 출력한다. 형식: {\"summary\": \"3~6문장\", \"facts\": [\"짧은 사실\"]}",
+    "- facts는 최대 12개, 각 60자 이내로 짧게 쓴다.",
+  ].join("\n");
+
+  const upstream = await fetch(OLLAMA_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + OLLAMA_API_KEY,
+    },
+    body: JSON.stringify({
+      model: OLLAMA_MODEL,
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: existing + "\n\n최근 대화:\n" + transcript },
+      ],
+      stream: false,
+      temperature: 0.3,
+      max_tokens: MAX_SUMMARY_OUTPUT_TOKENS,
+    }),
+    signal: AbortSignal.timeout(30_000),
+  });
+
+  if (!upstream.ok) {
+    const detail = await upstream.text().catch(() => "");
+    throw new Error(`summary upstream ${upstream.status}: ${detail.slice(0, 200)}`);
+  }
+
+  const data = await upstream.json();
+  const text = (data as { choices?: Array<{ message?: { content?: string } }> })
+    ?.choices?.[0]?.message?.content?.trim() ?? "";
+
+  let summary = "";
+  let facts: string[] = [];
+
+  const jsonMatch = text.match(/\{[\s\S]*\}/);
+  if (jsonMatch) {
+    try {
+      const parsed = JSON.parse(jsonMatch[0]) as { summary?: unknown; facts?: unknown };
+      summary = clampText(parsed.summary, MAX_MEMORY_SUMMARY_CHARS);
+      if (Array.isArray(parsed.facts)) {
+        for (const item of parsed.facts) {
+          const fact = clampText(item, MAX_MEMORY_FACT_CHARS);
+          if (!fact || facts.includes(fact)) continue;
+          facts.push(fact);
+          if (facts.length >= MAX_MEMORY_FACTS) break;
+        }
+      }
+    } catch {
+      summary = "";
+    }
+  }
+
+  if (!summary && !facts.length) {
+    summary = clampText(text, MAX_MEMORY_SUMMARY_CHARS);
+  }
+
+  return { summary, facts };
 }
 
 Deno.serve(async (req: Request) => {
@@ -270,6 +415,21 @@ Deno.serve(async (req: Request) => {
   }
 
   const payload = (body ?? {}) as Record<string, unknown>;
+
+  if (payload.mode === "summarize") {
+    const summaryMessages = parseSummaryMessages(payload.messages);
+    if (summaryMessages.length === 0) {
+      return errorResponse(400, "요약할 대화가 필요합니다.", "bad_request");
+    }
+    try {
+      const result = await summarizeMemory(parseMemory(payload.memory), summaryMessages);
+      return jsonResponse(result);
+    } catch (err) {
+      console.error("Memory summarize failed", err instanceof Error ? err.message : String(err));
+      return errorResponse(502, "기억을 정리하지 못했습니다. 잠시 후 다시 시도해 주세요.", "upstream_error");
+    }
+  }
+
   const messages = parseMessages(payload.messages);
   if (messages.length === 0 || messages[messages.length - 1].role !== "user") {
     return errorResponse(400, "사용자 메시지가 필요합니다.", "bad_request");
@@ -284,9 +444,10 @@ Deno.serve(async (req: Request) => {
   };
 
   const lore = parseLore(payload.lore);
+  const memory = parseMemory(payload.memory);
 
   const ollamaMessages = [
-    { role: "system", content: buildSystemPrompt(state, lore) },
+    { role: "system", content: buildSystemPrompt(state, lore, memory) },
     ...messages,
   ];
 

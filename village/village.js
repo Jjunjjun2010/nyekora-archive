@@ -519,7 +519,16 @@ var npcSchedules = {
   var NPC_ID = "ruwata";
   var chatStore = window.NyekoraChatStore || null;
   var loreLookup = window.NyekoraLore || null;
+  var chatSync = window.NyekoraChatSync || null;
   var isSending = false;
+  var isSummarizing = false;
+  var npcMemoryEl = document.getElementById("npc-memory");
+  var ruwataMemory = {
+    summary: "",
+    facts: [],
+    lastSummarizedAt: "",
+    summarizedCount: 0
+  };
 
   /*
     대화 백엔드(Supabase Edge Function 경유 Ollama Cloud).
@@ -568,6 +577,126 @@ var npcSchedules = {
       renderConversation();
     });
   }
+
+  function memoryLabel() {
+    var facts = Array.isArray(ruwataMemory.facts) ? ruwataMemory.facts : [];
+    if (ruwataMemory.summary) {
+      return facts.length
+        ? ruwataMemory.summary + " (" + facts.slice(0, 3).join(" · ") + ")"
+        : ruwataMemory.summary;
+    }
+    if (facts.length) return facts.slice(0, 3).join(" · ");
+    return "아직 저장된 기억 없음";
+  }
+
+  function updateMemoryDisplay() {
+    var label = memoryLabel();
+    ruwataElement.dataset.memory = label;
+    if (npcMemoryEl) npcMemoryEl.textContent = label;
+  }
+
+  function updateChatNote(state) {
+    if (!chatNote) return;
+    var status = state && state.status ? state.status : "off";
+    var base;
+
+    if (status === "synced") base = "대화가 내 계정에 클라우드로 동기화됩니다.";
+    else if (status === "syncing") base = "클라우드와 대화를 맞추는 중입니다.";
+    else if (status === "dirty") base = "변경된 대화를 클라우드에 저장할 예정입니다.";
+    else if (status === "error") base = "대화는 이 브라우저에 저장됩니다. 클라우드 동기화는 잠시 후 다시 시도합니다.";
+    else if (status === "signedout") base = "대화는 이 브라우저에 저장됩니다. 기록관 위쪽 ☁에서 로그인하면 다른 기기와도 이어집니다.";
+    else base = "대화는 이 브라우저에 저장됩니다.";
+
+    if (chatSync && chatSync.label && status !== "synced") {
+      var label = chatSync.label();
+      if (label) base += " (" + label + ")";
+    }
+    chatNote.className = "ruwata-chat-note" +
+      (status === "error" ? " sync-error" : (status === "synced" ? " sync-ok" : ""));
+    chatNote.textContent = base + " AI(Ollama Cloud)가 생성한 응답은 사실과 다를 수 있습니다.";
+  }
+
+  function startChatSync() {
+    updateMemoryDisplay();
+
+    if (!chatSync || !chatSync.init) {
+      updateChatNote({ status: "off" });
+      return;
+    }
+
+    chatSync.init({
+      npcId: NPC_ID,
+      storageKey: CHAT_STORAGE_KEY,
+      getMessages: function () {
+        return ruwataData.conversation.slice();
+      },
+      onMessages: function (messages) {
+        ruwataData.conversation = messages.slice();
+        renderConversation();
+      },
+      onMemory: function (memory) {
+        ruwataMemory = memory;
+        updateMemoryDisplay();
+      },
+      onStatus: updateChatNote
+    });
+  }
+
+  function maybeSummarizeMemory() {
+    if (!CHAT_API_URL || isSummarizing || !chatSync || !chatSync.setMemory) return;
+
+    var total = ruwataData.conversation.length;
+    var already = ruwataMemory.summarizedCount || 0;
+    if (total - already < 12) return;
+
+    var recent = ruwataData.conversation.slice(-60).map(function (message) {
+      var role = message.role === "assistant" || message.speaker === "npc" ? "assistant" : "user";
+      return {
+        role: role,
+        content: String(message.text || message.content || "").slice(0, 1000)
+      };
+    }).filter(function (message) {
+      return !!message.content;
+    });
+
+    if (recent.length < 6) return;
+
+    isSummarizing = true;
+    var controller = new AbortController();
+    var timeoutId = window.setTimeout(function () { controller.abort(); }, 30000);
+
+    fetch(CHAT_API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        mode: "summarize",
+        memory: { summary: ruwataMemory.summary || "", facts: ruwataMemory.facts || [] },
+        messages: recent
+      }),
+      signal: controller.signal
+    }).then(function (response) {
+      window.clearTimeout(timeoutId);
+      if (!response.ok) throw new Error("summarize failed (" + response.status + ")");
+      return response.json();
+    }).then(function (data) {
+      var summary = data && typeof data.summary === "string" ? data.summary : "";
+      var facts = data && Array.isArray(data.facts) ? data.facts : [];
+      if (!summary && !facts.length) return;
+      chatSync.setMemory({
+        summary: summary,
+        facts: facts,
+        lastSummarizedAt: new Date().toISOString(),
+        summarizedCount: total
+      });
+    }).catch(function (error) {
+      window.clearTimeout(timeoutId);
+      console.warn("장기 기억 요약을 건너뜁니다.", error);
+    }).then(function () {
+      isSummarizing = false;
+    });
+  }
+
+  startChatSync();
 
   function openChat() {
     chat.classList.remove("hidden");
@@ -685,6 +814,12 @@ var npcSchedules = {
     var body = { messages: history, state: getVillageStateSnapshot() };
     if (loreResult && loreResult.payload && loreResult.payload.length) {
       body.lore = loreResult.payload;
+    }
+    if (ruwataMemory.summary || (ruwataMemory.facts && ruwataMemory.facts.length)) {
+      body.memory = {
+        summary: ruwataMemory.summary || "",
+        facts: (ruwataMemory.facts || []).slice(0, 8)
+      };
     }
 
     var controller = new AbortController();
@@ -842,6 +977,7 @@ var npcSchedules = {
 
   function addNpcMessage(text, refs) {
     appendToConversation(makeChatMessage("npc", text, refs || []));
+    window.setTimeout(maybeSummarizeMemory, 1500);
   }
 
   function makeChatMessage(speaker, text, refs) {
@@ -866,6 +1002,7 @@ var npcSchedules = {
     if (!chatStore) {
       renderMessage(message);
       chatMessages.scrollTop = chatMessages.scrollHeight;
+      if (chatSync && chatSync.schedule) chatSync.schedule();
       return;
     }
 
@@ -881,9 +1018,8 @@ var npcSchedules = {
         chatStore.save(CHAT_STORAGE_KEY, NPC_ID, merged);
       }
 
-      if (chatNote && chatNote.textContent !== CHAT_NOTE_DEFAULT) {
-        chatNote.textContent = CHAT_NOTE_DEFAULT;
-      }
+      if (chatSync && chatSync.schedule) chatSync.schedule();
+
       if (result.added) {
         renderMessage(result.added);
       } else {
@@ -1015,10 +1151,30 @@ var npcSchedules = {
     return "흥미로운 이야기네요. 저는 아직 많은 것을 배우는 중이에요. 이 메시지는 테스트용 응답입니다.";
   }
 
-  // 이후 장기 기억 저장을 연결할 자리. 현재는 실제 저장하지 않는다.
   function addLongTermMemory(memoryText) {
     if (!memoryText) return;
-    ruwataData.longTermMemory.push({ content: memoryText, createdAt: new Date().toISOString() });
+    var fact = String(memoryText).trim().slice(0, 200);
+    if (!fact) return;
+
+    var facts = [];
+    (ruwataMemory.facts || []).concat([fact]).forEach(function (item) {
+      if (item && facts.indexOf(item) === -1 && facts.length < 12) facts.push(item);
+    });
+
+    var next = {
+      summary: ruwataMemory.summary || "",
+      facts: facts,
+      lastSummarizedAt: ruwataMemory.lastSummarizedAt || new Date().toISOString(),
+      summarizedCount: ruwataMemory.summarizedCount || 0
+    };
+
+    if (chatSync && chatSync.setMemory) chatSync.setMemory(next);
+    else {
+      ruwataMemory = next;
+      updateMemoryDisplay();
+    }
+
+    ruwataData.longTermMemory.push({ content: fact, createdAt: new Date().toISOString() });
   }
 
   window.ruwataConversationState = {
@@ -1026,6 +1182,18 @@ var npcSchedules = {
     addLongTermMemory: addLongTermMemory,
     getMessages: function () {
       return ruwataData.conversation.slice();
+    },
+    getMemory: function () {
+      return {
+        summary: ruwataMemory.summary || "",
+        facts: (ruwataMemory.facts || []).slice(),
+        lastSummarizedAt: ruwataMemory.lastSummarizedAt || "",
+        summarizedCount: ruwataMemory.summarizedCount || 0
+      };
+    },
+    summarizeNow: maybeSummarizeMemory,
+    syncStatus: function () {
+      return chatSync && chatSync.status ? chatSync.status() : { status: "off" };
     },
     reload: function () {
       if (!chatStore) return;
