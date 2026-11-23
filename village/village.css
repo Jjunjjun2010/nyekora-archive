@@ -820,7 +820,46 @@ html, body {
 .ruwata-chat-note.sync-ok { color: #7fd6c2; }
 .ruwata-chat-note.sync-error { color: #e08a8a; }
 
+/* 기록관으로 이동하는 하단 버튼 */
+#archive-link {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 15px;
+  border: 2px solid var(--teal-light);
+  border-radius: 999px;
+  background: rgba(10, 40, 38, 0.92);
+  color: var(--cream);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.42);
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+#archive-link:hover {
+  background: rgba(30, 140, 130, 0.92);
+  border-color: #7fd6c2;
+  transform: translateY(-1px);
+}
+
+#archive-link:focus-visible {
+  outline: 3px solid #ffe9a8;
+  outline-offset: 3px;
+}
+
 @media (max-width: 600px) {
+  #archive-link {
+    left: 12px;
+    bottom: 12px;
+    padding: 8px 13px;
+    font-size: 12px;
+  }
+
   .ruwata-chat {
     right: 12px;
     bottom: 12px;
