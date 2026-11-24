@@ -69,4 +69,7 @@ textarea.big{width:100%;min-height:150px;font:13px/1.5 monospace;padding:8px;bor
 .tags span{display:inline-block;margin:0 6px 6px 0;padding:0 8px;border:1px solid var(--ln);border-radius:4px;font-size:13px;color:var(--mu)}
 footer{border-top:2px solid var(--gl);background:var(--sf)}
 footer .in{max-width:1000px;margin:auto;padding:24px 16px 32px;color:var(--mu);font-size:14px}
-@media (max-width:560px){.hero{padding:40px 16px 36px}.sb{flex-direction:column}}
+#village-link{position:fixed;right:20px;bottom:20px;z-index:30;display:inline-flex;align-items:center;gap:6px;padding:9px 15px;border:2px solid var(--gl);border-radius:999px;background:rgba(20,33,61,.92);color:var(--ivory);font-size:13px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.28);transition:background .15s ease,border-color .15s ease,transform .15s ease}
+#village-link:hover{background:rgba(15,118,110,.92);border-color:#7fd6c2;transform:translateY(-1px)}
+#village-link:focus-visible{outline:3px solid var(--gl);outline-offset:3px}
+@media (max-width:560px){.hero{padding:40px 16px 36px}.sb{flex-direction:column}#village-link{right:12px;bottom:12px;padding:8px 13px;font-size:12px}}
