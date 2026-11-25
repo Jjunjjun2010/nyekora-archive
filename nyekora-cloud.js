@@ -164,6 +164,49 @@
     window.addEventListener("focus", onFocus);
     document.addEventListener("visibilitychange", function () { if (!document.hidden) onFocus(); });
   };
+
+  // 우선순위 스냅샷을 Supabase에 저장 (gmail-digest용)
+  window.cloudPushPrioritySnapshot = async function (options) {
+    options = options || {};
+    var now = options.now ? new Date(options.now) : new Date();
+    var source = (typeof window.getArchiveEntries === "function") ? window.getArchiveEntries()
+               : (typeof E !== "undefined" ? E : []);
+    var entries = (window.NyekoraPriority && source && source.length)
+      ? window.NyekoraPriority.analyze(source, { now: now.toISOString(), sourceLabel: "현재 기록관 데이터" })
+      : null;
+    if (!entries || !entries.items || entries.items.length === 0) {
+      console.warn("cloudPushPrioritySnapshot: 분석할 Proposal 항목이 없습니다.");
+      return false;
+    }
+
+    var topItems = entries.items.slice(0, (options.topN || 5));
+    var snapshotData = {
+      snapshot: {
+        topItems: topItems.map(function (r) {
+          var e = r.e;
+          return { id: e.id, title: e.t, category: e.c, score: Math.round(r.total), status: e.s, reason: (r.reasons && r.reasons[0]) || "" };
+        }),
+        generatedAt: entries.generatedAt,
+        sourceLabel: entries.sourceLabel || "현재 기록관 데이터"
+      },
+      generatedAt: now.toISOString()
+    };
+
+    if (!CL.uid) { console.warn("cloudPushPrioritySnapshot: 로그인된 사용자가 없습니다."); return false; }
+    try {
+      var res = await CL.sb
+        .from("nyekora_notify_snapshot")
+        .upsert({
+          owner_id: CL.uid,
+          snapshot: snapshotData.snapshot,
+          generated_at: snapshotData.generatedAt,
+          source_updated_at: new Date().toISOString()
+        }, { onConflict: "owner_id" });
+      if (res.error) { setS("error", "스냅샷 저장 실패: " + res.error.message); return false; }
+      setS("synced", "우선순위 스냅샷이 클라우드에 저장되었습니다.");
+      return true;
+    } catch (e) { setS("error", "스냅샷 저장 예외: " + (e && e.message ? e.message : e)); return false; }
+  };
   function onFocus() {
     if (!CL.uid || CL.conflict || CL.dirty || (typeof FM !== "undefined" && FM) || (typeof MODE !== "undefined" && MODE)) return;
     if (Date.now() - CL.lastPull < 20000) return;

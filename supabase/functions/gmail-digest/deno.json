@@ -1,0 +1,22 @@
+{
+  "name": "gmail-digest",
+  "description": "Nyekora Archive Gmail notification Edge Function",
+  "permissions": {
+    "net": "ssl",
+    "env": [
+      "SUPABASE_URL",
+      "SUPABASE_SERVICE_ROLE_KEY",
+      "SMTP_HOSTNAME",
+      "SMTP_PORT",
+      "SMTP_SECURE",
+      "SMTP_USERNAME",
+      "SMTP_PASSWORD",
+      "SMTP_FROM",
+      "ALLOWED_ORIGIN",
+      "CRON_SECRET"
+    ]
+  },
+  "runtimes": {
+    "default": "nodejs"
+  }
+}

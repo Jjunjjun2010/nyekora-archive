@@ -10,6 +10,7 @@
 | `index.html` | 사이트의 첫 페이지 (이 파일이 저장소 **맨 위**에 있어야 합니다) |
 | `style.css` | 디자인(색, 글자, 배치) |
 | `nyekora-app.js` | 화면·검색·편집·심의·이력·백업 기능 |
+| `priority-analyzer.js` | 검토 우선순위 추천 (Proposal 분석, 읽기 전용) |
 | `nyekora-cloud.js` | 클라우드 로그인과 동기화 |
 | `nyekora-data.js` | 설정 데이터 (자동 생성 파일, 직접 고치지 마세요) |
 | `cloud-config.js` | **내가 채워야 하는 파일**: Supabase 주소와 공개 키 |
@@ -123,3 +124,63 @@ anon(공개) 키가 공개 저장소에 보이는 것은 정상입니다. 보안
 - 평소 편집은 사이트의 **편집** 버튼으로 하세요(클라우드에 저장됩니다).
 - 사이트 파일 자체(`data/*.json`)를 바꾸는 일(자료 대량 추가 등)은 Claude에게 맡기면 됩니다. 직접 하려면 `data/entries.json`을 고치고 `python3 tools/build_data.py`를 실행한 뒤 바뀐 파일을 GitHub에 올립니다. 도구가 잘못된 데이터(중복 ID, 없는 출처 등)를 검사해 줍니다.
 - 이렇게 파일이 바뀌어도 이미 편집한 항목은 덮어쓰이지 않습니다(편집본이 우선합니다).
+
+## 10. 검토 우선순위 추천
+
+- 위 메뉴의 **📊 우선순위**를 누르면 현재 불러온 데이터의 **Proposal** 항목을 분석해 참고용 순위를 보여 줍니다.
+- 점수는 **세계관 영향 · 선행성·차단 · 연관·충돌 위험 · 검토 지연**을 규칙으로 계산합니다. 외부 AI/API를 호출하지 않으며, 데이터를 읽기만 합니다.
+- 승인·거부는 기존처럼 각 항목의 상세 화면에서 직접 합니다. 분석 화면은 상태를 바꾸지 않습니다.
+- Supabase 동기화 전 데이터나 백업 파일을 확인하려면 화면의 **다른 데이터 파일로 미리 분석하기**에서 파일을 선택하세요. 이 미리보기도 저장소를 바꾸지 않습니다.
+- Gmail 알림은 다음 단계에서 추가할 수 있습니다. (이번 단계에는 포함하지 않았습니다.)
+
+## 11. Gmail 알림 기능 (새 기능)
+
+이 기능을 사용하면 AI가 분석한 우선순위 Top 5를 이메일로 받아볼 수 있습니다.
+
+### 11-1. 기능 개요
+- AI가 Proposal 항목을 분석해 점수 상위 5개를 추천합니다.
+- 추천 이유, 점수, 카테고리, 기록관 상세 링크가 포함된 이메일이 발송됩니다.
+- AI가 임의로 상태를 변경하지 않으며, 확인용 권장 순서만 전달합니다.
+- 수동 발송과 주기(daily/weekly) 발송을 지원합니다.
+
+### 11-2. 선행 준비물 (사용자 작업)
+1. **Gmail 2단계 인증 켜기**
+   - Google 계정 → 보안 → 2단계 인증 설정
+2. **Gmail 앱 비밀번호 생성**
+   - Google 계정 → 보안 → 앱 비밀번호 → Nyekora Archive 선택 → 16자리 비밀번호 복사
+3. **Supabase Edge Function 시크릿 설정**
+   - Supabase 대시보드 → Settings → Functions → Secrets에서 아래 값 추가
+   - `SMTP_HOSTNAME=smtp.gmail.com`
+   - `SMTP_PORT=465`
+   - `SMTP_SECURE=true`
+   - `SMTP_USERNAME=<본인 Gmail 주소>`
+   - `SMTP_PASSWORD=<16자리 앱 비밀번호>`
+   - `SMTP_FROM=<Gmail 주소>`
+   - `PUBLIC_SITE_URL=https://jjunjjun2010.github.io/nyekora-archive/`
+   - `CRON_SECRET=<충분히 긴 임의 문자열>`
+   - `ALLOWED_ORIGIN=https://jjunjjun2010.github.io`
+4. **SQL 마이그레이션 실행**
+   - Supabase 대시보드 → SQL Editor에서 `supabase/setup_notify.sql`을 실행
+5. **Edge Function 배포**
+   - Supabase 대시보드 → Functions → gmail-digest → Deploy
+
+### 11-3. 사용 방법
+1. 사이트 오른쪽 상단 **☁ → 로그인** 후 계정 로그인
+2. 해시 메뉴에서 **#notify** 선택 → 알림 설정 화면 표시
+3. 수신 이메일, 발송 주기(수동/일일/주간), 보낼 시간/요일을 저장
+4. **[테스트 발송]** 버튼으로 메일 수신 확인 (실제 발송 안 함)
+5. **[우선순위 발송]** 버튼으로 Top 5 이메일 실제 발송
+6. 정기 발송은 Supabase Cron을 통해 자동 수행 (1시간마다 확인)
+
+### 11-4. 보안 체크리스트
+- [ ] Gmail 앱 비밀번호가 브라우저·GitHub에 노출되지 않음 (Edge Function 시크릿만 사용)
+- [ ] CRON_SECRET이 SQL 파일에 하드코딩되지 않음 (Dashboard/Vault 관리)
+- [ ] RLS가 새 테이블에 올바르게 설정됨 (anon 사용자 불가)
+- [ ] JWT 없이 send 호출 시 401 에러가 발생하는지 확인
+- [ ] 허용되지 않은 Origin에서 호출 시 CORS 차단되는지 확인
+
+### 11-5. 주의사항
+- OAuth 7일 리프레시 토큰 만료 문제로 **SMTP 앱 비밀번호**를 기본 방식으로 권장합니다.
+- Gmail SMTP 포트 465가 차단될 경우 Resend 등 트랜잭션 메일 API로 대체 권장.
+- 한 번 발송한 후 바로 재발송 시 중복 방지( dedup )가 작동하여 skipped 처리될 수 있습니다.
+- 승인·거부·상태 변경은 기록관에서 직접 수행하며, 본 기능은 권장 순서만 전달합니다.
