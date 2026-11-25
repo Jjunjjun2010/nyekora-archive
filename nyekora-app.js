@@ -155,7 +155,7 @@ function notifyView(entries){
 
   // 시간대 옵션 (시)
   const hourOptions = (()=> {
-    const opts=[]; for(let h=0;h<24;h++) opts+=`<option value="${h}"${h===parseInt(savedHour)? " selected":""}">${h.padStart(2,"0")}</option>`;
+    let opts=""; for(let h=0;h<24;h++) opts+=`<option value="${h}"${h===parseInt(savedHour)? " selected":""}">${String(h).padStart(2,"0")}</option>`;
     return opts;
   })();
 
